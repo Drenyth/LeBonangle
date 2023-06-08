@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le BonAngle</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="inner_header">
+            <div class="logo_container">
+                <a href="index.html"><img src="./ressources/logo.png" alt="LOGO"></a>
+            </div>
+
+            <ul class="navigation">
+                <li><a href="formulaire_connexion.html">Se connecter</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <div class="boutons">
+        <div class="deposer_annonce">
+            <button onclick=window.location.href='formulaire_depot_annonce.html'; id="bouton_depot">Déposer une annonce</button>
+        </div>
+        <div class="div_barre_recherche">
+            <input id="recherche" name="search_text" placeholder="Rechercher des annonces" autocomplete="off">
+            <p> 
+                <select name="filtres" id="filtres">
+                    <option value="Tous">Tous</option> 
+                    <option value="Sport">Sport</option>  
+                    <option value="Services">Services</option> 
+                </select>
+            </p>
+        </div>
+    </div>
+    <div class="annonces">
+        <ul>
+            <li id="announcement">Annonce 1</li>
+            <li id="announcement">Annonce 2</li>
+            <li id="announcement">Annonce 3</li>
+            <li id="announcement">Annonce 4</li>
+            <li id="announcement">Annonce 5</li>
+        </ul>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
