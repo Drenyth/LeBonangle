@@ -66,8 +66,41 @@ body {
     color: black;
 }
 
-.form {
+.boutons {
     width: 70%;
     height: 100%;
     margin-left: 15%;
+}
+
+#recherche{
+    width: 200px;
+}
+
+.div_barre_recherche{
+    display: flex;
+}
+
+.annonces{
+    border: 5px groove white;
+    width: 70%;
+    height: 100%;
+    margin-left: 15%;
+}
+
+.annonces li{
+    border-bottom: solid grey 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.annonces li:last-child{
+    border: none;
+}
+
+#register:hover, #log:hover{
+    color: lightgrey;
+}
+
+#image{
+    width: 30%;
 }

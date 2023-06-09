@@ -71,3 +71,11 @@ body {
     height: 100%;
     margin-left: 15%;
 }
+
+#log:hover{
+    color: lightgrey;
+}
+
+#image{
+    width: 30%;
+}

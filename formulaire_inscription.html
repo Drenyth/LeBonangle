@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <link rel="stylesheet" href="style-inscription.css">
+    <link rel="stylesheet" href="./css/style-inscription.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="index.html"><img src="./ressources/logo.png" alt="LOGO"></a>
+                <a href="index.html"><img id="image" src="./images/logo_temporaire" alt="LOGO"></a>
             </div>
 
             <ul class="navigation">
-                <li><a href="index.html">Se connecter</a></li>
+                <li><a href="formulaire_connexion.html" id="log">Se connecter</a></li>
             </ul>
         </div>
     </header>
@@ -83,9 +83,9 @@
                 </p>
             </fieldset>
         </form>
-        <input type=button onclick=window.location.href='index.html'; value="Retour"/>
+        <input type=button onclick=window.location.href='index.html'; id="return" value="Retour"/>
     </div>
 
-    <script src="formulaire_inscription.js"></script>
+    <script src="./js/formulaire_inscription.js"></script>
 </body>
 </html>
