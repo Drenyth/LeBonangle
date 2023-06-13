@@ -48,24 +48,6 @@ body {
     list-style: none;
 }
 
-.navigation li{
-    display: table-cell;
-    vertical-align: middle;
-    height: 100%;
-    padding: 0px 20px;
-    color: black;
-    font-size: 16px;
-}
-
-.navigation li:last-child{
-    padding-right: 0px;
-}
-
-.navigation a:visited, .navigation a:hover, .navigation a:active, .navigation a:link{
-    text-decoration: none;
-    color: black;
-}
-
 .form {
     width: 70%;
     height: 100%;
