@@ -8,7 +8,7 @@
         $mail = htmlspecialchars($_POST['mail']);
         $password = htmlspecialchars($_POST['password']);
 
-        $check = $bdd->prepare('SELECT nom, prenom, email, password, token FROM utilisateurs WHERE email = ?');
+        $check = $bdd->prepare('SELECT id, nom, prenom, email, password, token FROM utilisateurs WHERE email = ?');
         $check->execute(array($mail));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -19,6 +19,18 @@
             {
                 if(password_verify($password, $data['password']))
                 {
+                    if(empty($_COOKIE['userid']))
+                    {
+                        $id = $data['id'];
+                        setcookie('userid', $id, time() + 60 * 60);
+                    }
+                    else
+                    {
+                        unset($_COOKIE['userid']);
+                        setcookie('userid', '', time() - 10);
+                        $id = $data['id'];
+                        setcookie('userid', $id, time() + 60 * 60);
+                    }
                     $_SESSION['user'] = $data['token'];
                     header('Location:landing.php');
                     die();
