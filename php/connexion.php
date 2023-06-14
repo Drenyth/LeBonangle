@@ -51,7 +51,7 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="index.html"><img id="image" src="./../images/logo_temporaire" alt="LOGO"></a>
+                <a href="../index.html"><img id="image" src="./../images/logo_temporaire" alt="LOGO"></a>
             </div>
         </div>
     </header>
@@ -65,7 +65,7 @@
     
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
-                    <input type="text" name="password" class="form-control" placeholder="Mot de passe" required>
+                    <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
                 </div> 
     
                 <div class="form-group">

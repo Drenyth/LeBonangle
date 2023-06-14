@@ -1,15 +1,14 @@
 <?php
-    session_start();
-    require_once "config.php";
 
-    if(!isset($_SESSION['user'])){
-        header('Location:connexion.php');
-        die();
+    if(!empty($_COOKIE['userid']))
+    {
+        $userid = $_COOKIE['userid'];
+        require_once "config.php";
+
+        $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
+        $req->execute(array($userid));
+        $data = $req->fetch();
     }
-
-    $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE token = ?');
-    $req->execute(array($_SESSION['user']));
-    $data = $req->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -30,15 +29,16 @@
             </div>
 
             <ul class="navigation">
-            <h1>Bonjour <?php echo $data['prenom'] . " " . $data['nom']; ?> !</h1>
-                        <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+                <h1>Bonjour <?php echo $data['prenom'] . " " . $data['nom']; ?> !</h1>
+                <a href="modification.php" class="btn btn-danger btn-lg">Modification</a>
+                <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
             </ul>
         </div>
     </header>
     
     <div class="boutons">
         <div class="deposer_annonce">
-            <button onclick=window.location.href='formulaire_depot_annonce.html'; id="bouton_depot">Déposer une annonce</button>
+            <a href="formulaire_depot_annonce.php"><button>Déposer une annonce</button></a>
         </div>
         <div class="div_barre_recherche">
             <input id="recherche" name="search_text" onblur="getVal()" placeholder="Rechercher des annonces" autocomplete="off">

@@ -1,3 +1,15 @@
+<?php
+    if(!empty($_COOKIE['userid']))
+    {
+        $userid = $_COOKIE['userid'];
+        require_once "config.php";
+    
+        $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
+        $req->execute(array($userid));
+        $data = $req->fetch();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +26,20 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="../index.html"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <?php if ($userid): ?>  
+                    <a href="landing.php"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <?php else: ?>
+                    <a href="../index.html"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <?php endif; ?>
             </div>
 
             <ul class="navigation">
-                <li><a href="formulaire_connexion.html" id="log">Se connecter</a></li>
+                <?php if ($userid): ?>
+                    <h1>Bonjour <?php echo $data['prenom'] . " " . $data['nom']; ?> !</h1>
+                    <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+                <?php else: ?>
+                    <li><a href="connexion.php" id="log">Se connecter</a></li>
+                <?php endif; ?>
             </ul>
         </div>
     </header>

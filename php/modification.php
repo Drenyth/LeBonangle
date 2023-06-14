@@ -1,10 +1,32 @@
+<?php
+
+    if(!empty($_COOKIE['userid']))
+    {
+        $userid = $_COOKIE['userid'];
+        require_once "config.php";
+
+        $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
+        $req->execute(array($userid));
+        $data = $req->fetch();
+
+        $nom = $data['nom'];
+        $prenom = $data['prenom'];
+        $email = $data['email'];
+        $pays = $data['pays'];
+        $date_de_naissance = $data['date_de_naissance'];
+        $code_postal = $data['code_postal'];
+        $adresse = $data['adresse'];
+        $genre = $data['genre'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
+    <title>Modification</title>
     <link rel="stylesheet" href="../css/style-inscription.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
@@ -16,6 +38,10 @@
             <div class="logo_container">
                 <a href="../index.html"><img id="image" src="../images/logo_temporaire" alt="LOGO"></a>
             </div>
+            <ul class="navigation">
+                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+            </ul>
         </div>
     </header>
     <div class="login-form">
@@ -29,7 +55,7 @@
                         case 'success':
                         ?>
                             <div class="alert alert-success">
-                                <strong>Succès</strong> inscription réussie !
+                                <strong>Succès</strong> modifications effectuées !
                             </div>
                         <?php
                         break;
@@ -81,14 +107,14 @@
                 }
             ?>
     <div class="form">
-        <form action="inscription_traitement.php" method="post">
+        <form action="modification_traitement.php" method="post">
             <div class="form-group">
                 <label for="first_name">Nom</label>
-                <input type="text" name="name" class="form-control" placeholder="Nom" required>
+                <input type="text" name="name" class="form-control" placeholder="Nom" value="<?php echo $nom; ?>" required>
             </div>
             <div class="form-group">
                 <label for="name">Prénom</label>
-                <input type="text" name="first_name" class="form-control" placeholder="Prénom" required>
+                <input type="text" name="first_name" class="form-control" placeholder="Prénom" value="<?php echo $prenom; ?>" required>
             </div>              
             <div class="form-group">
                 <label for="gender">Genre</label>
@@ -97,23 +123,23 @@
             </div>
             <div class="form-group">
                 <label for="birth">Date de naissance</label>
-                <input type="date" name="birth" id="form_birth" required>
+                <input type="date" name="birth" id="form_birth" value="<?php echo $date_de_naissance; ?>" required>
             </div>
             <div class="form-group">
                 <label for="country">Pays</label>
-                <input type="text" name="country" class="form-control" placeholder="Pays" required>
+                <input type="text" name="country" class="form-control" placeholder="Pays" value="<?php echo $pays; ?>" required>
             </div>
             <div class="form-group">
                 <label for="postal">Code postal</label>
-                <input type="text" name="postal" class="form-control" placeholder="95570" required>
+                <input type="text" name="postal" class="form-control" placeholder="95570" value="<?php echo $code_postal; ?>" required>
             </div>
             <div class="form-group">
                 <label for="adress">Adresse</label>
-                <input type="text" name="adress" class="form-control" placeholder="Adresse" required>
+                <input type="text" name="adress" class="form-control" placeholder="Adresse" value="<?php echo $adresse; ?>" required>
             </div>
             <div class="form-group">
                 <label for="mail">Adresse mail</label>
-                <input type="email" name="mail" class="form-control" placeholder="Adresse mail" required>
+                <input type="email" name="mail" class="form-control" placeholder="Adresse mail" value="<?php echo $email; ?>" required>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>
