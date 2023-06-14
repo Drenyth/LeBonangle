@@ -24,7 +24,7 @@
     </header>
     
     <div class="form">
-        <form action="destination.html">       
+        <form action="destination.html" method="post">       
                 <div class="form-group">
                     <label for="announcement">Intitulé de l'annonce</label>
                     <input type="text" name="announcement" class="form-control" placeholder="Annonce" required>
@@ -83,6 +83,55 @@
                 </div>
         </form>
     </div>
+
+    
+
+        <?PHP
+            require_once 'config.php';
+
+            $servername = "localhost";
+            //var_dump($servername);
+            $username = "root";
+            //var_dump($username);
+            $password = "";
+            $dbname = "lebonangle";
+
+
+            $id_annonce = 0201; 
+            //var_dump($id_annonce);
+            $id_utilisateur = 0101;
+            //var_dump();
+            $annonce = $_POST[announcement];
+            //var_dump($annonce);
+            $image = $_POST[image];
+            //var_dump($image);
+            $desc = $_POST[description];
+            //var_dump($desc);
+            $price = $_POST[price];
+            //var_dump($price);
+            $mail = $_POST[mail];
+            //var_dump($mail);
+            $address = $_POST[adress];
+            //var_dump($address);
+            $phonenum = $_POST[phone];
+            //var_dump($phonenum);
+            
+            
+            $insert = $bdd->prepare('INSERT INTO annonce(id_annonce, id_utilisateur, nom_anonce, photo, description, prix, adresse_mail, adresse_postal, telephone) 
+                VALUES(:id_annonce, :id_utilisateur, :annonce, :image, :desc, :price, :mail, :address, :phonenum)');
+            $insert->execute(array(
+                'id_annonce' => $id_annonce,
+                'id_utilisateur' => $id_utilisateur,
+                'annonce' => $annonce,
+                'image' => $image,
+                'desc' => $desc,
+                'price' => $price,
+                'mail' => $mail,
+                'address' => $address,
+                'adresse' => $adresse,
+                'phonenum' => $phonenum,
+            ));
+        ?>
 
     <script src=".././js/formulaire_depot_annonce.js"></script>
 
