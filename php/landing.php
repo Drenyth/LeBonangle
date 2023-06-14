@@ -30,6 +30,7 @@
 
             <ul class="navigation">
                 <h1>Bonjour <?php echo $data['prenom'] . " " . $data['nom']; ?> !</h1>
+                <a href="modification.php" class="btn btn-danger btn-lg">Modification</a>
                 <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
             </ul>
         </div>

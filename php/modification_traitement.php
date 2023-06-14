@@ -22,7 +22,10 @@
 
         $email = strtolower($mail);
 
-        if($row == 0){
+        if($row != 0){
+            $check = $bdd->prepare('DELETE FROM utilisateurs WHERE email = ?');
+            $check->execute(array($mail));
+
             if($password == $password_retype){
                 if(strlen($first_name) <= 20){
                     if(strlen($name) <= 20){
@@ -56,13 +59,14 @@
                                     'interets' => $chk,
                                     'token' => bin2hex(openssl_random_pseudo_bytes(64))
                                 ));
-    
+                                unset($_COOKIE['userid']);
+                                setcookie('userid', '', time() - 10); 
                                 header('Location:connexion.php?reg_err=success');
                                 die();
-                            }else {header('Location:inscription.php?reg_err=email'); die();}
-                        }else {header('Location:inscription.php?reg_err=email_length'); die();}
-                    }else {header('Location:inscription.php?reg_err=name_length'); die();}
-                }else {header('Location:inscription.php?reg_err=first_name_length'); die();}
-            }else {header('Location:inscription.php?reg_err=password'); die();}
-        }else {header('Location:inscription.php?reg_err=already'); die();}
+                            }else {header('Location:modification.php?reg_err=email'); die();}
+                        }else {header('Location:modification.php?reg_err=email_length'); die();}
+                    }else {header('Location:modification.php?reg_err=name_length'); die();}
+                }else {header('Location:modification.php?reg_err=first_name_length'); die();}
+            }else {header('Location:modification.php?reg_err=password'); die();}
+        }else {header('Location:modification.php?reg_err=already'); die();}
     }
