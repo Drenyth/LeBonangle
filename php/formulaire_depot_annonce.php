@@ -26,7 +26,11 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="landing.php"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <?php if ($userid): ?>  
+                    <a href="landing.php"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <?php else: ?>
+                    <a href="../index.html"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <?php endif; ?>
             </div>
 
             <ul class="navigation">

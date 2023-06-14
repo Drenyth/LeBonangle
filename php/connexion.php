@@ -51,7 +51,7 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="index.html"><img id="image" src="./../images/logo_temporaire" alt="LOGO"></a>
+                <a href="../index.html"><img id="image" src="./../images/logo_temporaire" alt="LOGO"></a>
             </div>
         </div>
     </header>
