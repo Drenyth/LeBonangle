@@ -110,11 +110,11 @@
         <form action="modification_traitement.php" method="post">
             <div class="form-group">
                 <label for="first_name">Nom</label>
-                <input type="text" name="name" class="form-control" placeholder="Nom" value="<?php echo $prenom; ?>" required>
+                <input type="text" name="name" class="form-control" placeholder="Nom" value="<?php echo $nom; ?>" required>
             </div>
             <div class="form-group">
                 <label for="name">Prénom</label>
-                <input type="text" name="first_name" class="form-control" placeholder="Prénom" value="<?php echo $nom; ?>" required>
+                <input type="text" name="first_name" class="form-control" placeholder="Prénom" value="<?php echo $prenom; ?>" required>
             </div>              
             <div class="form-group">
                 <label for="gender">Genre</label>

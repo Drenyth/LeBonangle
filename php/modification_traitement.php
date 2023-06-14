@@ -1,6 +1,11 @@
 <?php
     require_once 'config.php';
 
+    if(!empty($_COOKIE['userid']))
+    {
+        $userid = $_COOKIE['userid'];
+    }
+
     if(!empty($_POST['first_name']) && !empty($_POST['name']) && !empty($_POST['gender']) && !empty($_POST['birth']) && !empty($_POST['country']) && !empty($_POST['postal']) && !empty($_POST['adress']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password_retype']))
     {
         $first_name = htmlspecialchars($_POST['first_name']);
@@ -15,16 +20,16 @@
         $password_retype = htmlspecialchars($_POST['password_retype']);
         $interets = $_POST['interets'];
 
-        $check = $bdd->prepare('SELECT prenom, nom, password FROM utilisateurs WHERE email = ?');
-        $check->execute(array($mail));
+        $check = $bdd->prepare('SELECT prenom, nom, password FROM utilisateurs WHERE id = ?');
+        $check->execute(array($userid));
         $data = $check->fetch();
         $row = $check->rowCount();
 
         $email = strtolower($mail);
 
         if($row != 0){
-            $check = $bdd->prepare('DELETE FROM utilisateurs WHERE email = ?');
-            $check->execute(array($mail));
+            $check = $bdd->prepare('DELETE FROM utilisateurs WHERE id = ?');
+            $check->execute(array($userid));
 
             if($password == $password_retype){
                 if(strlen($first_name) <= 20){
@@ -43,8 +48,9 @@
                                     $chk .= $chk1.",";  
                                 }
     
-                                $insert = $bdd->prepare('INSERT INTO utilisateurs(email, password, ip, prenom, nom, genre, date_de_naissance, pays, adresse, code_postal, favoris, interets, token) VALUES(:email, :password, :ip, :prenom, :nom, :genre, :date_de_naissance, :pays, :adresse, :code_postal, :favoris, :interets, :token)');
+                                $insert = $bdd->prepare('INSERT INTO utilisateurs(id, email, password, ip, prenom, nom, genre, date_de_naissance, pays, adresse, code_postal, favoris, interets, token) VALUES(:id, :email, :password, :ip, :prenom, :nom, :genre, :date_de_naissance, :pays, :adresse, :code_postal, :favoris, :interets, :token)');
                                 $insert->execute(array(
+                                    'id' => $userid,
                                     'email' => $mail,
                                     'password' => $password,
                                     'ip' => $ip,
