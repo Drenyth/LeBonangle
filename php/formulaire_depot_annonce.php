@@ -8,6 +8,10 @@
         $req->execute(array($userid));
         $data = $req->fetch();
     }
+    else
+    {
+        $userid = false;
+    }
 ?>
 
 <!DOCTYPE html>

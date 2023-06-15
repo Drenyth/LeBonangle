@@ -14,7 +14,7 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="../index.html"><img id="image" src="../images/logo_temporaire" alt="LOGO"></a>
+                <a href="../index.html"><img id="image" src="../images/logo.png" alt="LOGO"></a>
             </div>
         </div>
     </header>
@@ -80,6 +80,7 @@
                     }
                 }
             ?>
+    </div>
     <div class="form">
         <form action="inscription_traitement.php" method="post">
             <div class="form-group">
@@ -146,7 +147,6 @@
     <style>
         body{
         background-color: #333333;
-        min-width: 1400px;
         color: white;
         font-family: 'Roboto', sans-serif;
         }

@@ -5,6 +5,10 @@
     {
         $userid = $_COOKIE['userid'];
     }
+    else
+    {
+        $userid = false;
+    }
 
     if(!empty($_POST['first_name']) && !empty($_POST['name']) && !empty($_POST['gender']) && !empty($_POST['birth']) && !empty($_POST['country']) && !empty($_POST['postal']) && !empty($_POST['adress']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password_retype']))
     {

@@ -9,6 +9,10 @@
         $req->execute(array($userid));
         $data = $req->fetch();
     }
+    else
+    {
+        $userid = false;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +29,7 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="index.html"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
+                <a href="index.html"><img id="image" src=".././images/logo.png" alt="LOGO"></a>
             </div>
 
             <ul class="navigation">

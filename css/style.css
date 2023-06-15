@@ -30,14 +30,14 @@ body {
 }
 
 .logo_container{
-    height: 100%;
+    height: 80px;
     display: table;
     float: left;
 }
 
 .logo_container img{
-    width: 250px;
-    display: table-cell;
+    height: 80px;
+    display: flex;
     vertical-align: middle;
 }
 
@@ -99,8 +99,4 @@ body {
 
 #register:hover, #log:hover{
     color: lightgrey;
-}
-
-#image{
-    width: 30%;
 }
