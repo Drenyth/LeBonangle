@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 <body>
 <!--<header>
@@ -18,6 +22,28 @@
             </div>
         </div>
 </header>-->
+
+<nav class="navbar navbar-expand-md navbar-custom header-padding">
+    <div class="container justify-content-center">
+    <a href="../index.html" class="navbar-brand">
+        <img class="d-inline-block center" src="../images/logo.png" width="80">
+    </a>
+        <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
+            <i class="bx bx-menu bx-md"></i>
+        </button>
+    <div class="collapse navbar-collapse flex-grow-1" id="btn">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a href="inscription.php" class="nav-link mx-3 text-white fs-5">S'inscrire</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+
+
+
 <div class="login-form">
              <?php 
                 if(isset($_GET['login_err']))
@@ -77,12 +103,25 @@
     <div class="inscription">
         <a href="./inscription.php"><button class="btn">S'inscrire</button></a>
     </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     <script src="./../js/formulaire_connexion.js"></script>
     <style>
         body{
-        background-color: #333333;
-        color: white;
-        font-family: 'Roboto', sans-serif;
+            background-color: #333333;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        .login-form {
+            width: 70%;
+            height: 100%;
+            margin-left: 15%;
+        }
+        .login-form form {
+            margin-bottom: 15px;
+            background: #333333;
+            padding: 30px;
         }
         .form-control, .btn {
             min-height: 38px;
@@ -92,6 +131,19 @@
             font-size: 15px;
             font-weight: bold;
             background: #006B6B;
+        }
+
+        .navbar-custom{
+            background-color: #006B6B;
+        }
+
+        .header-padding{
+            margin-bottom:50px;
+            /*padding-left:385px;*/
+        }
+
+        .navbar-padding{
+            padding-left:735px;
         }
         </style>
 </body>
