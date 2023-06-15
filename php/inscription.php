@@ -80,6 +80,7 @@
                     }
                 }
             ?>
+    </div>
     <div class="form">
         <form action="inscription_traitement.php" method="post">
             <div class="form-group">
@@ -146,7 +147,6 @@
     <style>
         body{
         background-color: #333333;
-        min-width: 1400px;
         color: white;
         font-family: 'Roboto', sans-serif;
         }

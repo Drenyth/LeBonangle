@@ -15,13 +15,6 @@ header{
     font-family: 'Lato', sans-serif;
 }
 
-body {
-    background-color: #333333;
-    min-width: 1400px;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-}
-
 .inner_header{
     width: 70%;
     height: 100%;
@@ -48,16 +41,6 @@ body {
     list-style: none;
 }
 
-.form {
-    width: 70%;
-    height: 100%;
-    margin-left: 15%;
-}
-
 #register:hover{
     color: lightgrey;
-}
-
-#image{
-    width: 30%;
 }
