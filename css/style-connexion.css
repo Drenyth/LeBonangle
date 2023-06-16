@@ -15,31 +15,8 @@ header{
     font-family: 'Lato', sans-serif;
 }
 
-.inner_header{
-    width: 70%;
-    height: 100%;
-    display: block;
-    margin: 0 auto;
-}
 
-.logo_container{
-    height: 100%;
-    display: table;
-    float: left;
-}
 
-.logo_container img{
-    width: 250px;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.navigation{
-    height: 100%;
-    display: table;
-    float: right;
-    list-style: none;
-}
 
 #register:hover{
     color: lightgrey;

@@ -29,7 +29,7 @@
     <header>
         <div class="inner_header">
             <div class="logo_container">
-                <a href="index.html"><img id="image" src=".././images/logo.png" alt="LOGO"></a>
+                <a href="landing.php"><img id="image" src=".././images/logo.png" alt="LOGO"></a>
             </div>
 
             <ul class="navigation">
