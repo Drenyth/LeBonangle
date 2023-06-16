@@ -95,7 +95,21 @@
                 }
             ?>
     <div class="form">
-        <form action="annonce_traitement.php" method="post">       
+        <form action="annonce_traitement.php" method="post">   
+                <div name="type">
+                    Type d'annonce
+                    <div>
+                        <input type="radio" id="service" name="drone" value="service" checked>
+                        <label for="service">Service</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="bien" name="drone" value="bien">
+                        <label for="bien">Bien</label>
+                    </div>
+                </div>
+
+                </div>    
                 <div class="form-group">
                     <label for="announcement">Intitulé de l'annonce</label>
                     <input type="text" name="announcement" class="form-control" placeholder="Annonce" required>
@@ -147,7 +161,7 @@
                     <label for="phone" id = "bold">Téléphone portable</label>
                     <input type="text" name="phone" title = "Numéro à 10 chiffres sans espace et commençant par 06 ou 07" class="form-control" placeholder = "Numéro" pattern="(06)[0-9]{8}|(07)[0-9]{8}" required>
                 </div>
-    
+
                 <div class="form-group">
                     <button type="submit" name="submit" role="button" aria-disabled="false" class="btn">Envoyer</button>
                     <input type="Reset" name="reset" value="Réinitialiser" class="btn">
