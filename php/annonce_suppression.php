@@ -5,4 +5,6 @@
     $delete->execute(array(
         'id_annonce'=>$id_annonce
     ));
+
+    
 ?>
