@@ -44,7 +44,7 @@
     
     
                                 $insert = $bdd->prepare('INSERT INTO annonce(id_annonce, id_utilisateur, nom_annonce, photo, description, prix, email, adresse_postal,tags) 
-                                VALUES(:id_annonce, :id_utilisateur, :nom_annonce, :photo, :description, :prix, :email, :adresse_postal, :tags,)');
+                                VALUES(:id_annonce, :id_utilisateur, :nom_annonce, :photo, :description, :prix, :email, :adresse_postal, :tags)');
                         $insert->execute(array(
                             'id_annonce' => $id_annonce,
                             'id_utilisateur' => $id_utilisateur,

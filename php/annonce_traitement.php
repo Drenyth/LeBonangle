@@ -42,8 +42,8 @@
                     'description' => $desc,
                     'prix' => $price,
                     'email' => $email,
-                    'adresse_postal' => $address
-                    'tags'=> $tags;
+                    'adresse_postal' => $address,
+                    'tags'=> $tags
                 ));
                 header('Location:formulaire_depot_annonce.php?reg_err=success');
                 die();
