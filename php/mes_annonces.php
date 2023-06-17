@@ -1,3 +1,4 @@
+<!-- récupération user id et données correspondantes -->
 <?php
     if(!empty($_COOKIE['userid']))
     {
