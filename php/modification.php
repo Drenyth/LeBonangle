@@ -215,45 +215,45 @@
         <input type="Reset" name="reset" value="Réinitialiser" class="btn">
     </div>
 </div>
-    <style>
-        body{
-        background-color: #333333;
-        min-width: 1400px;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-        }
-        .login-form {
-            width: 70%;
-            height: 100%;
-            margin-left: 15%;
-        }
-        .login-form form {
-            margin-bottom: 15px;
-            background: #333333;
-            padding: 30px;
-        }
-        .form-control, .btn {
-            min-height: 38px;
-            border-radius: 2px;
-        }
-        .btn {        
-            font-size: 15px;
-            font-weight: bold;
-            background: #006B6B;
-        }
-        .navbar-custom{
-            background-color: #006B6B;
-        }
-        
-        .header-padding{
-            margin-bottom:50px;
-            /*padding-left:385px;*/
-        }
-        
-        .navbar-padding{
-            padding-left:735px;
-        }
-    </style>
+<style>
+    body{
+    background-color: #333333;
+    min-width: 1400px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    }
+    .login-form {
+        width: 70%;
+        height: 100%;
+        margin-left: 15%;
+    }
+    .login-form form {
+        margin-bottom: 15px;
+        background: #333333;
+        padding: 30px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+        background: #006B6B;
+    }
+    .navbar-custom{
+        background-color: #006B6B;
+    }
+    
+    .header-padding{
+        margin-bottom:50px;
+        /*padding-left:385px;*/
+    }
+    
+    .navbar-padding{
+        padding-left:735px;
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

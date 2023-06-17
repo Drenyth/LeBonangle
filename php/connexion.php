@@ -98,7 +98,7 @@
             </div>
         </form>
     </div>
-    <div class="inscription">
+    <div class="container">
         <a href="./inscription.php"><button class="btn">S'inscrire</button></a>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
