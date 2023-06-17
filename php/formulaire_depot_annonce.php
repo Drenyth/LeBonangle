@@ -30,7 +30,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<<<<<<< HEAD
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
@@ -46,148 +45,6 @@
                 <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
             </li>
         </ul>
-=======
-    <header>
-        <div class="inner_header">
-            <div class="logo_container">
-                <?php if ($userid): ?>  
-                    <a href="landing.php"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
-                <?php else: ?>
-                    <a href="../index.html"><img id="image" src=".././images/logo_temporaire" alt="LOGO"></a>
-                <?php endif; ?>
-            </div>
-
-            <ul class="navigation">
-                <?php if ($userid): ?>
-                    <h1>Bonjour <?php echo $data['prenom'] . " " . $data['nom']; ?> !</h1>
-                    <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
-                <?php else: ?>
-                    <li><a href="connexion.php" id="log">Se connecter</a></li>
-                <?php endif; ?>
-            </ul>
-        </div>
-    </header>
-    <div class="login-form">
-            <?php 
-                if(isset($_GET['reg_err']))
-                {
-                    $err = htmlspecialchars($_GET['reg_err']);
-
-                    switch($err)
-                    {
-                        case 'success':
-                        ?>
-                            <div class="alert alert-success">
-                                <strong>Succès</strong> Bravo pour votre annonce !
-                            </div>
-                        <?php
-                        break;
-
-                        case 'email':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email non valide
-                            </div>
-                        <?php
-                        break;
-
-                        case 'email_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email trop long
-                            </div>
-                        <?php 
-                        break;
-
-                        case 'annonce_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> Intitulé d'annonce trop long
-                            </div>
-                        <?php
-                        case 'desc_length':
-                        ?>
-                            <div class="alert alert-danger">
-                            <strong>Erreur</strong> description trop longue
-                            </div>
-                        <?php  
-                    }
-                }
-            ?>
-    <div class="form">
-        <form action="annonce_traitement.php" method="post">   
-                <div name="type">
-                    Type d'annonce
-                    <div>
-                        <input type="radio" id="service" name="drone" value="service" checked>
-                        <label for="service">Service</label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="bien" name="drone" value="bien">
-                        <label for="bien">Bien</label>
-                    </div>
-                </div>
-
-                </div>    
-                <div class="form-group">
-                    <label for="announcement">Intitulé de l'annonce</label>
-                    <input type="text" name="announcement" class="form-control" placeholder="Annonce" required>
-                </div>    
-    
-                <div class="form-group">
-                    <label for="image">Choisir une photo</label>
-                    <input type="file" name="image" class="form-control" accept="image/png, image/jpeg" required>
-                </p>
-    
-                <div class="form-group">
-                    <label for="tags">Tags pour l'annonce :</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="tags[]" value="Automobile">
-                        <label class="form-check-label" for="inlineCheckbox1">Sport</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="tags[]" value="Automobile">
-                        <label class="form-check-label" for="inlineCheckbox1">Voiture</label>
-                    </div>
-                </div>
-    
-                <div class="form-group">
-                    <label for="description">Description de l'annonce</label>
-                    <textarea name="description" class="form-control" cols="30" rows="10" placeholder="Description" required></textarea>
-                </div>
-    
-                <div class="form-group">
-                    <label for="price">Prix</label>
-                    <input type="texte" name="price" class="form-control" placeholder="Prix" required>
-                </div>
-                <div class="form-group">
-                    <label for="mail">Adresse mail</label>
-                    <input type="email" name="mail" class="form-control" placeholder="Adresse mail" required>
-                </div>
-                   
-                <div class="form-group">     
-                    <label for="postal">Code postal</label>
-                    <input type="text" name="postal" class="form-control" placeholder="95570" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="adress">Adresse</label>
-                    <input type="text" name="adress" class="form-control" placeholder="Adresse" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="phone" id = "bold">Téléphone portable</label>
-                    <input type="text" name="phone" title = "Numéro à 10 chiffres sans espace et commençant par 06 ou 07" class="form-control" placeholder = "Numéro" pattern="(06)[0-9]{8}|(07)[0-9]{8}" required>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" name="submit" role="button" aria-disabled="false" class="btn">Envoyer</button>
-                    <input type="Reset" name="reset" value="Réinitialiser" class="btn">
-                </div>
-        </form>
->>>>>>> f52fe2b950a8e49c3757eca308fcf1e9097cd970
     </div>
     </div>
 </nav>
@@ -245,6 +102,15 @@
     <label for="announcement" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
         <div class="col-sm-10">
         <input type="text" name="announcement" class="form-control" placeholder="Annonce" required>
+        </div>
+    </div>
+    <div class="mb-3">
+    <label for="type" class="col-sm-2 col-form-label">Type d'annonce</label>
+        <div class="col-sm-10">
+            <input type="radio" id="service" name="drone" value="service" checked>
+            <label for="service">Service</label>
+            <input type="radio" id="bien" name="drone" value="bien">
+            <label for="bien">Bien</label>
         </div>
     </div>
     <div class="mb-3">

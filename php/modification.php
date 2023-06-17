@@ -53,6 +53,8 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <a href="mes_annonces.php" class="btn btn-danger btn-lg">Mes annonces</a>
+                <a href="modification.php" class="btn btn-danger btn-lg">Mon compte</a>
                 <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
             </li>
         </ul>
@@ -226,47 +228,6 @@
         <input type="Reset" name="reset" value="Réinitialiser" class="btn">
     </div>
 </div>
-<<<<<<< HEAD
-<style>
-    body{
-    background-color: #333333;
-    min-width: 1400px;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    }
-    .login-form {
-        width: 70%;
-        height: 100%;
-        margin-left: 15%;
-    }
-    .login-form form {
-        margin-bottom: 15px;
-        background: #333333;
-        padding: 30px;
-    }
-    .form-control, .btn {
-        min-height: 38px;
-        border-radius: 2px;
-    }
-    .btn {        
-        font-size: 15px;
-        font-weight: bold;
-        background: #006B6B;
-    }
-    .navbar-custom{
-        background-color: #006B6B;
-    }
-    
-    .header-padding{
-        margin-bottom:50px;
-        /*padding-left:385px;*/
-    }
-    
-    .navbar-padding{
-        padding-left:735px;
-    }
-</style>
-=======
     <style>
         body{
         background-color: #333333;
@@ -305,7 +266,6 @@
             padding-left:735px;
         }
     </style>
->>>>>>> f52fe2b950a8e49c3757eca308fcf1e9097cd970
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -30,7 +30,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<<<<<<< HEAD
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
@@ -43,18 +42,8 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-=======
-    <header>
-        <div class="inner_header">
-            <div class="logo_container">
-                <a href="landing.php"><img id="image" src=".././images/logo.png" alt="LOGO"></a>
-            </div>
-
-            <ul class="navigation">
-                <h1>Bonjour <?php echo $data['prenom'] . " " . $data['nom']; ?> !</h1>
                 <a href="mes_annonces.php" class="btn btn-danger btn-lg">Mes annonces</a>
-                <a href="modification.php" class="btn btn-danger btn-lg">Modification</a>
->>>>>>> f52fe2b950a8e49c3757eca308fcf1e9097cd970
+                <a href="modification.php" class="btn btn-danger btn-lg">Mon compte</a>
                 <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
             </li>
         </ul>
