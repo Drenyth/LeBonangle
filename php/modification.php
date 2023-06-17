@@ -1,3 +1,4 @@
+<!-- récupération user id et données correspondantes -->
 <?php
 
     if(!empty($_COOKIE['userid']))
@@ -121,54 +122,64 @@
                 }
             ?>
 <div class="container">
-<form action="inscription_traitement.php" method="post">
+<form action="modification_traitement.php" method="post">
     <div class="mb-3">
         <label for="first_name" class="col-sm-2 col-form-label">Nom</label>
         <div class="col-sm-10">
-            <input type="text" name="name" class="form-control" placeholder="Nom" required>
+            <input type="text" name="name" class="form-control" placeholder="Nom" value="<?php echo $nom; ?>" required>
         </div>
     </div>
     <div class="mb-3">
         <label for="name" class="col-sm-2 col-form-label">Prénom</label>
         <div class="col-sm-10">
-        <input type="text" name="first_name" class="form-control" placeholder="Prénom" required>
+        <input type="text" name="first_name" class="form-control" placeholder="Prénom" value="<?php echo $prenom; ?>" required>
         </div>
     </div>
     <div class="mb-3">
         <label for="gender" class="col-sm-2 col-form-label">Genre</label>
         <div class="col-sm-10">
+
+        <?php if($genre == "Homme"): ?>
+            <input type="radio" name="gender" value="Homme" checked="checked" required>Homme
+        <?php else: ?>
             <input type="radio" name="gender" value="Homme" required>Homme
+        <?php endif; ?>
+
+        <?php if($genre == "Femme"): ?>
+            <input type="radio" name="gender" value="Femme" checked="checked" required>Femme
+        <?php else: ?>
             <input type="radio" name="gender" value="Femme" required>Femme
+        <?php endif; ?>
         </div>
     </div>
     <div class="mb-3">
         <label for="birth" class="col-sm-2 col-form-label">Date de naissance</label>
         <div class="col-sm-10">
-            <input type="date" name="birth" id="form_birth" required>
+            <input type="date" name="birth" id="form_birth" value="<?php echo $date_de_naissance; ?>" required>
         </div>
     </div>
     <div class="mb-3">
         <label for="country" class="col-sm-2 col-form-label">Pays</label>
         <div class="col-sm-10">
-            <input type="text" name="country" class="form-control" placeholder="Pays" required>
+            <input type="text" name="country" class="form-control" placeholder="Pays" value="<?php echo $pays; ?>" required>
         </div>
     </div>
     <div class="mb-3">
         <label for="postal" class="col-sm-2 col-form-label">Code postal</label>
         <div class="col-sm-10">
-            <input type="text" name="postal" class="form-control" placeholder="95570" required>
+            <input type="text" name="postal" class="form-control" placeholder="95570" value="<?php echo $code_postal; ?>" required>
         </div>
     </div>
     <div class="mb-3">
         <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
         <div class="col-sm-10">
-            <input type="text" name="adress" class="form-control" placeholder="Adresse" required>
+            <input type="text" name="adress" class="form-control" placeholder="Adresse" value="<?php echo $adresse; ?>" required>
         </div>
     </div>
     <div class="mb-3">
         <label for="mail" class="col-sm-2 col-form-label">Adresse mail</label>
         <div class="col-sm-10">
-            <input type="email" name="mail" class="form-control" placeholder="Adresse mail" required>
+            <input type="email" name="mail" class="form-control" placeholder="Adresse mail" value="<?php echo $email; ?>" required>
         </div>
     </div>
     <div class="mb-3">
@@ -215,6 +226,7 @@
         <input type="Reset" name="reset" value="Réinitialiser" class="btn">
     </div>
 </div>
+<<<<<<< HEAD
 <style>
     body{
     background-color: #333333;
@@ -254,6 +266,46 @@
         padding-left:735px;
     }
 </style>
+=======
+    <style>
+        body{
+        background-color: #333333;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        }
+        .login-form {
+            width: 70%;
+            height: 100%;
+            margin-left: 15%;
+        }
+        .login-form form {
+            margin-bottom: 15px;
+            background: #333333;
+            padding: 30px;
+        }
+        .form-control, .btn {
+            min-height: 38px;
+            border-radius: 2px;
+        }
+        .btn {        
+            font-size: 15px;
+            font-weight: bold;
+            background: #006B6B;
+        }
+        .navbar-custom{
+            background-color: #006B6B;
+        }
+        
+        .header-padding{
+            margin-bottom:50px;
+            /*padding-left:385px;*/
+        }
+        
+        .navbar-padding{
+            padding-left:735px;
+        }
+    </style>
+>>>>>>> f52fe2b950a8e49c3757eca308fcf1e9097cd970
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
