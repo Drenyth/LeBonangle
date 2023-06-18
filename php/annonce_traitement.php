@@ -12,7 +12,7 @@
 
     
     $annonce = htmlspecialchars($_POST['announcement']);
-    $image = htmlspecialchars($_POST['image']);
+    $image = $_FILES['image'];    
     $desc = htmlspecialchars($_POST['description']);
     $price = htmlspecialchars($_POST['price']);
     $address = htmlspecialchars($_POST['adress']);
@@ -40,41 +40,48 @@
             if(strlen($email) <= 100){
                 if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                     if(is_numeric($price)){
+                        if ($image['error'] === UPLOAD_ERR_OK) {
 
-                        $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
-                            VALUES(:nom_annonce, :id_utilisateur, :photo, :description, :prix, :email, :adresse_postal, :tags)');
-                        $insert->execute(array(
-                            'nom_annonce' => $annonce,
-                            'id_utilisateur' => $userid,
-                            'photo' => $image,
-                            'description' => $desc,
-                            'prix' => $price,
-                            'email' => $email,
-                            'adresse_postal' => $address,
-                            'tags'=> $tags
-                        ));
-                        $id_annonce = $bdd->lastInsertId(); 
+                            $image_name = $image['name']; 
+                            $image_tmp = $image['tmp_name'];
 
-                        if($typeannonce == "bien"){
-                            $insert2 = $bdd->prepare('INSERT INTO bien(etat, id_annonce, type)
-                                VALUES(:etat, :id_annonce, :type)');
-                            $insert2->execute(array(
-                                'id_annonce' => $id_annonce,
-                                'etat'=>$etat,
-                                'type'=>intval($typebien),
+                            $destination = 'images/' . $image_name;
+                            move_uploaded_file($image_tmp, $destination);
+
+                            $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
+                                VALUES(:nom_annonce, :id_utilisateur, :photo, :description, :prix, :email, :adresse_postal, :tags)');
+                            $insert->execute(array(
+                                'nom_annonce' => $annonce,
+                                'id_utilisateur' => $userid,
+                                'photo' => $destination,
+                                'description' => $desc,
+                                'prix' => $price,
+                                'email' => $email,
+                                'adresse_postal' => $address,
+                                'tags'=> $tags
                             ));
-                        }else{
-                            $insert2 = $bdd->prepare('INSERT INTO service(date, id_annonce)
-                                VALUES(:date, :id_annonce)');
-                            $insert2->execute(array(
-                                'date'=>$date,
-                                'id_annonce' => $id_annonce,
-                            ));
-                        }
+                            $id_annonce = $bdd->lastInsertId(); 
 
-                        header('Location:formulaire_depot_annonce.php?reg_err=success');
-                        die();
+                            if($typeannonce == "bien"){
+                                $insert2 = $bdd->prepare('INSERT INTO bien(etat, id_annonce, type)
+                                    VALUES(:etat, :id_annonce, :type)');
+                                $insert2->execute(array(
+                                    'id_annonce' => $id_annonce,
+                                    'etat'=>$etat,
+                                    'type'=>intval($typebien),
+                                ));
+                            }else{
+                                $insert2 = $bdd->prepare('INSERT INTO service(date, id_annonce)
+                                    VALUES(:date, :id_annonce)');
+                                $insert2->execute(array(
+                                    'date'=>$date,
+                                    'id_annonce' => $id_annonce,
+                                ));
+                            }
 
+                            header('Location:formulaire_depot_annonce.php?reg_err=success');
+                            die();
+                        }else{ header('Location: formulaire_depot_annonce.php?reg_err=upload_error');die();}
                     }else{header('Location:formulaire_depot_annonce.php?reg_err=price');}
                 }else {header('Location:inscription.php?reg_err=email'); die();}
             }else {header('Location:inscription.php?reg_err=email_length'); die();}

@@ -105,7 +105,7 @@
 </div>
 
 <div class="container">
-<form action="annonce_traitement.php" method="post">
+<form action="annonce_traitement.php" method="post" enctype="multipart/form-data" >
     <div class="mb-3">
         <label for="announcement" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
         <div class="col-sm-10">
