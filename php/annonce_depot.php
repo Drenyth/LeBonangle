@@ -105,7 +105,7 @@
 </div>
 
 <div class="container">
-<form action="annonce_traitement.php" method="post" enctype="multipart/form-data" >
+<form action="annonce_ajout.php" method="post" enctype="multipart/form-data" >
     <div class="mb-3">
         <label for="announcement" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
         <div class="col-sm-10">
@@ -261,19 +261,20 @@
         const typebienDiv = document.getElementById('divTypeBien');
         const etatDiv = document.getElementById('divEtat');
         const dateDiv = document.getElementById('divDate');
-
+        function changeForm() {
+            if (this.value === 'bien') {
+                typebienDiv.style.display = 'block';  
+                etatDiv.style.display = 'block';      
+                dateDiv.style.display = 'none';       
+            } else {
+                typebienDiv.style.display = 'none';   
+                etatDiv.style.display = 'none';       
+                dateDiv.style.display = 'block';      
+            }
+        };
+        radio.addEventListener('load',changeForm);
         typeannonceRadio.forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'bien') {
-                    typebienDiv.style.display = 'block';  
-                    etatDiv.style.display = 'block';      
-                    dateDiv.style.display = 'none';       
-                } else {
-                    typebienDiv.style.display = 'none';   
-                    etatDiv.style.display = 'none';       
-                    dateDiv.style.display = 'block';      
-                }
-            });
+            radio.addEventListener('change',changeForm);
         });
     </script>
 
