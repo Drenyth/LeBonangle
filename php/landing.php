@@ -76,6 +76,46 @@
         </div>
     </form>
 </div>
+
+    <?php
+        $check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
+        $check_annonces->execute();
+        //$data_annonces = $check_annonces->fetch();
+        $data_annonces = $check_annonces->fetchAll();
+        $row_data_annonces = $check_annonces->rowCount();
+        //var_dump($row_data_annonces);
+        //var_dump($data_annonces);
+        if($row_data_annonces != 0){
+            foreach($data_annonces as $row): ?>
+                <div class="container">
+                <form class="row gy-2 gx-3 align-items-center border mb-4">
+                    <div class="col-auto mb-3">
+                    <?php  echo'<img height="300" width="300" src="data:image;base64,'.$row[3].'">';?>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo $row[2];?>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo $row[4];?>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo $row[5];?>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo $row[6];?>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo $row[7];?>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo $row[8];?>
+                    </div>
+                </form>
+                </div> 
+            <?php endforeach; ?>
+        <?php } ?>
+
+
 <style>
         body{
             background-color: #333333;
