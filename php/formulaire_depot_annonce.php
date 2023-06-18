@@ -28,6 +28,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
@@ -102,78 +103,120 @@
         }
     ?>
 </div>
+
 <div class="container">
 <form action="annonce_traitement.php" method="post">
     <div class="mb-3">
-    <label for="announcement" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
+        <label for="announcement" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
         <div class="col-sm-10">
-        <input type="text" name="announcement" class="form-control" placeholder="Annonce" required>
+            <input type="text" name="announcement" class="form-control" placeholder="Annonce" required>
         </div>
     </div>
+
     <div class="mb-3">
-    <label for="type" class="col-sm-2 col-form-label">Type d'annonce</label>
+    <label for="typeannonce" class="col-sm-2 col-form-label">Type d'annonce</label>
         <div class="col-sm-10">
-            <input type="radio" id="service" name="drone" value="service" checked>
+            <input type="radio" name="typeannonce" value="service" checked>
             <label for="service">Service</label>
-            <input type="radio" id="bien" name="drone" value="bien">
+            <input type="radio" name="typeannonce" value="bien">
             <label for="bien">Bien</label>
         </div>
     </div>
+
     <div class="mb-3">
     <label for="image" class="col-sm-2 col-form-label">Choisir une photo</label>
         <div class="col-sm-10">
         <input type="file" name="image" class="form-control" accept="image/png, image/jpeg" required>
         </div>
     </div>
+
     <div class="mb-3">
         <label for="tags" class="col-sm-2 col-form-label">Tags pour l'annonce :</label>
         <select name="tags" class="selectpicker">
-                <option selected>Choisissez un filtre</option>
-                <option value="Immobilier">Immobilier</option>
-                <option value="Automobile">Automobile</option>
-                <option value="Lecture">Lecture</option>
-                <option value="Mode">Mode</option>
-                <option value="Bricolage">Bricolage</option>
-                <option value="Jeux">Jeux</option>
-                <option value="Sport">Sport</option>
-                <option value="Musique">Musique</option>
+            <option selected>Choisissez un filtre</option>
+            <option value="Immobilier">Immobilier</option>
+            <option value="Automobile">Automobile</option>
+            <option value="Lecture">Lecture</option>
+            <option value="Mode">Mode</option>
+            <option value="Bricolage">Bricolage</option>
+            <option value="Jeux">Jeux</option>
+            <option value="Sport">Sport</option>
+            <option value="Musique">Musique</option>
         </select>
     </div>
+
     <div class="mb-3">
     <label for="description" class="col-sm-2 col-form-label">Description de l'annonce</label>
         <div class="col-sm-10">
         <textarea name="description" class="form-control" cols="30" rows="10" placeholder="Description" required></textarea>
         </div>
     </div>
+
     <div class="mb-3">
     <label for="price" class="col-sm-2 col-form-label">Prix</label>
         <div class="col-sm-10">
             <input type="texte" name="price" class="form-control" placeholder="Prix" required>
         </div>
     </div>
+
     <div class="mb-3">
     <label for="mail" class="col-sm-2 col-form-label">Adresse mail</label>
         <div class="col-sm-10">
-        <input type="email" name="mail" class="form-control" placeholder="Adresse mail" required>
+            <input type="email" name="mail" class="form-control" placeholder="Adresse mail" required>
         </div>
     </div>
+
     <div class="mb-3">
         <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
         <div class="col-sm-10">
             <input type="text" name="adress" class="form-control" placeholder="Adresse" required>
         </div>
     </div>
+
     <div class="mb-3">
     <label for="phone" id = "bold" class="col-sm-2 col-form-label">Téléphone portable</label>
         <div class="col-sm-10">
-        <input type="text" name="phone" title = "Numéro à 10 chiffres sans espace et commençant par 06 ou 07" class="form-control" placeholder = "Numéro" pattern="(06)[0-9]{8}|(07)[0-9]{8}" required>
+            <input type="text" name="phone" title = "Numéro à 10 chiffres sans espace et commençant par 06 ou 07" class="form-control" placeholder = "Numéro" pattern="(06)[0-9]{8}|(07)[0-9]{8}" required>
         </div>
     </div>
-    <div class="mb-3" class="col-sm-2 col-form-label"> 
-        <input type="submit" role="button" aria-disabled="false" class="btn">
-        <input type="Reset" name="reset" value="Réinitialiser" class="btn">
+
+    <div id="divTypeBien" class="mb-3">
+        <label for="typebien" id="bold" class="col-sm-2 col-form-label">Type de Bien</label>
+        <div class="col-sm-10">
+            <select name="typebien" class="selectpicker">
+                    <option selected>Choisissez un filtre</option>
+                    <option value="0">Location</option>
+                    <option value="1">Vente</option>
+            </select>
+        </div>
     </div>
-</div>
+
+    <div id="divEtat" class="mb-3">
+        <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
+        <div class="col-sm-10">
+            <select name="etat" class="selectpicker">
+                <option selected>Choisissez un filtre</option>
+                <option value="bon">Bon</option>
+                <option value="moyen">Moyen</option>
+                <option value="mauvais">Mauvais</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="divDate" class="mb-3">
+        <label for="date" id="bold" class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-10">
+            <input type="date" name="date" title="" class="form-control" placeholder="date">
+        </div>
+    </div>
+
+    </div>
+        <div class="mb-3" class="col-sm-2 col-form-label"> 
+            <input type="submit" role="button" aria-disabled="false" class="btn">
+            <input type="Reset" name="reset" value="Réinitialiser" class="btn">
+        </div>
+    </div>
+</form>
 <style>
     body{
         background-color: #333333;
@@ -213,6 +256,28 @@
         padding-left:735px;
     }
 </style>
+    <script>
+        const typeannonceRadio = document.querySelectorAll('input[name="typeannonce"]');
+        const typebienDiv = document.getElementById('divTypeBien');
+        const etatDiv = document.getElementById('divEtat');
+        const dateDiv = document.getElementById('divDate');
+
+        typeannonceRadio.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'bien') {
+                    typebienDiv.style.display = 'block';  
+                    etatDiv.style.display = 'block';      
+                    dateDiv.style.display = 'none';       
+                } else {
+                    typebienDiv.style.display = 'none';   
+                    etatDiv.style.display = 'none';       
+                    dateDiv.style.display = 'block';      
+                }
+            });
+        });
+    </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
