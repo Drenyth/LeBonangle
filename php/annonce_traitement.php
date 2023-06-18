@@ -32,23 +32,25 @@
         if(strlen($annonce) <= 100){
             if(strlen($mail) <= 100){
                 /*if(filter_var($mail, FILTER_VALIDATE_EMAIL)){*/
+                    if(is_numeric($prix)){
 
-                $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
-                    VALUES(:nom_annonce, :id_utilisateur, :photo, :description, :prix, :email, :adresse_postal, :tags)');
-                $insert->execute(array(
-                    'nom_annonce' => $annonce,
-                    'id_utilisateur' => $userid,
-                    'photo' => $image,
-                    'description' => $desc,
-                    'prix' => $price,
-                    'email' => $email,
-                    'adresse_postal' => $address,
-                    'tags'=> $tags
-                ));
-                header('Location:formulaire_depot_annonce.php?reg_err=success');
-                die();
+                        $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
+                            VALUES(:nom_annonce, :id_utilisateur, :photo, :description, :prix, :email, :adresse_postal, :tags)');
+                        $insert->execute(array(
+                            'nom_annonce' => $annonce,
+                            'id_utilisateur' => $userid,
+                            'photo' => $image,
+                            'description' => $desc,
+                            'prix' => $price,
+                            'email' => $email,
+                            'adresse_postal' => $address,
+                            'tags'=> $tags
+                        ));
+                        header('Location:formulaire_depot_annonce.php?reg_err=success');
+                        die();
 
-                   /* }else {header('Location:inscription.php?reg_err=email'); die();}*/
+                    }else{header('Location:formulaire_depot_annonce.php?reg_err=price');}
+                /* }else {header('Location:inscription.php?reg_err=email'); die();}*/
             }else {header('Location:inscription.php?reg_err=email_length'); die();}
         }else {header('Location:formulaire_depot_annonce.php?reg_err=annonce_length'); die();}
     }else {header('Location:formulaire_depot_annonce.php?reg_err=desc_length'); die();}

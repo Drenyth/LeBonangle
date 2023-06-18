@@ -92,6 +92,12 @@
                     <strong>Erreur</strong> description trop longue
                     </div>
                 <?php  
+                case 'price':
+                ?>
+                    <div class="alert alert-danger">
+                    <strong>Erreur</strong> mauvais prix
+                    </div>
+                <?php 
             }
         }
     ?>
