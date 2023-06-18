@@ -120,13 +120,18 @@
         </div>
     </div>
     <div class="mb-3">
-    <label for="tags" class="col-sm-2 col-form-label">Tags pour l'annonce :</label>
-        <div class="col-sm-10">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Sport</label>
-            <input class="form-check-input" type="checkbox" name="tags[]" value="Automobile">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Voiture</label>
-            <input class="form-check-input" type="checkbox" name="tags[]" value="Automobile">
-        </div>
+        <label for="tags" class="col-sm-2 col-form-label">Tags pour l'annonce :</label>
+        <select name="tags" class="selectpicker">
+                <option selected>Choisissez un filtre</option>
+                <option value="Immobilier">Immobilier</option>
+                <option value="Automobile">Automobile</option>
+                <option value="Lecture">Lecture</option>
+                <option value="Mode">Mode</option>
+                <option value="Bricolage">Bricolage</option>
+                <option value="Jeux">Jeux</option>
+                <option value="Sport">Sport</option>
+                <option value="Musique">Musique</option>
+        </select>
     </div>
     <div class="mb-3">
     <label for="description" class="col-sm-2 col-form-label">Description de l'annonce</label>
