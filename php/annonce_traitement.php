@@ -31,7 +31,7 @@
     if(strlen($desc) <= 1000){
         if(strlen($annonce) <= 100){
             if(strlen($mail) <= 100){
-                /*if(filter_var($mail, FILTER_VALIDATE_EMAIL)){*/
+                if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
                     if(is_numeric($prix)){
 
                         $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
@@ -50,7 +50,7 @@
                         die();
 
                     }else{header('Location:formulaire_depot_annonce.php?reg_err=price');}
-                /* }else {header('Location:inscription.php?reg_err=email'); die();}*/
+                }else {header('Location:inscription.php?reg_err=email'); die();}
             }else {header('Location:inscription.php?reg_err=email_length'); die();}
         }else {header('Location:formulaire_depot_annonce.php?reg_err=annonce_length'); die();}
     }else {header('Location:formulaire_depot_annonce.php?reg_err=desc_length'); die();}
