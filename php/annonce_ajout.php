@@ -44,7 +44,6 @@
 
                             $image_name = $image['name']; 
                             $image_tmp = $image['tmp_name'];
-
                             $destination = 'images/' . $image_name;
                             move_uploaded_file($image_tmp, $destination);
 
@@ -79,13 +78,13 @@
                                 ));
                             }
 
-                            header('Location:formulaire_depot_annonce.php?reg_err=success');
+                            header('Location:annonce_depot.php?reg_err=success');
                             die();
-                        }else{ header('Location: formulaire_depot_annonce.php?reg_err=upload_error');die();}
-                    }else{header('Location:formulaire_depot_annonce.php?reg_err=price');}
+                        }else{header('Location: annonce_depot.php?reg_err=upload_error');die();}
+                    }else{header('Location:annonce_depot.php?reg_err=price');}
                 }else {header('Location:inscription.php?reg_err=email'); die();}
             }else {header('Location:inscription.php?reg_err=email_length'); die();}
-        }else {header('Location:formulaire_depot_annonce.php?reg_err=annonce_length'); die();}
-    }else {header('Location:formulaire_depot_annonce.php?reg_err=desc_length'); die();}
+        }else {header('Location:annonce_depot.php?reg_err=annonce_length'); die();}
+    }else {header('Location:annonce_depot.php?reg_err=desc_length'); die();}
     
 ?>

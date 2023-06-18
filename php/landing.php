@@ -52,7 +52,7 @@
 </nav>
 <div class="container">
         <div class="col-auto mb-3">
-            <a href="formulaire_depot_annonce.php"><input type="button" role="button" aria-disabled="false" value="Déposer une annonce" class="btn"></a>
+            <a href="annonce_depot.php"><input type="button" role="button" aria-disabled="false" value="Déposer une annonce" class="btn"></a>
         </div>
     <form class="row gy-2 gx-3 align-items-center">
         <div class="col-auto mb-3">
