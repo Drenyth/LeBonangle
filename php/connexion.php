@@ -15,14 +15,6 @@
 
 </head>
 <body>
-<!--<header>
-        <div class="inner_header">
-            <div class="logo_container">
-                <a href="../index.html"><img id="image" src="./../images/logo.png" alt="LOGO"></a>
-            </div>
-        </div>
-</header>-->
-
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="../index.html" class="navbar-brand">
@@ -34,7 +26,7 @@
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a href="inscription.php" class="nav-link mx-3 text-white fs-5">S'inscrire</a>
+            <a href="inscription.php" class="btn btn-dark btn-lg">S'inscrire</a>
             </li>
         </ul>
     </div>

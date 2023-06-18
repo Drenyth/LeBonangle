@@ -42,9 +42,9 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-                <a href="mes_annonces.php" class="btn btn-danger btn-lg">Mes annonces</a>
-                <a href="modification.php" class="btn btn-danger btn-lg">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+                <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
             </li>
         </ul>
     </div>
@@ -77,43 +77,34 @@
     </form>
 </div>
 
-    <?php
-        $check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
-        $check_annonces->execute();
-        //$data_annonces = $check_annonces->fetch();
-        $data_annonces = $check_annonces->fetchAll();
-        $row_data_annonces = $check_annonces->rowCount();
-        //var_dump($row_data_annonces);
-        //var_dump($data_annonces);
-        if($row_data_annonces != 0){
-            foreach($data_annonces as $row): ?>
+<?php
+$check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
+$check_annonces->execute();
+$data_annonces = $check_annonces->fetchAll();
+$row_data_annonces = $check_annonces->rowCount();
+if($row_data_annonces != 0){
+    foreach($data_annonces as $row): ?>
                 <div class="container">
-                <form class="row gy-2 gx-3 align-items-center border mb-4">
-                    <div class="col-auto mb-3">
-                    <?php  echo'<img height="300" width="300" src="data:image;base64,'.$row[3].'">';?>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo $row[2];?>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo $row[4];?>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo $row[5];?>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo $row[6];?>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo $row[7];?>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo $row[8];?>
-                    </div>
-                </form>
+                    <a  id="annonce" href="#">
+                    <form class="row gy-2 gx-3 align-items-center border mb-4">
+                        <div class="col-auto mb-3">
+                        <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+                        </div>
+                        <div class="col-auto">
+                            <div class="row gy-2 gx-3 align-items-center mb-4">
+                                <strong>
+                                    <?php echo $row[2];?>
+                                </strong>
+                            </div>
+                            <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                <?php echo $row[5]."€";?>
+                            </div>
+                        </div>
+                    </form>
+                    </a>
                 </div> 
-            <?php endforeach; ?>
-        <?php } ?>
+    <?php endforeach; ?>
+<?php } ?>
 
 
 <style>
@@ -153,6 +144,14 @@
 
         .navbar-padding{
             padding-left:735px;
+        }
+        #annonce{
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+        #annonce:hover{
+            transform: scale(2);
         }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

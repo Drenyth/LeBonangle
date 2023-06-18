@@ -43,7 +43,7 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-                <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
             </li>
         </ul>
     </div>
