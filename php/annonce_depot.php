@@ -257,25 +257,36 @@
     }
 </style>
     <script>
-        const typeannonceRadio = document.querySelectorAll('input[name="typeannonce"]');
-        const typebienDiv = document.getElementById('divTypeBien');
-        const etatDiv = document.getElementById('divEtat');
-        const dateDiv = document.getElementById('divDate');
-        function changeForm() {
-            if (this.value === 'bien') {
-                typebienDiv.style.display = 'block';  
-                etatDiv.style.display = 'block';      
-                dateDiv.style.display = 'none';       
-            } else {
-                typebienDiv.style.display = 'none';   
-                etatDiv.style.display = 'none';       
-                dateDiv.style.display = 'block';      
-            }
-        };
-        radio.addEventListener('load',changeForm);
-        typeannonceRadio.forEach(radio => {
-            radio.addEventListener('change',changeForm);
+    // Récupérer l'élément de sélection pour le type d'annonce
+    var typeAnnonceSelect = document.querySelector('input[name="typeannonce"]:checked');
+
+    // Définir les divs à afficher ou masquer en fonction de la valeur initiale de typeAnnonceSelect
+    toggleDivs(typeAnnonceSelect.value);
+
+    // Écouter les changements de valeur dans le type d'annonce
+    var typeAnnonceInputs = document.querySelectorAll('input[name="typeannonce"]');
+    typeAnnonceInputs.forEach(function(input) {
+        input.addEventListener('change', function() {
+            toggleDivs(this.value);
         });
+    });
+
+    // Fonction pour afficher ou masquer les divs en fonction de la valeur de type d'annonce
+    function toggleDivs(typeAnnonceValue) {
+        var divTypeBien = document.getElementById('divTypeBien');
+        var divEtat = document.getElementById('divEtat');
+        var divDate = document.getElementById('divDate');
+
+        if (typeAnnonceValue === 'bien') {
+            divTypeBien.style.display = 'block';
+            divEtat.style.display = 'block';
+            divDate.style.display = 'none';
+        } else if (typeAnnonceValue === 'service') {
+            divTypeBien.style.display = 'none';
+            divEtat.style.display = 'none';
+            divDate.style.display = 'block';
+        }
+    }
     </script>
 
 
