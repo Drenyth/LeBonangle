@@ -12,7 +12,7 @@
 
     
     $annonce = htmlspecialchars($_POST['announcement']);
-    $image = $_FILES['image'];    
+    $image = $_FILES['image']; 
     $desc = htmlspecialchars($_POST['description']);
     $price = htmlspecialchars($_POST['price']);
     $address = htmlspecialchars($_POST['adress']);
@@ -44,7 +44,7 @@
 
                             $image_name = $image['name']; 
                             $image_tmp = $image['tmp_name'];
-                            $destination = 'images/' . $image_name;
+                            $destination = 'images_annonce/' . $image_name;
                             move_uploaded_file($image_tmp, $destination);
 
                             $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 

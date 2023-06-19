@@ -103,21 +103,16 @@
                         case 'name_length':
                         ?>
                             <div class="alert alert-danger">
-                                <strong>Erreur</strong> pseudo trop long
+                                <strong>Erreur</strong> nom trop long
                             </div>
                         <?php
+                        break;
                         case 'first_name_length':
                         ?>
                             <div class="alert alert-danger">
-                            <strong>Erreur</strong> pseudo trop long
+                            <strong>Erreur</strong> prénom trop long
                             </div>
                         <?php  
-                        case 'already':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> compte deja existant
-                            </div>
-                        <?php 
 
                     }
                 }
@@ -183,7 +178,7 @@
             <input type="email" name="mail" class="form-control" placeholder="Adresse mail" value="<?php echo $email; ?>" required>
         </div>
     </div>
-    <div class="mb-3">
+ <!--   <div class="mb-3">
         <label for="password" class="col-sm-2 col-form-label">Mot de passe</label>
         <div class="col-sm-10">
             <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
@@ -194,7 +189,8 @@
         <div class="col-sm-10">
             <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required autocomplete="off">
         </div>
-    </div>
+    </div>-->
+    <a href="mot_de_passe.php" class="btn btn-dark btn-lg left-custom">Modifier votre mot de passe</a>
     <div class="mb-3 d-none">
         <label for="favoris" class="col-sm-2 col-form-label">Favoris</label>
         <div class="col-sm-10">
@@ -258,11 +254,14 @@
         
         .header-padding{
             margin-bottom:50px;
-            /*padding-left:385px;*/
         }
         
         .navbar-padding{
             padding-left:735px;
+        }
+
+        .left-custom{
+            margin-left:11px;
         }
     </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
