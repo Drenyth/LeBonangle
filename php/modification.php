@@ -200,22 +200,22 @@
     <div class="mb-3">
         <label for="inlineCheckbox1" class="col-sm-2 col-form-label">Centres d'intérêts</label>
         <div class="col-sm-10">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Immobilier</label>
-            <input class="form-check-input" type="checkbox" name="interets[]" value="Immobilier">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Automobile</label>
+            <input class="form-check-input ml-1" type="checkbox" name="interets[]" value="Immobilier">
+            <label class="form-check-label pl-4 mr-4" for="inlineCheckbox1">Immobilier</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Automobile">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Lecture</label>
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Automobile</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Lecture">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Mode</label>
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Lecture</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Mode">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Bricolage</label>
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Mode</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Bricolage">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Jeux</label>
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Bricolage</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Jeux">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Sport</label>
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Jeux</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Sport">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Musique</label>
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Sport</label>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Musique">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Musique</label>
         </div>
     </div>
     <div class="mb-3"> 
