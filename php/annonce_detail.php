@@ -28,7 +28,7 @@ $id_annonce = $_GET['id'];
             $email = $madata['email'];
             $adresse_postal = $madata['adresse_postal'];
             $tags = $madata['tags'];
-            $phot = $madata['photo'];
+            $photo = $madata['photo'];
             
             /* requête pour savoir s'il s'agit d'un bien ou d'un service */
             $request2 = $bdd->prepare('SELECT * FROM bien WHERE id_annonce = ?');
@@ -40,16 +40,9 @@ $id_annonce = $_GET['id'];
                     $type = $bien['type'];
                     $etat = $bien['etat'];
         
-                    if($type == 0)
-                    {
-                        $type = 'Mensualité: ';
-                    }
-        
-                    elseif($type == 1)
-                    {
-                        $type = 'Prix: ';
-                    }
+                    $type = 'Mensualité:';
                     $date=0;
+                    $date_fin = 0;
             }
             else
             {
@@ -58,9 +51,11 @@ $id_annonce = $_GET['id'];
                 $service = $request2->fetch();
     
                 $date = $service['date'];
+                $date_fin = $service['date_fin'];
                 $etat=0;
-                $type=0;
+                $type='Prix:';
             }
+            echo $etat;
 ?>
 
 <!DOCTYPE html>
@@ -79,9 +74,15 @@ $id_annonce = $_GET['id'];
 <body>
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
-    <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
-    </a>
+    <?php if ($userid): ?>
+        <a href="./landing.php" class="navbar-brand">
+            <img class="d-inline-block center" src="../images/logo.png" width="80">
+        </a>
+    <?php else: ?>
+        <a href="../index.html" class="navbar-brand">
+            <img class="d-inline-block center" src="../images/logo.png" width="80">
+        </a>
+    <?php endif; ?>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
         </button>
@@ -103,35 +104,54 @@ $id_annonce = $_GET['id'];
     </div>
 </nav>
 
+
 <div class="container">
-    <form class="row gy-2 gx-3 align-items-center border mb-4">
-</div>
-<div class="container">
-    <?php  echo '<img src="'.$phot.'" />';?>
-    <div>
+    <a href="#" class="btn btn-dark btn-lg mb-4">Favoris</a>
+    <form class="row gy-2 gx-3 align-items-center mb-4">
+        <div class="container">
+            <?php  echo '<img src="'.$photo.'" />';?>
+        <div>
         <h2 class="title-custom"><?php echo $titre; ?></h2>
         <?php if($etat): ?>
-                <p><?php echo $type . ' ' . $prix . '€' ?></p>
-                <p><?php echo 'Etat :'. ' ' . $etat ?></p>
+            <p><?php echo $type . ' ' . $prix . '€' ?></p>
+            <p><?php echo 'Etat :'. ' ' . $etat ?></p>
             <?php endif; ?>
-
+            
             <?php if($date): ?>
-                <p><?php echo $date . ' ' . $prix . '€'?></p>
-            <?php endif; ?>    
-        </p>
+                <p><?php echo 'Date de début : ' . $date ?></p>
+                <p><?php echo 'Date de fin : ' . $date_fin ?></p>
+                <p><?php echo $type . ' ' . $prix . '€'?></p>
+                <?php endif; ?>    
+            </p>
+        </div>
+    </div>
+    
+    <div class="container header-padding">
+        <p class="fs-5"><strong>Description</strong></p>
+        <p class="fs-6"><?php echo $description; ?></p>
+    </div>
+    
+    <div class="container">
+        <p class="fs-5"><strong>Coordonnées</strong></p>
+        <p class="fs-6"><?php echo $adresse_postal; ?></p>
+        <p class="fs-6"><?php echo $email; ?></p>
     </div>
 </div>
 
-<div class="container header-padding padding-responsive">
-    <p class="fs-5"><strong>Détails</strong></p>
-    <p class="fs-6"><?php echo $description; ?></p>
+<div class="container">
+    <form action="#">
+        <div class="mb-3">
+            <label for="signalement" class="col-sm-2 col-form-label fs-5">Raison du signalement</label>
+            <div class="col-sm-10">
+                <textarea name="signalement" class="form-control" cols="5" rows="5" placeholder="Veuillez décrire la raison"></textarea>
+            </div>
+        </div>
+    </form>
+    <div class="mb-3" class="col-sm-2 col-form-label">
+    <input type="submit" role="button" aria-disabled="false" class="btn">
+            </div>
 </div>
 
-<div class="container">
-    <p class="fs-5"><strong>Coordonnées</strong></p>
-    <p class="fs-6"><?php echo $adresse_postal; ?></p>
-    <p class="fs-6"><?php echo $email; ?></p>
-</div>
 
 <style>
         body{
@@ -188,11 +208,10 @@ $id_annonce = $_GET['id'];
             margin-bottom : 60px;
         }
 
-        @media (max-width:750px){
-         .padding-responsive{
-            margin-top:82px;
-         }   
+        .margin-custom{
+            margin-top :200px;
         }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

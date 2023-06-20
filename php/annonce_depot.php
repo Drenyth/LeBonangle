@@ -43,6 +43,8 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
                 <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
             </li>
         </ul>
@@ -204,9 +206,16 @@
     </div>
 
     <div id="divDate" class="mb-3">
-        <label for="date" id="bold" class="col-sm-2 col-form-label">Date</label>
+        <label for="date" id="bold" class="col-sm-2 col-form-label">Date de début</label>
         <div class="col-sm-10">
             <input type="date" name="date" title="" class="form-control" placeholder="date">
+        </div>
+    </div>
+
+    <div id="divDate" class="mb-3">
+        <label for="date" id="bold" class="col-sm-2 col-form-label">Date de fin</label>
+        <div class="col-sm-10">
+            <input type="date" name="date_fin" title="" class="form-control" placeholder="date">
         </div>
     </div>
 

@@ -22,6 +22,7 @@
     $typebien = htmlspecialchars($_POST['typebien']);
     $etat = htmlspecialchars($_POST['etat']);
     $date = htmlspecialchars($_POST['date']);
+    $date_fin = htmlspecialchars($_POST['date_fin']);
 
     //var_dump($annonce);                            
     //var_dump($image);
@@ -70,11 +71,12 @@
                                     'type'=>intval($typebien),
                                 ));
                             }else{
-                                $insert2 = $bdd->prepare('INSERT INTO service(date, id_annonce)
-                                    VALUES(:date, :id_annonce)');
+                                $insert2 = $bdd->prepare('INSERT INTO service(date, date_fin, id_annonce)
+                                    VALUES(:date, :date_fin, :id_annonce)');
                                 $insert2->execute(array(
                                     'date'=>$date,
                                     'id_annonce' => $id_annonce,
+                                    'date_fin' => $date_fin
                                 ));
                             }
 
