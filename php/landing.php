@@ -42,10 +42,11 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-                <a href="Pour_vous.php" class="btn btn-dark btn-lg">Pour vous</a>
-                <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
-                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
+                <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
+                <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
+                <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
             </li>
         </ul>
     </div>

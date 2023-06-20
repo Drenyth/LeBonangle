@@ -5,7 +5,6 @@
     $delete->execute(array(
         'id_annonce'=>$id_annonce
     ));
-<<<<<<< Updated upstream
     $request = $bdd->prepare('SELECT * FROM bien WHERE id_annonce = ?');
     $request->execute(array($id_annonce));
     $bien = $request->fetch();
@@ -24,15 +23,5 @@
 else {
     header('Location:mes_annonces.php?reg_err=failure');die();
 }
-=======
-    $delete2 = $bdd->prepare('DELETE FROM bien  WHERE id_annonce = :id_annonce;');
-    $delete2->execute(array(
-        'id_annonce'=>$id_annonce
-    ));
-    $delete3 = $bdd->prepare('DELETE FROM service  WHERE id_annonce = :id_annonce;');
-    $delete3->execute(array(
-        'id_annonce'=>$id_annonce
-    ));
->>>>>>> Stashed changes
     
 ?>

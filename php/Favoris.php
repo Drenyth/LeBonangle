@@ -50,66 +50,50 @@
     </div>
     </div>
 </nav>
-<div class="supp-form">
-             <?php 
-                if(isset($_GET['reg_err']))
-                {
-                    $err = htmlspecialchars($_GET['reg_err']);
 
-                    switch($err)
-                    {
-                        case 'success':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> L'annonce a bien été supprimé
-                            </div>
-                        <?php
-                        break;
-
-                        case 'failure':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> Erreur, l'annonce n'a pas pu être supprimé
-                            </div>
-                        <?php
-                        break;
-                    }
-                }
-                ?> 
 <?php
-$check_annonces = $bdd->prepare('SELECT * FROM annonce WHERE id_utilisateur = ? ORDER BY id_annonce DESC'); 
-$check_annonces->execute(array($userid));
+$check = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
+$check->execute(array($userid));
+$data = $check->fetch();
+
+$check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
+$check_annonces->execute();
 $data_annonces = $check_annonces->fetchAll();
-$row_data_annonces = $check_annonces->rowCount();?>
+$row_data_annonces = $check_annonces->rowCount();
+
+$check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ?');
+$check_favoris->execute(array($userid));
+$data_favoris = $check_favoris->fetchAll();?>
+
 <?php if($row_data_annonces != 0): ?>
-    <?php foreach($data_annonces as $row): ?>
-        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
-            <div class="container">
-                <form class="row gy-2 gx-4 align-items-center border mb-4 w-75">
-                    <div class="col-auto mb-3">
-                    <?php  echo '<img width="30%" src="'.$row[3].'" />';?>
+    <?php foreach($data_favoris as $row_favoris): ?>
+        <?php foreach($data_annonces as $row_annonce): ?>
+            <?php if($row_annonce[0] == $row_favoris[1]): ?>
+                <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row_annonce[0].'">'?>
+                    <div class="container">
+                        <form class="row gy-2 gx-3 align-items-center border mb-4">
+                            <div class="col-auto mb-3">
+                            <?php  echo '<img width="200" src="'.$row_annonce[3].'" />';?>
+                            </div>
+                            <div class="col-auto mb-3">
+                                <div class="row gy-2 gx-3 align-items-center mb-4">
+                                    <h2>
+                                        <strong>
+                                            <?php echo $row_annonce[2];?>
+                                        </strong>
+                                    </h2>
+                                </div>
+                                <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                    <?php echo $row_annonce[5]."€";?>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-auto mb-3">
-                        <div class="row gy-2 gx-3 align-items-center mb-4">
-                            <strong>
-                                <?php echo $row[2];?>
-                            </strong>
-                        </div>
-                        <div class="row gy-2 gx-3 align-items-center  mb-4">
-                            <?php echo $row[5]."€";?>
-                        </div>
-                    </div>
-                    <div class="col-auto mb-3">
-                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
-                    Modification</a>
-                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_suppression.php?id='.$row[0].'">'?>
-                    Suppression</a>
-                    </div>
-                </form>
-            </div>
-        </a>
-    <?php endforeach; ?>
-<?php  endif; ?>
+                </a>
+            <?php endif;
+        endforeach;
+    endforeach;
+endif; ?>
 <style>
     body{
     background-color: #333333;
