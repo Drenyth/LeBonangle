@@ -85,6 +85,7 @@
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
     $selected = $_POST['filtres'];
+    $recherche = $_POST['recherche'];
     if($selected == "default"){
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
@@ -110,7 +111,7 @@
             <?php endforeach; ?>
         <?php }
     }
-    else
+    elseif 
     {
         if($row_data_annonces != 0){
                 foreach($data_annonces as $row): ?>

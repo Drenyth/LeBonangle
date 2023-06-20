@@ -58,32 +58,33 @@ $data_annonces = $check_annonces->fetchAll();
 $row_data_annonces = $check_annonces->rowCount();?>
 <?php if($row_data_annonces != 0): ?>
     <?php foreach($data_annonces as $row): ?>
-                <div class="container">
-                    <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
-                    <form class="row gy-2 gx-4 align-items-center border mb-4 w-75">
-                        <div class="col-auto mb-3">
-                        <?php  echo '<img width="30%" src="'.$row[3].'" />';?>
+        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+            <div class="container">
+                <form class="row gy-2 gx-4 align-items-center border mb-4 w-75">
+                    <div class="col-auto mb-3">
+                    <?php  echo '<img width="30%" src="'.$row[3].'" />';?>
+                    </div>
+                    <div class="col-auto mb-3">
+                        <div class="row gy-2 gx-3 align-items-center mb-4">
+                            <strong>
+                                <?php echo $row[2];?>
+                            </strong>
                         </div>
-                        <div class="col-auto mb-3">
-                            <div class="row gy-2 gx-3 align-items-center mb-4">
-                                <strong>
-                                    <?php echo $row[2];?>
-                                </strong>
-                            </div>
-                            <div class="row gy-2 gx-3 align-items-center  mb-4">
-                                <?php echo $row[5]."€";?>
-                            </div>
+                        <div class="row gy-2 gx-3 align-items-center  mb-4">
+                            <?php echo $row[5]."€";?>
                         </div>
-                        <div class="col-auto mb-3">
-                        <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
-                        Modification</a>
-                        </a>
-                        </div>
-                    </form>
-                    </a>
-                </div>
+                    </div>
+                    <div class="col-auto mb-3">
+                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
+                    Modification</a>
+                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_suppression.php?id='.$row[0].'">'?>
+                    Suppression</a>
+                    </div>
+                </form>
+            </div>
+        </a>
     <?php endforeach; ?>
-    <?php  endif; ?>
+<?php  endif; ?>
 <style>
     body{
     background-color: #333333;
