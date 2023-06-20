@@ -59,7 +59,7 @@ $row_data_annonces = $check_annonces->rowCount();?>
 <?php if($row_data_annonces != 0): ?>
     <?php foreach($data_annonces as $row): ?>
                 <div class="container">
-                    <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                    <?php echo '<a id="annonce" href="annonce_modification.php?id='.$row[0].'">'?>
                     <form class="row gy-2 gx-4 align-items-center border mb-4 w-75">
                         <div class="col-auto mb-3">
                         <?php  echo '<img width="30%" src="'.$row[3].'" />';?>
