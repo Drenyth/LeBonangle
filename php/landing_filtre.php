@@ -85,7 +85,62 @@
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
     $selected = $_POST['filtres'];
-    if($selected == "default"){
+    $recherche = $_POST['recherche'];
+    if($selected != "default" and !isset($_POST['recherche'])){
+        if($row_data_annonces != 0){
+            foreach($data_annonces as $row): ?>
+                <?php if($selected == $row[8]): ?>
+                        <div class="container">
+                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                            <form class="row gy-2 gx-3 align-items-center border mb-4">
+                                <div class="col-auto mb-3">
+                                <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row gy-2 gx-3 align-items-center mb-4">
+                                        <strong>
+                                            <?php echo $row[2];?>
+                                        </strong>
+                                    </div>
+                                    <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                        <?php echo $row[5]."€";?>
+                                    </div>
+                                </div>
+                            </form>
+                            </a>
+                        </div> 
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php }
+    }
+    elseif($selected != "default" and isset($_POST['recherche'])){
+        if($row_data_annonces != 0){
+            foreach($data_annonces as $row): ?>
+                <?php if($selected == $row[8] or str_contains($row[2],$recherche)): ?>
+                        <div class="container">
+                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                            <form class="row gy-2 gx-3 align-items-center border mb-4">
+                                <div class="col-auto mb-3">
+                                <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row gy-2 gx-3 align-items-center mb-4">
+                                        <strong>
+                                            <?php echo $row[2];?>
+                                        </strong>
+                                    </div>
+                                    <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                        <?php echo $row[5]."€";?>
+                                    </div>
+                                </div>
+                            </form>
+                            </a>
+                        </div> 
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php }
+    }
+    elseif($selected == "default" and !isset($_POST['recherche'])){
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
                         <div class="container">
@@ -110,33 +165,32 @@
             <?php endforeach; ?>
         <?php }
     }
-    else
-    {
+    elseif($selected == "default" and isset($_POST['recherche'])){
         if($row_data_annonces != 0){
-                foreach($data_annonces as $row): ?>
-                    <?php if($selected == $row[8]): ?>
-                            <div class="container">
-                                <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
-                                <form class="row gy-2 gx-3 align-items-center border mb-4">
-                                    <div class="col-auto mb-3">
-                                    <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+            foreach($data_annonces as $row): ?>
+                <?php if(str_contains($row[2],$recherche)): ?>
+                        <div class="container">
+                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                            <form class="row gy-2 gx-3 align-items-center border mb-4">
+                                <div class="col-auto mb-3">
+                                <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row gy-2 gx-3 align-items-center mb-4">
+                                        <strong>
+                                            <?php echo $row[2];?>
+                                        </strong>
                                     </div>
-                                    <div class="col-auto">
-                                        <div class="row gy-2 gx-3 align-items-center mb-4">
-                                            <strong>
-                                                <?php echo $row[2];?>
-                                            </strong>
-                                        </div>
-                                        <div class="row gy-2 gx-3 align-items-center  mb-4">
-                                            <?php echo $row[5]."€";?>
-                                        </div>
+                                    <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                        <?php echo $row[5]."€";?>
                                     </div>
-                                </form>
-                                </a>
-                            </div> 
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            <?php }
+                                </div>
+                            </form>
+                            </a>
+                        </div> 
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php }
     }
 ?>
 <style>
