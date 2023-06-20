@@ -18,6 +18,50 @@
         $code_postal = $data['code_postal'];
         $adresse = $data['adresse'];
         $genre = $data['genre'];
+        $interets = $data['interets'];
+        $interets = substr($interets, 0, -1);
+        $tableau_interets = explode(",",$interets);
+        $immobilier = 0;
+        $automobile = 0;
+        $lecture = 0;
+        $mode = 0;
+        $bricolage = 0;
+        $jeux = 0;
+        $sport = 0;
+        $musique = 0;
+
+        foreach ($tableau_interets as $val)
+        {
+            switch($val)
+            {
+                case 'Immobilier':
+                    
+                    $immobilier = $val;
+                    break;
+                case 'Automobile':
+                    $automobile = $val;
+                    break;
+                case 'Lecture':
+                    $lecture = $val;
+                    break;
+                case 'Mode':
+                    $mode = $val;
+                    break;
+                case 'Bricolage':
+                    $bricolage = $val;
+                    break;
+                case 'Jeux':
+                    $jeux = $val;
+                    break;
+                case 'Sport':
+                    $sport = $val;
+                    break;
+                case 'Musique':
+                    $musique = $val;
+                    break;
+            }
+        }
+            
     }
     else
     {
@@ -178,18 +222,7 @@
             <input type="email" name="mail" class="form-control" placeholder="Adresse mail" value="<?php echo $email; ?>" required>
         </div>
     </div>
- <!--   <div class="mb-3">
-        <label for="password" class="col-sm-2 col-form-label">Mot de passe</label>
-        <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="col-sm-2 col-form-label">Mot de passe</label>
-        <div class="col-sm-10">
-            <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required autocomplete="off">
-        </div>
-    </div>-->
+            
     <a href="mot_de_passe.php" class="btn btn-dark btn-lg left-custom">Modifier votre mot de passe</a>
     <div class="mb-3 d-none">
         <label for="favoris" class="col-sm-2 col-form-label">Favoris</label>
@@ -200,22 +233,63 @@
     <div class="mb-3">
         <label for="inlineCheckbox1" class="col-sm-2 col-form-label">Centres d'intérêts</label>
         <div class="col-sm-10">
-            <label class="form-check-label mr-4" for="inlineCheckbox1">Immobilier</label>
-            <input class="form-check-input" type="checkbox" name="interets[]" value="Immobilier">
+
+         <?php if($immobilier == 'Immobilier'): ?>
+            <input class="form-check-input ml-1" type="checkbox" name="interets[]" value="Immobilier" checked>
+            <label class="form-check-label pl-4 mr-4" for="inlineCheckbox1">Immobilier</label>
+        <?php else: ?>
+            <input class="form-check-input ml-1" type="checkbox" name="interets[]" value="Immobilier">
+            <label class="form-check-label pl-4 mr-4" for="inlineCheckbox1">Immobilier</label>
+        <?php endif; ?>
+        <?php if($automobile == 'Automobile'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Automobile" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Automobile</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Automobile">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Automobile</label>
+        <?php endif; ?>
+        <?php if($lecture == 'Lecture'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Lecture" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Lecture</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Lecture">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Lecture</label>
+        <?php endif; ?>
+        <?php if($mode == 'Mode'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Mode" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Mode</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Mode">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Mode</label>
+        <?php endif; ?>
+        <?php if($bricolage == 'Bricolage'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Bricolage" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Bricolage</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Bricolage">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Bricolage</label>
+        <?php endif; ?>
+        <?php if($jeux == 'Jeux'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Jeux" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Jeux</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Jeux">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Jeux</label>
+        <?php endif; ?>
+        <?php if($sport == 'Sport'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Sport" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Sport</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Sport">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Sport</label>
+        <?php endif; ?>
+        <?php if($musique == 'Musique'): ?>
+            <input class="form-check-input" type="checkbox" name="interets[]" value="Musique" checked>
             <label class="form-check-label mr-4" for="inlineCheckbox1">Musique</label>
+        <?php else: ?>
             <input class="form-check-input" type="checkbox" name="interets[]" value="Musique">
+            <label class="form-check-label mr-4" for="inlineCheckbox1">Musique</label>
+        <?php endif; ?>
         </div>
     </div>
     <div class="mb-3"> 

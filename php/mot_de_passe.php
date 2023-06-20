@@ -100,7 +100,10 @@
                 </div>
             </div>
         </form>
-    </div>
+</div>
+<div class="container">
+        <a href="./modification.php"><button class="btn">Retour</button></a>
+</div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <style>
         body{
