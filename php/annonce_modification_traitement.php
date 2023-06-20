@@ -1,5 +1,5 @@
 <?php
-    $id_annonce = 22;
+    $id_annonce = $_GET['id'];
 
     if(!empty($_COOKIE['userid']))
     {

@@ -61,7 +61,6 @@ $id_annonce = $_GET['id'];
                 $etat=0;
                 $type=0;
             }
-            echo $etat;
 ?>
 
 <!DOCTYPE html>
