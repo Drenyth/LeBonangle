@@ -103,10 +103,47 @@ $id_annonce = $_GET['id'];
     </div>
     </div>
 </nav>
+<div class="login-form">
+        <?php 
+            if(isset($_GET['reg_err']))
+            {
+                $err = htmlspecialchars($_GET['reg_err']);
 
+                switch($err)
+                {
+                    case 'success':
+                    ?>
+                        <div class="alert alert-success">
+                            <strong>Succès</strong> Enregistrement dans les favoris réussi !
+                        </div>
+                    <?php
+                    break;
+
+                    case 'already':
+                        ?>
+                            <div class="alert alert-danger">
+                                <strong>Erreur</strong> Cette annonce est deja dans vos favoris
+                            </div>
+                        <?php
+                        break;
+
+                    case 'password':
+                        ?>
+                            <div class="alert alert-danger">
+                                <strong>Erreur</strong> Veuillez reessayer
+                            </div>
+                        <?php
+                        break;
+
+                }
+            }
+        ?>
+</div>
 
 <div class="container">
-    <a href="#" class="btn btn-dark btn-lg mb-4">Favoris</a>
+        <?php echo '<a id="bouton_fav" href="favoris_traitement.php?id_annonce='.$id_annonce.'">'?>
+            <button class="btn btn-dark btn-lg mb-4">Favoris</button>
+        </a>
     <div class="row gy-2 gx-3 align-items-center mb-4">
         <div class="container">
             <?php  echo '<img src="'.$photo.'" />';?>
