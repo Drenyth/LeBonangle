@@ -85,9 +85,8 @@ $id_annonce = $_GET['id'];
 
         
         $typeannonce = htmlspecialchars($_POST['typeannonce']);
-        $typebien = htmlspecialchars($_POST['typeannonce']);
         //si le variable bien existe 
-        if($typebien){
+        if(isset($typebien)){
             $typebien = htmlspecialchars($_POST['typebien']);
             $etat = htmlspecialchars($_POST['etat']);      
         }
@@ -132,7 +131,7 @@ $id_annonce = $_GET['id'];
                                     $insert1->execute(array(
                                     'id_annonce' => $id_annonce,
                                     'type' => $typebien,
-                                    'etat' => $etat_traitement
+                                    'etat' => $etat
                                     ));
                                     }
                                     // sinon c'est un service
@@ -141,8 +140,8 @@ $id_annonce = $_GET['id'];
                                     $check1 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
                                     $check1->execute(array($id_annonce));
 
-                                    $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date,date_fin) 
-                                    VALUES(:id_annonce, :date)');
+                                    $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date, date_fin) 
+                                    VALUES(:id_annonce, :date, :date_fin)');
                                     $insert1->execute(array(
                                     'id_annonce' => $id_annonce,
                                     'date' => $date,
@@ -153,16 +152,16 @@ $id_annonce = $_GET['id'];
                                         else{{header('Location:annonce_modification_traitement.php?reg_err=typeannonce'); die();}
                                     }  
 
-                                        header('Location:annonce_modification.php?reg_err=success');die();
-                                }else{header('Location:annonce_modification.php?reg_err=tags_length');die();}
-                         }else {header('Location:annonce_modification.php?reg_err=email'); die();}
-                     }else {header('Location:annonce_modification.php?reg_err=email_length'); die();}
-                }else {header('Location:annonce_modification.php?reg_err=description_length'); die();}
-            }else {header('Location:annonce_modification.php?reg_err=annonce_length'); die();}
+                                        header('Location:annonce_modification.php?reg_err=success&id='.$id_annonce);die();
+                                }else{header('Location:annonce_modification.php?reg_err=tags_length&id='.$id_annonce);die();}
+                         }else {header('Location:annonce_modification.php?reg_err=email&id='.$id_annonce); die();}
+                     }else {header('Location:annonce_modification.php?reg_err=email_length&id='.$id_annonce); die();}
+                }else {header('Location:annonce_modification.php?reg_err=description_length&id='.$id_annonce); die();}
+            }else {header('Location:annonce_modification.php?reg_err=annonce_length&id='.$id_annonce); die();}
     }
     //gestion erreurs
 
-    else {header('Location:annonce_modification.php?reg_err=void'); die();}
+    else {header('Location:annonce_modification.php?reg_err=void&id='.$id_annonce); die();}
 
 ?>
 

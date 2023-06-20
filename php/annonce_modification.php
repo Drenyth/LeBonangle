@@ -261,7 +261,7 @@
     </div>
     <?php endif;?>               
 
-    <?php if($typeannonce == "bien"): ?>
+    <?php if($typeannonce == "bien" || ((isset($_POST['typeannonce']) && $_POST['typeannonce'] == "bien"))): ?>
     <div id="divEtat" class="mb-3">
         <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
         <div class="col-sm-10">
