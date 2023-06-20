@@ -72,38 +72,72 @@
         </select>
         </div>
         <div class="col-auto mb-3">
-        <a href=""></a><button class="btn" type="submit">Search</button>
+        <button class="btn" type="submit">Search</button>
         </div>
     </form>
 </div>
+
 <?php
+    session_start();
+    require_once 'config.php';
     $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
     $check_annonces->execute();
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
-    if($row_data_annonces != 0){
-        foreach($data_annonces as $row): ?>
-                    <div class="container">
-                        <a  id="annonce" href="#">
-                        <form class="row gy-2 gx-3 align-items-center border mb-4">
-                            <div class="col-auto mb-3">
-                            <?php  echo '<img height="200" src="'.$row[3].'" />';?>
-                            </div>
-                            <div class="col-auto">
-                                <div class="row gy-2 gx-3 align-items-center mb-4">
-                                    <strong>
-                                        <?php echo $row[2];?>
-                                    </strong>
+    $selected = $_POST['filtres'];
+    if($selected == "default"){
+        if($row_data_annonces != 0){
+            foreach($data_annonces as $row): ?>
+                        <div class="container">
+                            <a  id="annonce" href="#">
+                            <form class="row gy-2 gx-3 align-items-center border mb-4">
+                                <div class="col-auto mb-3">
+                                <?php  echo '<img height="200" src="'.$row[3].'" />';?>
                                 </div>
-                                <div class="row gy-2 gx-3 align-items-center  mb-4">
-                                    <?php echo $row[5]."€";?>
+                                <div class="col-auto">
+                                    <div class="row gy-2 gx-3 align-items-center mb-4">
+                                        <strong>
+                                            <?php echo $row[2];?>
+                                        </strong>
+                                    </div>
+                                    <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                        <?php echo $row[5]."€";?>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        </a>
-                    </div> 
-        <?php endforeach; ?>
-<?php }
+                            </form>
+                            </a>
+                        </div> 
+            <?php endforeach; ?>
+        <?php }
+    }
+    else
+    {
+        if($row_data_annonces != 0){
+                foreach($data_annonces as $row): ?>
+                    <?php if($selected == $row[8]): ?>
+                            <div class="container">
+                                <a  id="annonce" href="#">
+                                <form class="row gy-2 gx-3 align-items-center border mb-4">
+                                    <div class="col-auto mb-3">
+                                    <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="row gy-2 gx-3 align-items-center mb-4">
+                                            <strong>
+                                                <?php echo $row[2];?>
+                                            </strong>
+                                        </div>
+                                        <div class="row gy-2 gx-3 align-items-center  mb-4">
+                                            <?php echo $row[5]."€";?>
+                                        </div>
+                                    </div>
+                                </form>
+                                </a>
+                            </div> 
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php }
+    }
 ?>
 <style>
         body{
