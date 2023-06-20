@@ -42,12 +42,12 @@ $id_annonce = $_GET['id'];
         
                     if($type == 0)
                     {
-                        $type = 'Location';
+                        $type = 'Mensualité: ';
                     }
         
                     elseif($type == 1)
                     {
-                        $type = 'Vente';
+                        $type = 'Prix: ';
                     }
                     $date=0;
             }
@@ -104,21 +104,22 @@ $id_annonce = $_GET['id'];
     </div>
 </nav>
 
-<div class="custom">
-    <div class="container">
-        <?php  echo '<img src="'.$phot.'" />';?>
-        <div>
-            <h2 class="title-custom"><?php echo $titre; ?></h2>
-            <?php if($etat): ?>
-                    <p><?php echo $type . ' ' . $prix . '€' ?></p>
-                    <p><?php echo 'Etat :'. ' ' . $etat ?></p>
-                <?php endif; ?>
+<div class="container">
+    <form class="row gy-2 gx-3 align-items-center border mb-4">
+</div>
+<div class="container">
+    <?php  echo '<img src="'.$phot.'" />';?>
+    <div>
+        <h2 class="title-custom"><?php echo $titre; ?></h2>
+        <?php if($etat): ?>
+                <p><?php echo $type . ' ' . $prix . '€' ?></p>
+                <p><?php echo 'Etat :'. ' ' . $etat ?></p>
+            <?php endif; ?>
 
-                <?php if($date): ?>
-                    <p><?php echo $date . ' ' . $prix . '€'?></p>
-                <?php endif; ?>    
-            </p>
-        </div>
+            <?php if($date): ?>
+                <p><?php echo $date . ' ' . $prix . '€'?></p>
+            <?php endif; ?>    
+        </p>
     </div>
 </div>
 
@@ -177,14 +178,6 @@ $id_annonce = $_GET['id'];
             max-width:400px;
             float:left;
             margin-right:10px;
-        }
-
-        .custom{
-            display:flex;
-            justify-content:center;
-            /*align-items:center;*/
-            max-height: 450px;
-            height: 100%;
         }
 
         .wrapper{

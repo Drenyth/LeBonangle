@@ -72,7 +72,7 @@
         </select>
         </div>
         <div class="col-auto mb-3">
-        <a href=""></a><button class="btn" type="submit">Search</button>
+        <a href=""></a><button class="btn" type="submit">Rechercher</button>
         </div>
     </form>
 </div>
@@ -91,9 +91,11 @@
                             </div>
                             <div class="col-auto">
                                 <div class="row gy-2 gx-3 align-items-center mb-4">
-                                    <strong>
-                                        <?php echo $row[2];?>
-                                    </strong>
+                                    <h2>
+                                        <strong>
+                                            <?php echo $row[2];?>
+                                        </strong>
+                                    </h2>
                                 </div>
                                 <div class="row gy-2 gx-3 align-items-center  mb-4">
                                     <?php echo $row[5]."€";?>

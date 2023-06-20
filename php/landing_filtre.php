@@ -72,7 +72,7 @@
         </select>
         </div>
         <div class="col-auto mb-3">
-        <button class="btn" type="submit">Search</button>
+        <button class="btn" type="submit">Rechercher</button>
         </div>
     </form>
 </div>
