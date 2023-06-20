@@ -1,11 +1,11 @@
 <?php
-    $id_annonce = $_POST['id'];
+require_once 'config.php';
+$id_annonce = $_GET['id'];
 
     if(!empty($_COOKIE['userid']))
     {
         
         $userid = $_COOKIE['userid'];
-        require_once 'config.php';
         
         $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $req->execute(array($userid));
@@ -45,6 +45,7 @@
                     $row_type = $check->rowCount();
                     if($row_type != 0){
                         $date = $data_type_annonce['date'];
+                        $date_fin =$data_type_annonce['date_fin'];
                         $typeannonce ="service";
                     }
                     else {
@@ -84,7 +85,7 @@
 
         
         $typeannonce = htmlspecialchars($_POST['typeannonce']);
-        
+        $typebien = htmlspecialchars($_POST['typeannonce']);
         //si le variable bien existe 
         if($typebien){
             $typebien = htmlspecialchars($_POST['typebien']);
@@ -93,6 +94,7 @@
         // sinon c'est un service
         else{
             $date = htmlspecialchars($_POST['date']);
+            $date_fin = htmlspecialchars($_POST['date_fin']);
             }   
 
 
@@ -139,11 +141,12 @@
                                     $check1 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
                                     $check1->execute(array($id_annonce));
 
-                                    $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date) 
+                                    $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date,date_fin) 
                                     VALUES(:id_annonce, :date)');
                                     $insert1->execute(array(
                                     'id_annonce' => $id_annonce,
-                                    'date' => $date
+                                    'date' => $date,
+                                    'date_fin' => $date_fin
                                     ));
                                     }
                                     // erreur modification bien/service

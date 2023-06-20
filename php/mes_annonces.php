@@ -52,7 +52,7 @@
 </nav>
 <div class="supp-form">
              <?php 
-                if(isset($_GET['reg_err']))
+                if(isset($_GET['supp_err']))
                 {
                     $err = htmlspecialchars($_GET['supp_err']);
 
