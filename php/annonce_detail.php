@@ -1,3 +1,4 @@
+<!-- récupération user id et données correspondantes -->
 <?php
 
 require_once "config.php";
