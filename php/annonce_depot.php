@@ -205,14 +205,14 @@
         </div>
     </div>
 
-    <div id="divDate" class="mb-3">
+    <div id="divDateDebut" class="mb-3">
         <label for="date" id="bold" class="col-sm-2 col-form-label">Date de début</label>
         <div class="col-sm-10">
             <input type="date" name="date" title="" class="form-control" placeholder="date">
         </div>
     </div>
 
-    <div id="divDate" class="mb-3">
+    <div id="divDateFin" class="mb-3">
         <label for="date" id="bold" class="col-sm-2 col-form-label">Date de fin</label>
         <div class="col-sm-10">
             <input type="date" name="date_fin" title="" class="form-control" placeholder="date">
@@ -284,16 +284,19 @@
     function toggleDivs(typeAnnonceValue) {
         var divTypeBien = document.getElementById('divTypeBien');
         var divEtat = document.getElementById('divEtat');
-        var divDate = document.getElementById('divDate');
+        var divDateDebut = document.getElementById('divDateDebut');
+        var divDateFin = document.getElementById('divDateFin');
 
         if (typeAnnonceValue === 'bien') {
             divTypeBien.style.display = 'block';
             divEtat.style.display = 'block';
-            divDate.style.display = 'none';
+            divDateDebut.style.display = 'none';
+            divDateFin.style.display = 'none';
         } else if (typeAnnonceValue === 'service') {
             divTypeBien.style.display = 'none';
             divEtat.style.display = 'none';
-            divDate.style.display = 'block';
+            divDateDebut.style.display = 'block';
+            divDateFin.style.display = 'block';
         }
     }
     </script>

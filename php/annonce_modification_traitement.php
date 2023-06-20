@@ -130,7 +130,7 @@
                                     $insert1->execute(array(
                                     'id_annonce' => $id_annonce,
                                     'type' => $typebien,
-                                    'etat' => $etat_traitement
+                                    'etat' => $etat
                                     ));
                                     }
                                     // sinon c'est un service

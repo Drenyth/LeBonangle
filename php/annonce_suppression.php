@@ -24,15 +24,7 @@
 else {
     header('Location:mes_annonces.php?reg_err=failure');die();
 }
-=======
-    $delete2 = $bdd->prepare('DELETE FROM bien  WHERE id_annonce = :id_annonce;');
-    $delete2->execute(array(
-        'id_annonce'=>$id_annonce
-    ));
-    $delete3 = $bdd->prepare('DELETE FROM service  WHERE id_annonce = :id_annonce;');
-    $delete3->execute(array(
-        'id_annonce'=>$id_annonce
-    ));
->>>>>>> Stashed changes
+
+
     
 ?>
