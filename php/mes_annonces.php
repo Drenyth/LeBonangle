@@ -54,7 +54,7 @@
              <?php 
                 if(isset($_GET['reg_err']))
                 {
-                    $err = htmlspecialchars($_GET['supp_err']);
+                    $err = htmlspecialchars($_GET['reg_err']);
 
                     switch($err)
                     {
