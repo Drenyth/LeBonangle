@@ -55,7 +55,6 @@ $id_annonce = $_GET['id'];
                 $etat=0;
                 $type='Prix:';
             }
-            echo $etat;
 ?>
 
 <!DOCTYPE html>
@@ -107,9 +106,10 @@ $id_annonce = $_GET['id'];
 
 <div class="container">
     <a href="#" class="btn btn-dark btn-lg mb-4">Favoris</a>
-    <form class="row gy-2 gx-3 align-items-center mb-4">
+    <div class="row gy-2 gx-3 align-items-center mb-4">
         <div class="container">
             <?php  echo '<img src="'.$photo.'" />';?>
+            <img src="../images/truc.jpg" alt="">
         <div>
         <h2 class="title-custom"><?php echo $titre; ?></h2>
         <?php if($etat): ?>
@@ -125,6 +125,7 @@ $id_annonce = $_GET['id'];
             </p>
         </div>
     </div>
+</div>
     
     <div class="container header-padding">
         <p class="fs-5"><strong>Description</strong></p>
