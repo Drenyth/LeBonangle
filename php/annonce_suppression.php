@@ -18,10 +18,10 @@
         $check1 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
         $check1->execute(array($id_annonce));
     }
-    header('Location:mes_annonces.php?reg_err=success');die();
+    header('Location:mes_annonces.php?supp_err=success');die();
 }
 else {
-    header('Location:mes_annonces.php?reg_err=failure');die();
+    header('Location:mes_annonces.php?supp_err=failure');die();
 }
     
 ?>

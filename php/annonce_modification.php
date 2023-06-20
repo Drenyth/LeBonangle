@@ -47,6 +47,7 @@
                     $row_type = $check->rowCount();
                     if($row_type != 0){
                         $date = $data_type_annonce['date'];
+                        $date_fin = $data_type_annonce['date_fin'];
                         $typeannonce ="service";
                     }
                     else {
@@ -180,7 +181,7 @@
 
 
 <div class="container">
-<form action="annonce_modification_traitement.php" method="post">
+<form action="annonce_modification_traitement.php?id=<?php echo $id_annonce; ?>" method="post">
     <div class="mb-3">
         <label for="nom_annonce" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
         <div class="col-sm-10">
@@ -260,7 +261,7 @@
     </div>
     <?php endif;?>               
 
-    <?php if($typeannonce == "bien"): ?>
+    <?php if($typeannonce == "bien" || ((isset($_POST['typeannonce']) && $_POST['typeannonce'] == "bien"))): ?>
     <div id="divEtat" class="mb-3">
         <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
         <div class="col-sm-10">
@@ -281,7 +282,14 @@
         </div>
     </div>
     <?php endif;?>
-
+    <?php if($typeannonce == "service" ): ?>  
+    <div id="divDate" class="mb-3">
+        <label for="date_fin" id="bold" class="col-sm-2 col-form-label">Date de fin</label>
+        <div class="col-sm-10">
+            <input type="date" name="date_fin" title="" class="form-control" placeholder="date de fin"value="<?php echo $date_fin; ?>">
+        </div>
+    </div>
+    <?php endif;?>    
     </div>
         <div class="mb-3" class="col-sm-2 col-form-label"> 
             <input type="submit" role="button" aria-disabled="false" class="btn">
