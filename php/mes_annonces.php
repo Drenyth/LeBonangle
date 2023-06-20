@@ -50,7 +50,32 @@
     </div>
     </div>
 </nav>
+<div class="supp-form">
+             <?php 
+                if(isset($_GET['reg_err']))
+                {
+                    $err = htmlspecialchars($_GET['supp_err']);
 
+                    switch($err)
+                    {
+                        case 'success':
+                        ?>
+                            <div class="alert alert-danger">
+                                <strong>Erreur</strong> L'annonce a bien été supprimé
+                            </div>
+                        <?php
+                        break;
+
+                        case 'failure':
+                        ?>
+                            <div class="alert alert-danger">
+                                <strong>Erreur</strong> Erreur, l'annonce n'a pas pu être supprimé
+                            </div>
+                        <?php
+                        break;
+                    }
+                }
+                ?> 
 <?php
 $check_annonces = $bdd->prepare('SELECT * FROM annonce WHERE id_utilisateur = ?'); 
 $check_annonces->execute(array($userid));
