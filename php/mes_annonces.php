@@ -55,11 +55,11 @@
 $check_annonces = $bdd->prepare('SELECT * FROM annonce WHERE id_utilisateur = ?'); 
 $check_annonces->execute(array($userid));
 $data_annonces = $check_annonces->fetchAll();
-$row_data_annonces = $check_annonces->rowCount();
-if($row_data_annonces != 0){
-    foreach($data_annonces as $row): ?>
+$row_data_annonces = $check_annonces->rowCount();?>
+<?php if($row_data_annonces != 0): ?>
+    <?php foreach($data_annonces as $row): ?>
                 <div class="container">
-                    <a  id="annonce" href="#">
+                    <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                     <form class="row gy-2 gx-4 align-items-center border mb-4 w-75">
                         <div class="col-auto mb-3">
                         <?php  echo '<img width="30%" src="'.$row[3].'" />';?>
@@ -76,12 +76,13 @@ if($row_data_annonces != 0){
                         </div>
                         <div class="col-auto mb-3">
                         <a href="modification.php" class="btn btn-danger btn-lg" id="modif">Modification</a>
+                        </a>
                         </div>
                     </form>
                     </a>
-                </div> 
+                </div>
     <?php endforeach; ?>
-<?php } ?>
+    <?php  endif; ?>
 <style>
     body{
     background-color: #333333;

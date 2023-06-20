@@ -89,7 +89,7 @@
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
                         <div class="container">
-                            <a  id="annonce" href="#">
+                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                             <form class="row gy-2 gx-3 align-items-center border mb-4">
                                 <div class="col-auto mb-3">
                                 <?php  echo '<img height="200" src="'.$row[3].'" />';?>
@@ -116,7 +116,7 @@
                 foreach($data_annonces as $row): ?>
                     <?php if($selected == $row[8]): ?>
                             <div class="container">
-                                <a  id="annonce" href="#">
+                                <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                                 <form class="row gy-2 gx-3 align-items-center border mb-4">
                                     <div class="col-auto mb-3">
                                     <?php  echo '<img height="200" src="'.$row[3].'" />';?>

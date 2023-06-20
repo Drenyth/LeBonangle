@@ -1,7 +1,7 @@
 <?php
 
-$id_annonce = 37;
 require_once "config.php";
+$id_annonce = $_GET['id'];
 
     if(!empty($_COOKIE['userid']))
     {
@@ -105,7 +105,7 @@ require_once "config.php";
 </nav>
 
 <div class="custom">
-    <div class="wrapper">
+    <div class="container">
         <?php  echo '<img src="'.$phot.'" />';?>
         <div>
             <h2 class="title-custom"><?php echo $titre; ?></h2>
