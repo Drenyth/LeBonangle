@@ -34,7 +34,7 @@
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
+        <img class="d-inline-block center" src="../images/logo.png" width="100">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
@@ -42,9 +42,11 @@
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
+                <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
+                <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
+                <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
             </li>
         </ul>
     </div>
@@ -81,7 +83,7 @@ $check = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
 $check->execute(array($userid));
 $data = $check->fetch();
 
-$check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
+$check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
 $check_annonces->execute();
 $data_annonces = $check_annonces->fetchAll();
 $row_data_annonces = $check_annonces->rowCount();?>

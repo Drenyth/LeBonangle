@@ -34,7 +34,7 @@
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
+        <img class="d-inline-block center" src="../images/logo.png" width="100">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
@@ -42,10 +42,12 @@
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-                <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
-                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
+                <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
+                <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
+                <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
+                <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
             </li>
         </ul>
     </div>
@@ -172,13 +174,6 @@
         <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
         <div class="col-sm-10">
             <input type="text" name="adress" class="form-control" placeholder="Adresse" required>
-        </div>
-    </div>
-
-    <div class="mb-3">
-    <label for="phone" id = "bold" class="col-sm-2 col-form-label">Téléphone portable</label>
-        <div class="col-sm-10">
-            <input type="text" name="phone" title = "Numéro à 10 chiffres sans espace et commençant par 06 ou 07" class="form-control" placeholder = "Numéro" pattern="(06)[0-9]{8}|(07)[0-9]{8}" required>
         </div>
     </div>
 

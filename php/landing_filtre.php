@@ -1,10 +1,9 @@
 <!-- récupération user id et données correspondantes -->
 <?php
-
+    require_once 'config.php';
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
-        require_once "config.php";
 
         $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $req->execute(array($userid));
@@ -33,20 +32,25 @@
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
+        <img class="d-inline-block center" src="../images/logo.png" width="100">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
         </button>
-    <div class="collapse navbar-collapse flex-grow-1" id="btn">
+        <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <?php if ($userid): ?>
+                <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
+                <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
                 <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
-                <a href="Pour_vous.php" class="btn btn-dark btn-lg">Pour vous</a>
-                <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
-                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
+                <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
+                <?php else: ?>
+                <a href="inscription.php" class="btn btn-dark btn-lg">S'inscrire</a>
+                <a href="connexion.php" class="btn btn-dark btn-lg">Se connecter</a>
+                <?php endif; ?>
             </li>
         </ul>
     </div>
@@ -54,11 +58,11 @@
 </nav>
 <div class="container">
         <div class="col-auto mb-3">
-            <a href="annonce_depot.php"><input type="button" role="button" aria-disabled="false" value="Déposer une annonce" class="btn"></a>
+            <a href="annonce_depot.php"><input type="button" role="button" aria-disabled="false" value="Déposer" class="btn"></a>
         </div>
     <form class="row gy-2 gx-3 align-items-center" action="landing_filtre.php" method="post">
         <div class="col-auto mb-3">
-        <input type="search" name="recherche" class="form-control" placeholder="Rechercher des annonces" autocomplete="off">
+        <input type="search" name="recherche" class="form-control" placeholder="Rechercher" autocomplete="off">
         </div>
         <div class="col-auto mb-3">
         <select name="filtres" class="selectpicker">
@@ -81,17 +85,16 @@
 
 <?php
     session_start();
-    require_once 'config.php';
     $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
     $check_annonces->execute();
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
     $selected = $_POST['filtres'];
     $recherche = $_POST['recherche'];
-    if($selected != "default" and !isset($_POST['recherche'])){
+    if($selected != "default" and empty($_POST['recherche'])){
         if($row_data_annonces != 0){
-            foreach($data_annonces as $row): ?>
-                <?php if($selected == $row[8]): ?>
+            foreach($data_annonces as $row):?>
+                <?php if($selected == $row[8]):?>
                         <div class="container">
                             <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                             <form class="row gy-2 gx-3 align-items-center border mb-4">
@@ -111,14 +114,14 @@
                             </form>
                             </a>
                         </div> 
-                <?php endif; ?>
-            <?php endforeach; ?>
-        <?php }
+                <?php endif; 
+            endforeach; 
+        }
     }
     elseif($selected != "default" and isset($_POST['recherche'])){
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
-                <?php if($selected == $row[8] or str_contains($row[2],$recherche)): ?>
+                <?php if($selected == $row[8] or str_contains(strtolower($row[2]),strtolower($recherche))): ?>
                         <div class="container">
                             <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                             <form class="row gy-2 gx-3 align-items-center border mb-4">
@@ -138,9 +141,9 @@
                             </form>
                             </a>
                         </div> 
-                <?php endif; ?>
-            <?php endforeach; ?>
-        <?php }
+                <?php endif; 
+            endforeach; 
+        }
     }
     elseif($selected == "default" and !isset($_POST['recherche'])){
         if($row_data_annonces != 0){
@@ -164,13 +167,13 @@
                             </form>
                             </a>
                         </div> 
-            <?php endforeach; ?>
-        <?php }
+            <?php endforeach; 
+        }
     }
     elseif($selected == "default" and isset($_POST['recherche'])){
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
-                <?php if(str_contains($row[2],$recherche)): ?>
+                <?php if(str_contains(strtolower($row[2]),strtolower($recherche))): ?>
                         <div class="container">
                             <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                             <form class="row gy-2 gx-3 align-items-center border mb-4">
@@ -190,9 +193,9 @@
                             </form>
                             </a>
                         </div> 
-                <?php endif; ?>
-            <?php endforeach; ?>
-        <?php }
+                <?php endif; 
+            endforeach;
+        }
     }
 ?>
 <style>

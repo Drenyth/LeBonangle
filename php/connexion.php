@@ -17,7 +17,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
-    <a href="../index.html" class="navbar-brand">
+    <a href="landing.php" class="navbar-brand">
         <img class="d-inline-block center" src="../images/logo.png" width="80">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
@@ -89,9 +89,6 @@
                 </div>
             </div>
         </form>
-    </div>
-    <div class="container">
-        <a href="./inscription.php"><button class="btn">S'inscrire</button></a>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <style>

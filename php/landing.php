@@ -1,10 +1,10 @@
 <!-- récupération user id et données correspondantes -->
 <?php
 
+    require_once "config.php";
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
-        require_once "config.php";
 
         $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $req->execute(array($userid));
@@ -33,20 +33,25 @@
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
+        <img class="d-inline-block center" src="../images/logo.png" width="100">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
         </button>
-    <div class="collapse navbar-collapse flex-grow-1" id="btn">
+        <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
-                <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
+                <?php if ($userid): ?>
+                <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
                 <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
+                <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
                 <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
                 <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
                 <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
+                <?php else: ?>
+                <a href="inscription.php" class="btn btn-dark btn-lg">S'inscrire</a>
+                <a href="connexion.php" class="btn btn-dark btn-lg">Se connecter</a>
+                <?php endif; ?>
             </li>
         </ul>
     </div>
@@ -54,11 +59,11 @@
 </nav>
 <div class="container">
         <div class="col-auto mb-3">
-            <a href="annonce_depot.php"><input type="button" role="button" aria-disabled="false" value="Déposer une annonce" class="btn"></a>
+            <a href="annonce_depot.php"><input type="button" role="button" aria-disabled="false" value="Déposer" class="btn"></a>
         </div>
     <form class="row gy-2 gx-3 align-items-center" action="landing_filtre.php" method="post">
         <div class="col-auto mb-3">
-        <input type="search" name="recherche" class="form-control" placeholder="Rechercher des annonces" autocomplete="off">
+        <input type="search" name="recherche" class="form-control" placeholder="Rechercher" autocomplete="off">
         </div>
         <div class="col-auto mb-3">
         <select name="filtres" class="selectpicker">
