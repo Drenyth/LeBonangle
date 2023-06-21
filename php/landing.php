@@ -58,9 +58,11 @@
     </div>
 </nav>
 <div class="container">
+    <?php if ($userid): ?>
         <div class="col-auto mb-3">
             <a href="annonce_depot.php"><input type="button" role="button" aria-disabled="false" value="Déposer" class="btn"></a>
         </div>
+    <?php endif; ?>
     <form class="row gy-2 gx-3 align-items-center" action="landing_filtre.php" method="post">
         <div class="col-auto mb-3">
         <input type="search" name="recherche" class="form-control" placeholder="Rechercher" autocomplete="off">
