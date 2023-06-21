@@ -135,8 +135,6 @@
 ?>
 
 <?php if($nb_page > 1): ?>
-    <?php var_dump($x);
-    var_dump($nb_page); ?>
     <div class="container">
         <ul class="pagination justify-content-center">
             <?php 
