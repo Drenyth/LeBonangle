@@ -280,22 +280,17 @@
         <div class="col-sm-10">
             <input type="date" name="date" title="" class="form-control" placeholder="date"value="<?php echo $date; ?>">
         </div>
-    </div>    
+    </div>
+    <?php endif;?>
+    <?php if($typeannonce == "service" ): ?>      
     <div id="divDateFin" class="mb-3">
         <label for="date" id="bold" class="col-sm-2 col-form-label">Date de Fin</label>
         <div class="col-sm-10">
-            <input type="date" name="date_fin" title="" class="form-control" placeholder="date"value="<?php echo $date; ?>">
+            <input type="date" name="date_fin" title="" class="form-control" placeholder="date"value="<?php echo $date_fin; ?>">
         </div>
     </div>
     <?php endif;?>
-    <?php if($typeannonce == "service" ): ?>  
-    <div id="divDate" class="mb-3">
-        <label for="date_fin" id="bold" class="col-sm-2 col-form-label">Date de fin</label>
-        <div class="col-sm-10">
-            <input type="date" name="date_fin" title="" class="form-control" placeholder="date de fin"value="<?php echo $date_fin; ?>">
-        </div>
-    </div>
-    <?php endif;?>    
+
     </div>
         <div class="mb-3" class="col-sm-2 col-form-label"> 
             <input type="submit" role="button" aria-disabled="false" class="btn">
@@ -384,7 +379,3 @@
 
 </body>
 </html>
-
-
-
-
