@@ -85,31 +85,33 @@ $data_annonces = $check_annonces->fetchAll();
 $row_data_annonces = $check_annonces->rowCount();?>
 <?php if($row_data_annonces != 0): ?>
     <?php foreach($data_annonces as $row): ?>
-        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
-            <div class="container">
-                <form class="row gy-2 gx-4 align-items-center border mb-4 w-75">
-                    <div class="col-auto mb-3">
-                    <?php  echo '<img width="30%" src="'.$row[3].'" />';?>
-                    </div>
-                    <div class="col-auto mb-3">
-                        <div class="row gy-2 gx-3 align-items-center mb-4">
-                            <strong>
-                                <?php echo $row[2];?>
-                            </strong>
+                    <div class="container">
+                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                        <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <?php echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                       <h3 class="card-title header-padding">                                        
+                                        <strong>
+                                            <?php echo $row[2];?>
+                                        </strong></h3>
+                                       <p class="card-text"><?php echo $row[5]."€";?></p>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="col-auto mt-4 mb-3">
+                                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
+                                        Modification</a>
+                                        <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_suppression.php?id='.$row[0].'">'?>
+                                        Suppression</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="row gy-2 gx-3 align-items-center  mb-4">
-                            <?php echo $row[5]."€";?>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-auto mb-3">
-                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
-                    Modification</a>
-                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_suppression.php?id='.$row[0].'">'?>
-                    Suppression</a>
-                    </div>
-                </form>
-            </div>
-        </a>
     <?php endforeach; ?>
 <?php  endif; ?>
 <style>
