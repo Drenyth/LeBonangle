@@ -19,7 +19,7 @@
     $check_annonces->execute();
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
-    $nb_page = $row_data_annonces / 5;
+    $nb_page = intval($row_data_annonces / 5);
 
     if(!isset($_GET['page'])){
         $page=1;
@@ -135,6 +135,8 @@
 ?>
 
 <?php if($nb_page > 1): ?>
+    <?php var_dump($x);
+    var_dump($nb_page); ?>
     <div class="container">
         <ul class="pagination justify-content-center">
             <?php 

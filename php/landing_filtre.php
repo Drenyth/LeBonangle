@@ -191,8 +191,7 @@
             <?php endfor;
         }
 
-        $nb_page = $row_data_annonces / 5;
-        var_dump($nb_page);
+        $nb_page = intval($row_data_annonces / 5);
         if(!isset($_GET['page'])){
             $page=1;
             $lim=5;
