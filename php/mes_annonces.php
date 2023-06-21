@@ -62,8 +62,8 @@
                     {
                         case 'success':
                         ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> L'annonce a bien été supprimé
+                            <div class="alert alert-success">
+                                <strong>Succès</strong> L'annonce a bien été supprimée
                             </div>
                         <?php
                         break;
@@ -71,7 +71,7 @@
                         case 'failure':
                         ?>
                             <div class="alert alert-danger">
-                                <strong>Erreur</strong> Erreur, l'annonce n'a pas pu être supprimé
+                                <strong>Erreur</strong> Erreur, l'annonce n'a pas pu être supprimée
                             </div>
                         <?php
                         break;

@@ -14,6 +14,28 @@
     {
         $userid = false;
     }
+
+    $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
+    $check_annonces->execute();
+    $data_annonces = $check_annonces->fetchAll();
+    $row_data_annonces = $check_annonces->rowCount();
+    $nb_page = $row_data_annonces / 5;
+
+    if(!isset($_GET['page'])){
+        $page=1;
+        $lim=5;
+    }
+    else
+    {
+        $page=intval($_GET['page']);
+        $lim = 5 * $page;
+    }
+
+    $i=5*($page-1); 
+    $x=$page;
+    $y=1;
+    $previous=$page-1;
+    $next=$page+1;
 ?>
 
 <!DOCTYPE html>
@@ -86,35 +108,58 @@
     </form>
 </div>
 <?php
-    $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
-    $check_annonces->execute();
-    $data_annonces = $check_annonces->fetchAll();
-    $row_data_annonces = $check_annonces->rowCount();
     if($row_data_annonces != 0){
-        foreach($data_annonces as $row): ?>
+        for($i;$i<$lim;$i++): ?>
                      <div class="container">
-                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$data_annonces[$i][0].'">'?>
                         <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
+                                    <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$data_annonces[$i][3].'" />';?>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                        <h3 class="card-title header-padding">                                        
                                         <strong>
-                                            <?php echo $row[2];?>
+                                            <?php echo $data_annonces[$i][2];?>
                                         </strong></h3>
-                                       <p class="card-text"><?php echo $row[5]."€";?></p>
+                                       <p class="card-text"><?php echo $data_annonces[$i][5]."€";?></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                          </a>
                     </div>
-        <?php endforeach; ?>
+        <?php endfor; ?>
 <?php }
 ?>
+
+<?php if($nb_page > 1): ?>
+    <div class="container">
+        <ul class="pagination justify-content-center">
+            <?php 
+            if($x == 1){
+                echo '<li class="page-item disabled"><a class="page-link" href="landing.php">Previous</a></li>';
+            }
+            else{
+                echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$previous.'">Previous</a></li>';
+            }
+    
+            for($y;$y<=$nb_page;$y++)
+            {
+                echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$y.'">'.$y.'</a></li>';
+            }
+            if($x == $nb_page){
+                echo '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>';
+            }
+            else{
+                echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$next.'">Next</a></li>';
+            }
+            ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <style>
         body{
             background-color: #333333;
