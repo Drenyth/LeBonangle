@@ -19,7 +19,7 @@
     $check_annonces->execute();
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
-    $nb_page = intval($row_data_annonces / 5);
+    $nb_page = ceil($row_data_annonces / 5);
 
     if(!isset($_GET['page'])){
         $page=1;
@@ -109,29 +109,31 @@
 </div>
 <?php
     if($row_data_annonces != 0){
-        for($i;$i<$lim;$i++): ?>
-                     <div class="container">
-                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$data_annonces[$i][0].'">'?>
-                        <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$data_annonces[$i][3].'" />';?>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                       <h3 class="card-title header-padding">                                        
-                                        <strong>
-                                            <?php echo $data_annonces[$i][2];?>
-                                        </strong></h3>
-                                       <p class="card-text"><?php echo $data_annonces[$i][5]."€";?></p>
+        for($i;$i<$lim;$i++): 
+            if(isset($data_annonces[$i])): ?>
+                        <div class="container">
+                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$data_annonces[$i][0].'">'?>
+                            <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$data_annonces[$i][3].'" />';?>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                        <h3 class="card-title header-padding">                                        
+                                            <strong>
+                                                <?php echo $data_annonces[$i][2];?>
+                                            </strong></h3>
+                                        <p class="card-text"><?php echo $data_annonces[$i][5]."€";?></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
-                         </a>
-                    </div>
-        <?php endfor; ?>
-<?php }
+            <?php endif;
+        endfor;
+    }
 ?>
 
 <?php if($nb_page > 1): ?>
