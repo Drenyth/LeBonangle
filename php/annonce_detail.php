@@ -137,13 +137,14 @@ $id_annonce = $_GET['id'];
 </div>
 
 <div class="container">
+    <?php if($userid): ?>
         <?php echo '<a id="bouton_fav" href="favoris_traitement.php?id_annonce='.$id_annonce.'">'?>
-            <button class="btn btn-dark btn-lg mb-4">Favoris</button>
+        <button class="btn btn-dark btn-lg mb-4">Favoris</button>
         </a>
+    <?php endif; ?>
     <div class="row gy-2 gx-3 align-items-center mb-4">
         <div class="container">
             <?php  echo '<img src="'.$photo.'" />';?>
-            <img src="../images/truc.jpg" alt="">
         <div>
         <h2 class="title-custom"><?php echo $titre; ?></h2>
         <?php if($etat): ?>

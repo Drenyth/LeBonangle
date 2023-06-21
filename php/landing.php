@@ -90,27 +90,26 @@
     $row_data_annonces = $check_annonces->rowCount();
     if($row_data_annonces != 0){
         foreach($data_annonces as $row): ?>
-                    <div class="container">
+                     <div class="container">
                         <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
-                        <form class="row gy-2 gx-3 align-items-center border mb-4">
-                            <div class="col-auto mb-3">
-                            <?php  echo '<img height="200" src="'.$row[3].'" />';?>
-                            </div>
-                            <div class="col-auto">
-                                <div class="row gy-2 gx-3 align-items-center mb-4">
-                                    <h2>
+                        <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                       <h3 class="card-title header-padding">                                        
                                         <strong>
                                             <?php echo $row[2];?>
-                                        </strong>
-                                    </h2>
-                                </div>
-                                <div class="row gy-2 gx-3 align-items-center  mb-4">
-                                    <?php echo $row[5]."€";?>
+                                        </strong></h3>
+                                       <p class="card-text"><?php echo $row[5]."€";?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                        </a>
-                    </div> 
+                        </div>
+                         </a>
+                    </div>
         <?php endforeach; ?>
 <?php }
 ?>
@@ -159,6 +158,10 @@
         }
         #annonce:hover{
             transform: scale(2);
+        }
+
+        .header-padding{
+            margin-bottom: 4%;
         }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

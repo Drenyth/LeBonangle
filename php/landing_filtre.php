@@ -95,25 +95,26 @@
         if($row_data_annonces != 0){
             foreach($data_annonces as $row):?>
                 <?php if($selected == $row[8]):?>
-                        <div class="container">
-                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
-                            <form class="row gy-2 gx-3 align-items-center border mb-4">
-                                <div class="col-auto mb-3">
-                                <?php  echo '<img height="200" src="'.$row[3].'" />';?>
+                    <div class="container">
+                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                        <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
                                 </div>
-                                <div class="col-auto">
-                                    <div class="row gy-2 gx-3 align-items-center mb-4">
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                       <h3 class="card-title header-padding">                                        
                                         <strong>
                                             <?php echo $row[2];?>
-                                        </strong>
-                                    </div>
-                                    <div class="row gy-2 gx-3 align-items-center  mb-4">
-                                        <?php echo $row[5]."€";?>
+                                        </strong></h3>
+                                       <p class="card-text"><?php echo $row[5]."€";?></p>
                                     </div>
                                 </div>
-                            </form>
-                            </a>
-                        </div> 
+                            </div>
+                        </div>
+                         </a>
+                    </div>
                 <?php endif; 
             endforeach; 
         }
