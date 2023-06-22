@@ -139,7 +139,6 @@
     <div class="mb-3">
         <label for="tags" class="col-sm-2 col-form-label">Tags pour l'annonce :</label>
         <select name="tags" class="selectpicker">
-            <option selected>Choisissez un filtre</option>
             <option value="Immobilier">Immobilier</option>
             <option value="Automobile">Automobile</option>
             <option value="Lecture">Lecture</option>
@@ -183,7 +182,6 @@
         <label for="typebien" id="bold" class="col-sm-2 col-form-label">Type de Bien</label>
         <div class="col-sm-10">
             <select name="typebien" class="selectpicker">
-                    <option selected>Choisissez un filtre</option>
                     <option value="0">Location</option>
                     <option value="1">Vente</option>
             </select>
@@ -194,7 +192,6 @@
         <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
         <div class="col-sm-10">
             <select name="etat" class="selectpicker">
-                <option selected>Choisissez un filtre</option>
                 <option value="bon">Bon</option>
                 <option value="moyen">Moyen</option>
                 <option value="mauvais">Mauvais</option>
