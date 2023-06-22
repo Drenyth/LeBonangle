@@ -238,7 +238,9 @@
     }
 ?>
 
-<?php if($nb_page > 1): ?>
+<?php 
+if(isset($nb_page)){
+if($nb_page > 1): ?>
     <div class="container">
         <ul class="pagination justify-content-center">
             <?php 
@@ -262,7 +264,8 @@
             ?>
         </ul>
     </div>
-<?php endif; ?>
+<?php endif;
+} ?>
 
 <style>
         body{

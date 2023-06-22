@@ -1,8 +1,8 @@
 <!-- récupération user id et données correspondantes -->
 <?php
 
-require_once "config.php";
-$id_annonce = $_GET['id'];
+    require_once "config.php";
+    $id_annonce = $_GET['id'];
 
     if(!empty($_COOKIE['userid']))
     {
@@ -18,44 +18,50 @@ $id_annonce = $_GET['id'];
         $userid = false;
     }
 
-            /* requête pour avoir les données de l'annonce */
-            $request = $bdd->prepare('SELECT * FROM annonce WHERE id_annonce = ?');
-            $request->execute(array($id_annonce));
-            $madata = $request->fetch();
+    /* requête pour avoir les données de l'annonce */
+    $request = $bdd->prepare('SELECT * FROM annonce WHERE id_annonce = ?');
+    $request->execute(array($id_annonce));
+    $madata = $request->fetch();
+
+    $titre = $madata['nom_annonce'];
+    $description = $madata['description'];
+    $prix = $madata['prix'];
+    $email = $madata['email'];
+    $adresse_postal = $madata['adresse_postal'];
+    $tags = $madata['tags'];
+    $photo = $madata['photo'];
     
-            $titre = $madata['nom_annonce'];
-            $description = $madata['description'];
-            $prix = $madata['prix'];
-            $email = $madata['email'];
-            $adresse_postal = $madata['adresse_postal'];
-            $tags = $madata['tags'];
-            $photo = $madata['photo'];
-            
-            /* requête pour savoir s'il s'agit d'un bien ou d'un service */
-            $request2 = $bdd->prepare('SELECT * FROM bien WHERE id_annonce = ?');
-            $request2->execute(array($id_annonce));
-            $bien = $request2->fetch();
-            $row = $request2->rowCount();
-    
-            if(($row != 0)){
-                    $type = $bien['type'];
-                    $etat = $bien['etat'];
-        
-                    $type = 'Mensualité:';
-                    $date=0;
-                    $date_fin = 0;
-            }
-            else
-            {
-                $request2 = $bdd->prepare('SELECT * FROM service WHERE id_annonce = ?');
-                $request2->execute(array($id_annonce));
-                $service = $request2->fetch();
-    
-                $date = $service['date'];
-                $date_fin = $service['date_fin'];
-                $etat=0;
-                $type='Prix:';
-            }
+    /* requête pour savoir s'il s'agit d'un bien ou d'un service */
+    $request2 = $bdd->prepare('SELECT * FROM bien WHERE id_annonce = ?');
+    $request2->execute(array($id_annonce));
+    $bien = $request2->fetch();
+    $row = $request2->rowCount();
+
+    if(($row != 0)){
+            $type = $bien['type'];
+            $etat = $bien['etat'];
+
+            $type = 'Mensualité:';
+            $date=0;
+            $date_fin = 0;
+    }
+    else
+    {
+        $request2 = $bdd->prepare('SELECT * FROM service WHERE id_annonce = ?');
+        $request2->execute(array($id_annonce));
+        $service = $request2->fetch();
+
+        $date = $service['date'];
+        $date_fin = $service['date_fin'];
+        $etat=0;
+        $type='Prix:';
+    }
+
+    if(isset($id_annonce)){
+        $check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ? and id_annonce = ?');
+        $check_favoris->execute(array($userid,$id_annonce));
+        $row_data_favoris = $check_favoris->rowCount();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -137,11 +143,12 @@ $id_annonce = $_GET['id'];
 </div>
 
 <div class="container">
-    <?php if($userid): ?>
+    <?php if($userid and ($row_data_favoris == 0)): ?>
         <?php echo '<a id="bouton_fav" href="favoris_traitement.php?id_annonce='.$id_annonce.'">'?>
         <button class="btn btn-dark btn-lg mb-4">Favoris</button>
         </a>
     <?php endif; ?>
+
     <div class="row gy-2 gx-3 align-items-center mb-4">
         <div class="container">
             <?php  echo '<img src="'.$photo.'" />';?>
