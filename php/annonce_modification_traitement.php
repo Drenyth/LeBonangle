@@ -67,10 +67,10 @@ $id_annonce = $_GET['id'];
         $userid = false;
     }
 
-    if(!empty($_POST['nom_annonce']) && !empty($_POST['photo']) && !empty($_POST['description']) && !empty($_POST['prix']) && !empty($_POST['email']) && !empty($_POST['adresse_postal']) && !empty($_POST['tags']))
+    if(!empty($_POST['nom_annonce']) && !empty($_POST['description']) && !empty($_POST['prix']) && !empty($_POST['email']) && !empty($_POST['adresse_postal']) && !empty($_POST['tags']))
     {
         $nom_annonce = htmlspecialchars($_POST['nom_annonce']);
-        $photo = htmlspecialchars($_POST['photo']);
+        $photo = $_FILES['photo'];
         $description = htmlspecialchars($_POST['description']);
         $prix = htmlspecialchars($_POST['prix']);
         $email = htmlspecialchars($_POST['email']);
@@ -102,71 +102,75 @@ $id_annonce = $_GET['id'];
                      if(strlen($email) <= 100){
                           if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                               if(strlen($tags)<=1000){
-                                //On supprime l'ancienne table
-                                $check = $bdd->prepare('DELETE FROM annonce WHERE id_annonce = ?');
-                                $check->execute(array($id_annonce));
-                                //On crée la nouvelle table
+                                if(is_numeric($prix)){
+                                    if ($photo['error'] === UPLOAD_ERR_OK) {
 
-                                $insert = $bdd->prepare('INSERT INTO annonce(id_annonce, id_utilisateur, nom_annonce, photo, description, prix, email, adresse_postal,tags) 
-                                VALUES(:id_annonce, :id_utilisateur, :nom_annonce, :photo, :description, :prix, :email, :adresse_postal, :tags)');
-                                $insert->execute(array(
-                                'id_annonce' => $id_annonce,
-                                'id_utilisateur' => $userid,
-                                'nom_annonce' => $nom_annonce,
-                                'photo' => $photo,
-                                'description' => $description,
-                                'prix' => $prix,
-                                'email' => $email,
-                                'adresse_postal' => $adresse_postal,
-                                'tags' => $tags
-                                ));
-                                // si bien ou service on modifie la table correspondant 
-                                if($typeannonce == "bien"){
-                                    
-                                    $check1 = $bdd->prepare('DELETE FROM bien WHERE id_annonce = ?');
-                                    $check1->execute(array($id_annonce));
+                                        $photo_name = $photo['name']; 
+                                        $photo_tmp = $photo['tmp_name'];
+                                        $destination = 'images_annonce/' . $photo_name;
+                                        move_uploaded_file($photo_tmp, $destination);
+            
+                                        //On supprime l'ancienne table
+                                        $check = $bdd->prepare('DELETE FROM annonce WHERE id_annonce = ?');
+                                        $check->execute(array($id_annonce));
+                                        //On crée la nouvelle table
 
-                                    $insert1 = $bdd->prepare('INSERT INTO bien(id_annonce, type, etat) 
-                                    VALUES(:id_annonce, :type, :etat)');
-                                    $insert1->execute(array(
-                                    'id_annonce' => $id_annonce,
-                                    'type' => $typebien,
-                                    'etat' => $etat
-                                    ));
-                                    }
-                                    // sinon c'est un service
-                                elseif($typeannonce == "service"){
+                                        $insert = $bdd->prepare('INSERT INTO annonce(id_annonce, id_utilisateur, nom_annonce, photo, description, prix, email, adresse_postal,tags) 
+                                        VALUES(:id_annonce, :id_utilisateur, :nom_annonce, :photo, :description, :prix, :email, :adresse_postal, :tags)');
+                                        $insert->execute(array(
+                                        'id_annonce' => $id_annonce,
+                                        'id_utilisateur' => $userid,
+                                        'nom_annonce' => $nom_annonce,
+                                        'photo' => $destination,
+                                        'description' => $description,
+                                        'prix' => $prix,
+                                        'email' => $email,
+                                        'adresse_postal' => $adresse_postal,
+                                        'tags' => $tags
+                                        ));
+                                        // si bien ou service on modifie la table correspondant 
+                                        if($typeannonce == "bien"){
+                                            
+                                            $check1 = $bdd->prepare('DELETE FROM bien WHERE id_annonce = ?');
+                                            $check1->execute(array($id_annonce));
 
-                                    $check1 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
-                                    $check1->execute(array($id_annonce));
+                                            $insert1 = $bdd->prepare('INSERT INTO bien(id_annonce, type, etat) 
+                                            VALUES(:id_annonce, :type, :etat)');
+                                            $insert1->execute(array(
+                                            'id_annonce' => $id_annonce,
+                                            'type' => $typebien,
+                                            'etat' => $etat
+                                            ));
+                                            }
+                                            // sinon c'est un service
+                                        elseif($typeannonce == "service"){
 
-                                    $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date, date_fin) 
-                                    VALUES(:id_annonce, :date, :date_fin)');
-                                    $insert1->execute(array(
-                                    'id_annonce' => $id_annonce,
-                                    'date' => $date,
-                                    'date_fin' => $date_fin
-                                    ));
-                                    }
-                                    // erreur modification bien/service
-                                        else{{header('Location:annonce_modification_traitement.php?reg_err=typeannonce'); die();}
-                                    }  
+                                            $check1 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
+                                            $check1->execute(array($id_annonce));
 
-                                        header('Location:annonce_modification.php?reg_err=success&id='.$id_annonce);die();
-                                }else{header('Location:annonce_modification.php?reg_err=tags_length&id='.$id_annonce);die();}
-                         }else {header('Location:annonce_modification.php?reg_err=email&id='.$id_annonce); die();}
-                     }else {header('Location:annonce_modification.php?reg_err=email_length&id='.$id_annonce); die();}
-                }else {header('Location:annonce_modification.php?reg_err=description_length&id='.$id_annonce); die();}
-            }else {header('Location:annonce_modification.php?reg_err=annonce_length&id='.$id_annonce); die();}
+                                            $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date, date_fin) 
+                                            VALUES(:id_annonce, :date, :date_fin)');
+                                            $insert1->execute(array(
+                                            'id_annonce' => $id_annonce,
+                                            'date' => $date,
+                                            'date_fin' => $date_fin
+                                            ));
+                                            }
+                                            // erreur modification bien/service
+                                                else{{header('Location:annonce_modification_traitement.php?modif_err=typeannonce&id='.$id_annonce); die();}
+                                            }  
+
+                                            header('Location:annonce_modification.php?modif_err=success&id='.$id_annonce);die();
+                                        }else{header('Location:annonce_modification.php?modif_err=upload_error&id='.$id_annonce);die();}
+                                    }else{header('Location:annonce_depot.php?modif_err=price&id='.$id_annonce);die();}
+                                }else{header('Location:annonce_modification.php?modif_err=tags_length&id='.$id_annonce);die();}
+                         }else {header('Location:annonce_modification.php?modif_err=email&id='.$id_annonce); die();}
+                     }else {header('Location:annonce_modification.php?modif_err=email_length&id='.$id_annonce); die();}
+                }else {header('Location:annonce_modification.php?modif_err=description_length&id='.$id_annonce); die();}
+            }else {header('Location:annonce_modification.php?modif_err=annonce_length&id='.$id_annonce); die();}
     }
     //gestion erreurs
 
-    else {header('Location:annonce_modification.php?reg_err=void&id='.$id_annonce); die();}
+    else {header('Location:annonce_modification.php?modif_err=void&id='.$id_annonce); die();}
 
 ?>
-
-
-
-
-
-
