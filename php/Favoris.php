@@ -143,6 +143,10 @@ endif; ?>
     #modif{
         background-color: #333333;
     }
+
+    .header-padding{
+            margin-bottom: 4%;
+    }
 </style>
 
 <!--Script bootstrap -->
