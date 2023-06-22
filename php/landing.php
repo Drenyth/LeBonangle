@@ -1,7 +1,6 @@
-<!-- récupération user id et données correspondantes -->
 <?php
-
     require_once "config.php";
+    //récupération user id et données correspondantes
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
@@ -15,12 +14,16 @@
         $userid = false;
     }
 
+    //requete recuperant les annonces
     $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
     $check_annonces->execute();
     $data_annonces = $check_annonces->fetchAll();
     $row_data_annonces = $check_annonces->rowCount();
+
+    //recuperation du nombre de page necessaire pour la pagination
     $nb_page = ceil($row_data_annonces / 5);
 
+    //s'il n'y a pas de page défini on est sur la premiere donc on definit les variables en fonction
     if(!isset($_GET['page'])){
         $page=1;
         $lim=5;
@@ -30,7 +33,8 @@
         $page=intval($_GET['page']);
         $lim = 5 * $page;
     }
-
+    
+    //variables utilisées pour la pagination
     $i=5*($page-1); 
     $x=$page;
     $y=1;

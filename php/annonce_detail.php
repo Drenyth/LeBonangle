@@ -159,7 +159,7 @@
         <div>
         <h2 class="title-custom"><?php echo $titre; ?></h2>
         <?php if(isset($etat)): ?>
-            <p><?php echo $type . ' ' . $prix . '€' ?></p>
+            <p><?php echo $type . ' ' . $prix . '€' ?></p>e
             <p><?php echo 'Etat :'. ' ' . $etat ?></p>
             <?php endif; ?>
             

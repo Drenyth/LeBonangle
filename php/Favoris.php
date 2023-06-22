@@ -1,4 +1,3 @@
-<!-- récupération user id et données correspondantes -->
 <?php
     if(!empty($_COOKIE['userid']))
     {
@@ -13,6 +12,22 @@
     {
         $userid = false;
     }
+
+    //requete recuperant les donnees de l'utilisateur
+    $check = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
+    $check->execute(array($userid));
+    $data = $check->fetch();
+
+    //requete recuperant les donnees des annonces
+    $check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
+    $check_annonces->execute();
+    $data_annonces = $check_annonces->fetchAll();
+    $row_data_annonces = $check_annonces->rowCount();
+
+    //requete recuperant les favoris de l'utilisateur
+    $check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ?');
+    $check_favoris->execute(array($userid));
+    $data_favoris = $check_favoris->fetchAll();?>
 ?>
 
 <!DOCTYPE html>
@@ -53,20 +68,6 @@
     </div>
 </nav>
 
-<?php
-$check = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
-$check->execute(array($userid));
-$data = $check->fetch();
-
-$check_annonces = $bdd->prepare('SELECT * FROM annonce'); 
-$check_annonces->execute();
-$data_annonces = $check_annonces->fetchAll();
-$row_data_annonces = $check_annonces->rowCount();
-
-$check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ?');
-$check_favoris->execute(array($userid));
-$data_favoris = $check_favoris->fetchAll();?>
-
 <?php if($row_data_annonces != 0): ?>
     <?php foreach($data_favoris as $row_favoris): ?>
         <?php foreach($data_annonces as $row_annonce): ?>
@@ -95,6 +96,7 @@ $data_favoris = $check_favoris->fetchAll();?>
         endforeach;
     endforeach;
 endif; ?>
+
 <style>
     body{
     background-color: #333333;
@@ -142,6 +144,8 @@ endif; ?>
         background-color: #333333;
     }
 </style>
+
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -21,6 +21,8 @@
     </a>
     </div>
 </nav>
+
+<!--Gestion des erreurs liées a l'inscription -->
 <div class="login-form">
         <?php 
             if(isset($_GET['reg_err']))
@@ -84,6 +86,7 @@
             }
         ?>
 </div>
+<!-- Formulaire d'inscription-->
 <div class="container">
 <form action="inscription_traitement.php" method="post">
     <div class="mb-3">
@@ -180,8 +183,6 @@
     </div>
 </div>
 
-<script src="./js/formulaire_inscription.js"></script>
-
 <style>
         body{
             background-color: #333333;
@@ -221,6 +222,8 @@
             padding-left:735px;
         }
 </style>
+
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
