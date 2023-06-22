@@ -9,39 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="inner_header">
-            <div class="logo_container">
-                <a href="index.html"><img id="image" src="./images/logo.png" alt="LOGO"></a>
-            </div>
-
-            <ul class="navigation">
-                <li><a href="./php/connexion.php" id="log">Se connecter</a></li>
-            </ul>
-        </div>
-    </header>
-    
-    <div class="boutons">
-        <div class="div_barre_recherche">
-            <input id="recherche" name="search_text" onblur="getVal()" placeholder="Rechercher des annonces" autocomplete="off">
-            <p> 
-                <select name="filtres" id="filtres">
-                    <option value="Tous">Tous</option> 
-                    <option value="Sport">Sport</option>  
-                    <option value="Services">Services</option> 
-                </select>
-            </p>
-        </div>
-    </div>
-    <div class="annonces">
-        <ul>
-            <li id="announcement">Annonce 1</li>
-            <li id="announcement">Annonce 2</li>
-            <li id="announcement">Annonce 3</li>
-            <li id="announcement">Annonce 4</li>
-            <li id="announcement">Annonce 5</li>
-        </ul>
-    </div>
-    <script src="./js/index.js"></script>
+<script type="text/javascript">
+    var delai=0; // Delai en secondes
+    var url='/lebonangle/php/landing.php'; // Url de destination
+    setTimeout("document.location.replace(url)", delai + '000');
+    </script>
 </body>
 </html>
