@@ -1,6 +1,6 @@
-<!-- récupération user id et données correspondantes -->
 <?php
 
+    //récupération user id et données correspondantes permettant de pré remplir le formulaire
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
@@ -106,63 +106,67 @@
     </div>
     </div>
 </nav>
-    <div class="login-form">
-            <?php 
-                if(isset($_GET['reg_err']))
-                {
-                    $err = htmlspecialchars($_GET['reg_err']);
+<!--Gestion des erreurs lié a la modification d'annonces -->
+<div class="login-form">
+    <?php 
+        if(isset($_GET['reg_err']))
+        {
+            $err = htmlspecialchars($_GET['reg_err']);
 
-                    switch($err)
-                    {
-                        case 'success':
-                        ?>
-                            <div class="alert alert-success">
-                                <strong>Succès</strong> modifications effectuées !
-                            </div>
-                        <?php
-                        break;
+            switch($err)
+            {
+                case 'success':
+                ?>
+                    <div class="alert alert-success">
+                        <strong>Succès</strong> modifications effectuées !
+                    </div>
+                <?php
+                break;
 
-                        case 'password':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> mot de passe différent
-                            </div>
-                        <?php
-                        break;
+                case 'password':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> mot de passe différent
+                    </div>
+                <?php
+                break;
 
-                        case 'email':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email non valide
-                            </div>
-                        <?php
-                        break;
+                case 'email':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> email non valide
+                    </div>
+                <?php
+                break;
 
-                        case 'email_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email trop long
-                            </div>
-                        <?php 
-                        break;
+                case 'email_length':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> email trop long
+                    </div>
+                <?php 
+                break;
 
-                        case 'name_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> nom trop long
-                            </div>
-                        <?php
-                        break;
-                        case 'first_name_length':
-                        ?>
-                            <div class="alert alert-danger">
-                            <strong>Erreur</strong> prénom trop long
-                            </div>
-                        <?php  
+                case 'name_length':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> nom trop long
+                    </div>
+                <?php
+                break;
+                case 'first_name_length':
+                ?>
+                    <div class="alert alert-danger">
+                    <strong>Erreur</strong> prénom trop long
+                    </div>
+                <?php  
 
-                    }
-                }
-            ?>
+            }
+        }
+    ?>
+</div>
+
+<!--Formulaire de modification d'annonce-->
 <div class="container">
 <form action="modification_traitement.php" method="post">
     <div class="mb-3">
@@ -299,47 +303,48 @@
         <input type="Reset" name="reset" value="Réinitialiser" class="btn">
     </div>
 </div>
-    <style>
-        body{
-        background-color: #333333;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-        }
-        .login-form {
-            width: 70%;
-            height: 100%;
-            margin-left: 15%;
-        }
-        .login-form form {
-            margin-bottom: 15px;
-            background: #333333;
-            padding: 30px;
-        }
-        .form-control, .btn {
-            min-height: 38px;
-            border-radius: 2px;
-        }
-        .btn {        
-            font-size: 15px;
-            font-weight: bold;
-            background: #006B6B;
-        }
-        .navbar-custom{
-            background-color: #006B6B;
-        }
-        
-        .header-padding{
-            margin-bottom:50px;
-        }
-        
-        .navbar-padding{
-            padding-left:735px;
-        }
+<style>
+    body{
+    background-color: #333333;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    }
+    .login-form {
+        width: 70%;
+        height: 100%;
+        margin-left: 15%;
+    }
+    .login-form form {
+        margin-bottom: 15px;
+        background: #333333;
+        padding: 30px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+        background: #006B6B;
+    }
+    .navbar-custom{
+        background-color: #006B6B;
+    }
+    
+    .header-padding{
+        margin-bottom:50px;
+    }
+    
+    .navbar-padding{
+        padding-left:735px;
+    }
 
-        .left-custom{
-            margin-left:11px;
-        }
-    </style>
+    .left-custom{
+        margin-left:11px;
+    }
+</style>
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

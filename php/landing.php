@@ -116,19 +116,27 @@
         for($i;$i<$lim;$i++): 
             if(isset($data_annonces[$i])): ?>
                         <div class="container">
-                            <?php echo '<a id="annonce" href="annonce_detail.php?id='.$data_annonces[$i][0].'">'?>
+                            <?php
+                            //$data_annonces[$i][0] est le champ contenant l'id de l'annonce
+                            echo '<a id="annonce" href="annonce_detail.php?id='.$data_annonces[$i][0].'">'?>
                             <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$data_annonces[$i][3].'" />';?>
+                                        <?php
+                                        //$data_annonces[$i][3] est le champ contenant l'image de l'annonce
+                                        echo '<img class="img-fluid rounded-start" height="150" src="'.$data_annonces[$i][3].'" />';?>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
                                         <h3 class="card-title header-padding">                                        
                                             <strong>
-                                                <?php echo $data_annonces[$i][2];?>
+                                                <?php
+                                                //$data_annonces[$i][2] est le champ contenant le titre de l'annonce 
+                                                echo $data_annonces[$i][2];?>
                                             </strong></h3>
-                                        <p class="card-text"><?php echo $data_annonces[$i][5]."€";?></p>
+                                        <p class="card-text"><?php 
+                                        ////$data_annonces[$i][5] est le champ contenant le prix de l'annonce 
+                                        echo $data_annonces[$i][5]."€";?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -140,31 +148,35 @@
     }
 ?>
 
-<?php if($nb_page > 1): ?>
-    <div class="container">
-        <ul class="pagination justify-content-center">
-            <?php 
-            if($x == 1){
-                echo '<li class="page-item disabled"><a class="page-link" href="landing.php">Previous</a></li>';
-            }
-            else{
-                echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$previous.'">Previous</a></li>';
-            }
-    
-            for($y;$y<=$nb_page;$y++)
-            {
-                echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$y.'">'.$y.'</a></li>';
-            }
-            if($x == $nb_page){
-                echo '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>';
-            }
-            else{
-                echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$next.'">Next</a></li>';
-            }
-            ?>
-        </ul>
-    </div>
-<?php endif; ?>
+<?php 
+if(isset($nb_page)){
+    //affichage des boutons de pagination seulement s'il y a plus d'une page
+    if($nb_page > 1): ?>
+        <div class="container">
+            <ul class="pagination justify-content-center">
+                <?php 
+                if($x == 1){
+                    echo '<li class="page-item disabled"><a class="page-link" href="landing.php">Previous</a></li>';
+                }
+                else{
+                    echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$previous.'">Previous</a></li>';
+                }
+        
+                for($y;$y<=$nb_page;$y++)
+                {
+                    echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$y.'">'.$y.'</a></li>';
+                }
+                if($x == $nb_page){
+                    echo '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>';
+                }
+                else{
+                    echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$next.'">Next</a></li>';
+                }
+                ?>
+            </ul>
+        </div>
+    <?php endif;
+} ?>
 
 <style>
         body{
@@ -217,6 +229,7 @@
             margin-bottom: 4%;
         }
 </style>
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+    //même fonctionnement que annonce_ajout.php
     require_once 'config.php';
 
     if(!empty($_COOKIE['userid']))
@@ -44,9 +45,10 @@
                         $data = $check->fetch();
                         $row = $check->rowCount();
 
+                        //requete supprimant les données de l'utilisateur
                         $check = $bdd->prepare('DELETE FROM utilisateurs WHERE id = ?');
                         $check->execute(array($userid));
-
+                        
                         $chk="";  
                         foreach($interets as $chk1)  
                         {  

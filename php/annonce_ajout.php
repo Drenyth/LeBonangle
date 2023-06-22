@@ -38,7 +38,9 @@
                             $image_tmp = $image['tmp_name'];
                             $destination = 'images_annonce/' . $image_name;
                             move_uploaded_file($image_tmp, $destination);
-
+                            
+                            //permet 
+                            $email = strtolower($email);
                             //insertion des nouvelles données dans la base de donnée
                             $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
                                 VALUES(:nom_annonce, :id_utilisateur, :photo, :description, :prix, :email, :adresse_postal, :tags)');
@@ -52,7 +54,6 @@
                                 'adresse_postal' => $address,
                                 'tags'=> $tags
                             ));
-
                             $id_annonce = $bdd->lastInsertId(); 
 
                             //Ajout de l'annonce dans la base de donnée corrrespondante au type de celle ci (bien ou service)
@@ -78,7 +79,7 @@
                             header('Location:annonce_depot.php?reg_err=success');
                             die();
                         }else{header('Location: annonce_depot.php?reg_err=upload_error');die();}
-                    }else{header('Location:annonce_depot.php?reg_err=price');}
+                    }else{header('Location:annonce_depot.php?reg_err=price');die();}
                 }else {header('Location:inscription.php?reg_err=email'); die();}
             }else {header('Location:inscription.php?reg_err=email_length'); die();}
         }else {header('Location:annonce_depot.php?reg_err=annonce_length'); die();}

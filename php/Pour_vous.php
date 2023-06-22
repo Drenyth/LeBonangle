@@ -13,6 +13,17 @@
     {
         $userid = false;
     }
+
+    //recuperation des donnees utilisateurs
+    $check = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
+    $check->execute(array($userid));
+    $data = $check->fetch();
+
+    //recuperation des donnees des annonces
+    $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
+    $check_annonces->execute();
+    $data_annonces = $check_annonces->fetchAll();
+    $row_data_annonces = $check_annonces->rowCount();?>
 ?>
 
 <!DOCTYPE html>
@@ -52,58 +63,63 @@
     </div>
     </div>
 </nav>
+<!--Gestion des erreurs lié a la suppression d'annonce -->
 <div class="supp-form">
-             <?php 
-                if(isset($_GET['reg_err']))
-                {
-                    $err = htmlspecialchars($_GET['reg_err']);
+    <?php 
+    if(isset($_GET['reg_err']))
+    {
+        $err = htmlspecialchars($_GET['reg_err']);
 
-                    switch($err)
-                    {
-                        case 'success':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> L'annonce a bien été supprimé
-                            </div>
-                        <?php
-                        break;
+        switch($err)
+        {
+            case 'success':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> L'annonce a bien été supprimé
+                </div>
+            <?php
+            break;
 
-                        case 'failure':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> Erreur, l'annonce n'a pas pu être supprimé
-                            </div>
-                        <?php
-                        break;
-                    }
-                }
-                ?> 
-<?php
-$check = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
-$check->execute(array($userid));
-$data = $check->fetch();
+            case 'failure':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> Erreur, l'annonce n'a pas pu être supprimé
+                </div>
+            <?php
+            break;
+        }
+    }
+    ?> 
+</div>
 
-$check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
-$check_annonces->execute();
-$data_annonces = $check_annonces->fetchAll();
-$row_data_annonces = $check_annonces->rowCount();?>
 <?php if($row_data_annonces != 0): ?>
     <?php foreach($data_annonces as $row): ?>
-        <?php if(str_contains($data[12],$row[8])): ?>
+        <?php 
+        //$data[12] contient les centres d'interets de l'utilisateur et $row[8] contient le tag de l'annonce, 
+        //ceci permet donc d'afficher les annonces correspondant aux centres d'interets de l'utilisateur
+        if(str_contains($data[12],$row[8])): ?>
                     <div class="container">
-                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                        <?php 
+                        //$row[0] est le champ contenant l'id de l'annonce
+                        echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                         <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
+                                    <?php  
+                                    //$row[3] est le champ contenant l'image de l'annonce
+                                    echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                        <h3 class="card-title header-padding">                                        
                                         <strong>
-                                            <?php echo $row[2];?>
+                                            <?php
+                                            //$row[2] est le champ contenant le titre de l'annonce 
+                                            echo $row[2];?>
                                         </strong></h3>
-                                       <p class="card-text"><?php echo $row[5]."€";?></p>
+                                       <p class="card-text"><?php 
+                                       //$row[5] est le champ contenant le prix de l'annonce
+                                       echo $row[5]."€";?></p>
                                     </div>
                                 </div>
                             </div>
@@ -164,6 +180,7 @@ endif; ?>
             margin-bottom: 4%;
     }
 </style>
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

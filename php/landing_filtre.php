@@ -171,6 +171,7 @@
     elseif($selected != "default" and isset($_POST['recherche'])){
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
+                <!--str_tolower permet de ne pas etre gener par les majusculer -->
                 <?php if($selected == $row[8] and str_contains(strtolower($row[2]),strtolower($recherche))): ?>
                     <div class="container">
                         <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
@@ -230,6 +231,7 @@
     elseif($selected == "default" and !empty($_POST['recherche'])){
         if($row_data_annonces != 0){
             foreach($data_annonces as $row): ?>
+                <!--str_tolower permet de ne pas etre gener par les majusculer -->
                 <?php if(str_contains(strtolower($row[2]),strtolower($recherche))): ?>
                     <div class="container">
                         <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>

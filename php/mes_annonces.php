@@ -13,6 +13,11 @@
     {
         $userid = false;
     }
+
+    $check_annonces = $bdd->prepare('SELECT * FROM annonce WHERE id_utilisateur = ? ORDER BY id_annonce DESC'); 
+    $check_annonces->execute(array($userid));
+    $data_annonces = $check_annonces->fetchAll();
+    $row_data_annonces = $check_annonces->rowCount();?>
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +57,8 @@
     </div>
     </div>
 </nav>
+
+<!-- Gestion des erreurs liées a la suppression d'annonce -->
 <div class="supp-form">
              <?php 
                 if(isset($_GET['supp_err']))
@@ -77,36 +84,46 @@
                         break;
                     }
                 }
-                ?> 
-<?php
-$check_annonces = $bdd->prepare('SELECT * FROM annonce WHERE id_utilisateur = ? ORDER BY id_annonce DESC'); 
-$check_annonces->execute(array($userid));
-$data_annonces = $check_annonces->fetchAll();
-$row_data_annonces = $check_annonces->rowCount();?>
+            ?> 
+</div>
+
 <?php if($row_data_annonces != 0): ?>
     <?php foreach($data_annonces as $row): ?>
                     <div class="container">
-                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                        <?php 
+                        //$row[0] est le champ contenant l'id de l'annonce
+                        echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
                         <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <?php echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
+                                    <?php 
+                                    //$row[3] est le champ contenant l'image de l'annonce
+                                    echo '<img class="img-fluid rounded-start" height="150" src="'.$row[3].'" />';?>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                        <h3 class="card-title header-padding">                                        
                                         <strong>
-                                            <?php echo $row[2];?>
+                                            <?php 
+                                            //$row[2] est le champ contenant le titre de l'annonce
+                                            echo $row[2];?>
                                         </strong></h3>
-                                       <p class="card-text"><?php echo $row[5]."€";?></p>
+                                       <p class="card-text"><?php 
+                                       //$row[5] est le champ contenant le prix de l'annonce
+                                       echo $row[5]."€";?></p>
                                     </div>
                                 </div>
                             </div>
                                 <div class="col-auto mt-4 mb-3">
-                                    <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
+                                    <?php 
+                                    //$row[0] est le champ contenant l'id de l'annonce
+                                    //bouton permettant de modifier une annonce
+                                    echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_modification.php?id='.$row[0].'">'?>
                                         Modification</a>
-                                        <?php echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_suppression.php?id='.$row[0].'">'?>
-                                        Suppression</a>
+                                    <?php 
+                                    //bouton permettant de supprimer une annonce
+                                    echo '<a id="modif" class="btn btn-danger btn-lg" href="annonce_suppression.php?id='.$row[0].'">'?>
+                                    Suppression</a>
                                 </div>
                             </div>
                         </div>
@@ -114,6 +131,7 @@ $row_data_annonces = $check_annonces->rowCount();?>
                     </div>
     <?php endforeach; ?>
 <?php  endif; ?>
+
 <style>
     body{
     background-color: #333333;
@@ -165,6 +183,7 @@ $row_data_annonces = $check_annonces->rowCount();?>
             margin-bottom: 4%;
     }
 </style>
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
