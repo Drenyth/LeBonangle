@@ -1,4 +1,5 @@
 <?php
+    //recuperation des données utilisateur avec les cookies si l'utilisateur est connecté
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
@@ -53,6 +54,7 @@
     </div>
     </div>
 </nav>
+<!--Gestion des erreurs liées au depot d'annonce-->
 <div class="login-form">
     <?php 
         if(isset($_GET['reg_err']))
@@ -260,43 +262,44 @@
         padding-left:735px;
     }
 </style>
-    <script>
-    // Récupérer l'élément de sélection pour le type d'annonce
-    var typeAnnonceSelect = document.querySelector('input[name="typeannonce"]:checked');
 
-    // Définir les divs à afficher ou masquer en fonction de la valeur initiale de typeAnnonceSelect
-    toggleDivs(typeAnnonceSelect.value);
+<script>
+// Récupérer l'élément de sélection pour le type d'annonce
+var typeAnnonceSelect = document.querySelector('input[name="typeannonce"]:checked');
 
-    // Écouter les changements de valeur dans le type d'annonce
-    var typeAnnonceInputs = document.querySelectorAll('input[name="typeannonce"]');
-    typeAnnonceInputs.forEach(function(input) {
-        input.addEventListener('change', function() {
-            toggleDivs(this.value);
-        });
+// Définir les divs à afficher ou masquer en fonction de la valeur initiale de typeAnnonceSelect
+toggleDivs(typeAnnonceSelect.value);
+
+// Écouter les changements de valeur dans le type d'annonce
+var typeAnnonceInputs = document.querySelectorAll('input[name="typeannonce"]');
+typeAnnonceInputs.forEach(function(input) {
+    input.addEventListener('change', function() {
+        toggleDivs(this.value);
     });
+});
 
-    // Fonction pour afficher ou masquer les divs en fonction de la valeur de type d'annonce
-    function toggleDivs(typeAnnonceValue) {
-        var divTypeBien = document.getElementById('divTypeBien');
-        var divEtat = document.getElementById('divEtat');
-        var divDateDebut = document.getElementById('divDateDebut');
-        var divDateFin = document.getElementById('divDateFin');
+// Fonction pour afficher ou masquer les divs en fonction de la valeur de type d'annonce
+function toggleDivs(typeAnnonceValue) {
+    var divTypeBien = document.getElementById('divTypeBien');
+    var divEtat = document.getElementById('divEtat');
+    var divDateDebut = document.getElementById('divDateDebut');
+    var divDateFin = document.getElementById('divDateFin');
 
-        if (typeAnnonceValue === 'bien') {
-            divTypeBien.style.display = 'block';
-            divEtat.style.display = 'block';
-            divDateDebut.style.display = 'none';
-            divDateFin.style.display = 'none';
-        } else if (typeAnnonceValue === 'service') {
-            divTypeBien.style.display = 'none';
-            divEtat.style.display = 'none';
-            divDateDebut.style.display = 'block';
-            divDateFin.style.display = 'block';
-        }
+    if (typeAnnonceValue === 'bien') {
+        divTypeBien.style.display = 'block';
+        divEtat.style.display = 'block';
+        divDateDebut.style.display = 'none';
+        divDateFin.style.display = 'none';
+    } else if (typeAnnonceValue === 'service') {
+        divTypeBien.style.display = 'none';
+        divEtat.style.display = 'none';
+        divDateDebut.style.display = 'block';
+        divDateFin.style.display = 'block';
     }
-    </script>
+}
+</script>
 
-
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

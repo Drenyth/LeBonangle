@@ -1,10 +1,12 @@
 <?php
+    //Execution du fichier se connectant a la base de donnée
     require_once 'config.php';
+
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
-        require_once "config.php";
-    
+
+        //recuperation des données de l'utilisateur
         $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $req->execute(array($userid));
         $data = $req->fetch();
@@ -24,17 +26,6 @@
     $date = htmlspecialchars($_POST['date']);
     $date_fin = htmlspecialchars($_POST['date_fin']);
 
-    //var_dump($annonce);                            
-    //var_dump($image);
-    //var_dump($prix);
-    //var_dump($desc);
-    //var_dump($address);
-    //var_dump($email);
-    //var_dump($tags);
-    //echo $typeannonce;
-    //var_dump($typebien);
-    //var_dump($etat);
-    //var_dump($date);
 
     if(strlen($desc) <= 1000){
         if(strlen($annonce) <= 100){
@@ -43,11 +34,12 @@
                     if(is_numeric($price)){
                         if ($image['error'] === UPLOAD_ERR_OK) {
 
-                            $image_name = $image['name']; 
+                            $image_name = $image['name'];
                             $image_tmp = $image['tmp_name'];
                             $destination = 'images_annonce/' . $image_name;
                             move_uploaded_file($image_tmp, $destination);
 
+                            //insertion des nouvelles données dans la base de donnée
                             $insert = $bdd->prepare('INSERT INTO annonce(nom_annonce, id_utilisateur, photo, description, prix, email, adresse_postal, tags) 
                                 VALUES(:nom_annonce, :id_utilisateur, :photo, :description, :prix, :email, :adresse_postal, :tags)');
                             $insert->execute(array(
@@ -60,8 +52,11 @@
                                 'adresse_postal' => $address,
                                 'tags'=> $tags
                             ));
+
                             $id_annonce = $bdd->lastInsertId(); 
 
+                            //Ajout de l'annonce dans la base de donnée corrrespondante au type de celle ci (bien ou service)
+                            //Utile pour l'affichage des details de l'annonce (annonce_detail.php)
                             if($typeannonce == "bien"){
                                 $insert2 = $bdd->prepare('INSERT INTO bien(etat, id_annonce, type)
                                     VALUES(:etat, :id_annonce, :type)');

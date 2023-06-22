@@ -57,6 +57,7 @@
         $type='Prix:';
     }
 
+    //requête pour savoir si l'utilisateur a deja mis l'annonce dans ses favoris
     if(isset($id_annonce)){
         $check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ? and id_annonce = ?');
         $check_favoris->execute(array($userid,$id_annonce));
@@ -89,6 +90,7 @@
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+                <!--Si l'utilisateur est connecté on affiche les boutons suivants -->
                 <?php if ($userid): ?>
                 <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
                 <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
@@ -105,6 +107,7 @@
     </div>
     </div>
 </nav>
+<!--Gestion des erreurs lié a l'ajout de l'annonce dans les favoris -->
 <div class="login-form">
         <?php 
             if(isset($_GET['reg_err']))
@@ -143,23 +146,24 @@
 </div>
 
 <div class="container">
+    <!--Si l'utilisateur est connecté est l'annonce n'est pas dans ses favoris alors le bouton est mis -->
     <?php if($userid and ($row_data_favoris == 0)): ?>
         <?php echo '<a id="bouton_fav" href="favoris_traitement.php?id_annonce='.$id_annonce.'">'?>
         <button class="btn btn-dark btn-lg mb-4">Favoris</button>
         </a>
     <?php endif; ?>
-
+    <!--Affichage des détails de l'annonce -->
     <div class="row gy-2 gx-3 align-items-center mb-4">
         <div class="container">
             <?php  echo '<img src="'.$photo.'" />';?>
         <div>
         <h2 class="title-custom"><?php echo $titre; ?></h2>
-        <?php if($etat): ?>
+        <?php if(isset($etat)): ?>
             <p><?php echo $type . ' ' . $prix . '€' ?></p>
             <p><?php echo 'Etat :'. ' ' . $etat ?></p>
             <?php endif; ?>
             
-            <?php if($date): ?>
+            <?php if(isset($date)): ?>
                 <p><?php echo 'Date de début : ' . $date ?></p>
                 <p><?php echo 'Date de fin : ' . $date_fin ?></p>
                 <p><?php echo $type . ' ' . $prix . '€'?></p>
@@ -168,12 +172,13 @@
         </div>
     </div>
 </div>
-    
+    <!--Affichage des détails de l'annonce -->
     <div class="container header-padding">
         <p class="fs-5"><strong>Description</strong></p>
         <p class="fs-6"><?php echo $description; ?></p>
     </div>
-    
+
+    <!--Affichage des détails de l'annonce -->
     <div class="container">
         <p class="fs-5"><strong>Coordonnées</strong></p>
         <p class="fs-6"><?php echo $adresse_postal; ?></p>
@@ -181,6 +186,7 @@
     </div>
 </div>
 
+<!--Formulaire de signalement-->
 <div class="container">
     <form action="#">
         <div class="mb-3">
@@ -256,6 +262,7 @@
         }
 
 </style>
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

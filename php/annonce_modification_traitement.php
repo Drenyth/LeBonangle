@@ -1,6 +1,9 @@
 <?php
-require_once 'config.php';
-$id_annonce = $_GET['id'];
+    //Execution du fichier se connectant a la base de donnée
+    require_once 'config.php';
+    if(isset($_GET['id'])){
+        $id_annonce = $_GET['id'];
+    }
 
     if(!empty($_COOKIE['userid']))
     {
