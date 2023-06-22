@@ -3,7 +3,7 @@
 
     if(isset($_GET['id'])){
         $id_annonce = $_GET['id'];
-    }    
+    }  
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];

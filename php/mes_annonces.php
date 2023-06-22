@@ -48,6 +48,7 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
+                <a href="#" class="btn btn-dark btn-md">Messages</a>
                 <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
                 <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
                 <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>

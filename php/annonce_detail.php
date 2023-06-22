@@ -93,6 +93,7 @@
                 <!--Si l'utilisateur est connecté on affiche les boutons suivants -->
                 <?php if ($userid): ?>
                 <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
+                <a href="#" class="btn btn-dark btn-md">Messages</a>
                 <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
                 <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
                 <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
@@ -186,22 +187,27 @@
     </div>
 </div>
 
-<!--Formulaire de signalement-->
-<div class="container">
-    <form action="#">
-        <div class="mb-3">
-            <label for="signalement" class="col-sm-2 col-form-label fs-5">Raison du signalement</label>
-            <div class="col-sm-10">
-                <textarea name="signalement" class="form-control" cols="5" rows="5" placeholder="Veuillez décrire la raison"></textarea>
-            </div>
-        </div>
-    </form>
-    <div class="mb-3" class="col-sm-2 col-form-label">
-        <?php echo '<a  href=signalement_traitement.php?id='.$id_annonce.'">'?>
-            <input type="submit" role="button" aria-disabled="false" class="btn">
-        </a>
+<?php if(!empty($_COOKIE['userid'])): ?>
+    <div class="container">
+        <button class="btn btn-dark btn-lg mb-4">Contacter</button>
     </div>
-</div>
+    <!--Formulaire de signalement-->
+    <div class="container">
+        <form action="#">
+            <div class="mb-3">
+                <label for="signalement" class="col-sm-2 col-form-label fs-5">Raison du signalement</label>
+                <div class="col-sm-10">
+                    <textarea name="signalement" class="form-control" cols="5" rows="5" placeholder="Veuillez décrire la raison"></textarea>
+                </div>
+            </div>
+        </form>
+        <div class="mb-3" class="col-sm-2 col-form-label">
+            <?php echo '<a  href=signalement_traitement.php?id='.$id_annonce.'">'?>
+                <input type="submit" role="button" aria-disabled="false" class="btn">
+            </a>
+        </div>
+    </div>
+<?php endif; ?>
 
 
 <style>

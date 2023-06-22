@@ -98,6 +98,7 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <a href="#" class="btn btn-dark btn-md">Messages</a>
                 <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
                 <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
                 <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
