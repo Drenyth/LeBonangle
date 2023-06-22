@@ -24,21 +24,32 @@
         //recuperation des donnes de l'annonce
         $check = $bdd->prepare('SELECT * FROM signalement WHERE id_annonce = ?');
         $check->execute(array($id_annonce));
-        $data= $check->fetch();
-
-        $nombre_signalement=$data['nombre_signalement'];
-
-        if($nombre_signalement == 3){
-            header('Location:annonce_modification.php?modif_err=annonce_length&id='.$id_annonce); die();
-        }
-        elseif($nombre_signalement<= 3){
+        $data_signalement= $check->fetch();
+        $row = $check->rowCount();
+        
+        if($row > 0){
+            $nombre_signalement=$data_signalement['nombre_signalement'];
             $nombre_signalement++;
-            $insert1 = $bdd->prepare('INSERT INTO signalement (id_annonce,nombre_signalement) 
-            VALUES(:id_annonce, :signalement)');
-            $insert1->execute(array(
+        }
+        else
+        {
+            $nombre_signalement=1;
+        }
+
+        if($nombre_signalement > 3){
+            header('Location:annonce_suppression.php?id='.$id_annonce.'&ori=signalement'); die();
+        }
+        else{
+            $check = $bdd->prepare('DELETE FROM signalement WHERE id_annonce = ?');
+            $check->execute(array($id_annonce));
+
+            $insert = $bdd->prepare('INSERT INTO signalement(id_annonce, nombre_signalement) VALUES(:id_annonce, :nombre_signalement)');
+            $insert->execute(array(
             'id_annonce' => $id_annonce,
             'nombre_signalement' => $nombre_signalement
             ));
+            echo 'oui';
+            header('Location:annonce_detail.php?id='.$id_annonce); die();
         }
     }
 

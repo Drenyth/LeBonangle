@@ -197,8 +197,10 @@
         </div>
     </form>
     <div class="mb-3" class="col-sm-2 col-form-label">
-    <input type="submit" role="button" aria-disabled="false" class="btn">
-            </div>
+        <?php echo '<a  href=signalement_traitement.php?id='.$id_annonce.'">'?>
+            <input type="submit" role="button" aria-disabled="false" class="btn">
+        </a>
+    </div>
 </div>
 
 
