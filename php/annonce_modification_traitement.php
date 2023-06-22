@@ -95,13 +95,14 @@
             if($typeannonce == 'bien'){
             $typebien = htmlspecialchars($_POST['typebien']);
             $etat = htmlspecialchars($_POST['etat']);
-            }      
+            }
+            else{
+                $date = htmlspecialchars($_POST['date']);
+                $date_fin = htmlspecialchars($_POST['date_fin']);
+                }    
         }
         // sinon c'est un service
-        else{
-            $date = htmlspecialchars($_POST['date']);
-            $date_fin = htmlspecialchars($_POST['date_fin']);
-            }   
+       
 
             //Verifications que les donnees soient en accord avec la base de donnée et valides
             if(strlen($nom_annonce) <= 100){
