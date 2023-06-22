@@ -6,7 +6,6 @@
     if(!empty($_COOKIE['userid']))
     {
         $userid = $_COOKIE['userid'];
-        require_once 'config.php';
         
         $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $req->execute(array($userid));
@@ -229,7 +228,6 @@
     <div class="mb-3">
         <label for="tags" class="col-sm-2 col-form-label">Tags pour l'annonce :</label>
         <select name="tags" class="selectpicker">
-            <option selected>Choisissez un tag</option>
             <<option value="Immobilier" <?php if($tags == "Immobilier") echo "selected"; ?>>Immobilier</option>
             <option value="Automobile" <?php if($tags == "Automobile") echo "selected"; ?>>Automobile</option>
             <option value="Lecture" <?php if($tags == "Lecture") echo "selected"; ?>>Lecture</option>
@@ -270,14 +268,13 @@
     </div>
    
     
-    <?php if ($typeannonce == "bien" ): ?>     
+
 <div id="divTypeBien" class="mb-3">
     <label for="typebien" id="bold" class="col-sm-2 col-form-label">Type de Bien</label>
     <div class="col-sm-10">
         <select name="typebien" class="selectpicker">
-            <option selected>Choisissez un filtre</option>
-            <option value="0" <?php if($typebien == "0") echo "selected"; ?>>Location</option>
-            <option value="1" <?php if($typebien == "1") echo "selected"; ?>>Vente</option>
+            <option value="0" <?php if(isset($typebien) && $typebien == "0") echo "selected"; ?>>Location</option>
+            <option value="1" <?php if(isset($typebien) && $typebien == "1") echo "selected"; ?>>Vente</option>
         </select>
     </div>
 </div>
@@ -285,28 +282,27 @@
     <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
     <div class="col-sm-10">
         <select name="etat" class="selectpicker">
-            <option value="bon" <?php if($etat == "bon") echo "selected"; ?>>Bon</option>
-            <option value="moyen" <?php if($etat == "moyen") echo "selected"; ?>>Moyen</option>
-            <option value="mauvais" <?php if($etat == "mauvais") echo "selected"; ?>>Mauvais</option>
+            <option value="bon" <?php if(isset($etat) && $etat == "bon") echo "selected"; ?>>Bon</option>
+            <option value="moyen" <?php if(isset($etat) && $etat == "moyen") echo "selected"; ?>>Moyen</option>
+            <option value="mauvais" <?php if(isset($etat) && $etat == "mauvais") echo "selected"; ?>>Mauvais</option>
         </select>
     </div>
 </div> 
-<?php endif;?>
 
-<?php if($typeannonce == "service"): ?>  
+
 <div id="divDateDebut" class="mb-3">
     <label for="date" id="bold" class="col-sm-2 col-form-label">Date</label>
     <div class="col-sm-10">
-        <input type="date" name="date" title="" class="form-control" placeholder="date" value="<?php echo $date; ?>">
+        <input type="date" name="date" title="" class="form-control" placeholder="date" value="<?php if(isset($date)){echo $date;} ?>">
     </div>
 </div>
 <div id="divDateFin" class="mb-3">
     <label for="date" id="bold" class="col-sm-2 col-form-label">Date de Fin</label>
     <div class="col-sm-10">
-        <input type="date" name="date_fin" title="" class="form-control" placeholder="date" value="<?php echo $date_fin; ?>">
+        <input type="date" name="date_fin" title="" class="form-control" placeholder="date" value="<?php if(isset($date)){echo $date_fin;}?>">
     </div>
 </div>
-<?php endif;?>
+
 
 
     </div>
@@ -348,15 +344,48 @@
 
     .header-padding{
         margin-bottom:50px;
-        /*padding-left:385px;*/
     }
 
     .navbar-padding{
         padding-left:735px;
     }
 </style>
- 
-<!--Script bootstrap -->
+<script>
+    // Récupérer l'élément de sélection pour le type d'annonce
+    var typeAnnonceSelect = document.querySelector('input[name="typeannonce"]:checked');
+
+    // Définir les divs à afficher ou masquer en fonction de la valeur initiale de typeAnnonceSelect
+    toggleDivs(typeAnnonceSelect.value);
+
+    // Écouter les changements de valeur dans le type d'annonce
+    var typeAnnonceInputs = document.querySelectorAll('input[name="typeannonce"]');
+    typeAnnonceInputs.forEach(function(input) {
+        input.addEventListener('change', function() {
+            toggleDivs(this.value);
+        });
+    });
+
+    // Fonction pour afficher ou masquer les divs en fonction de la valeur de type d'annonce
+    function toggleDivs(typeAnnonceValue) {
+        var divTypeBien = document.getElementById('divTypeBien');
+        var divEtat = document.getElementById('divEtat');
+        var divDateDebut = document.getElementById('divDateDebut');
+        var divDateFin = document.getElementById('divDateFin');
+
+        if (typeAnnonceValue === 'bien') {
+            divTypeBien.style.display = 'block';
+            divEtat.style.display = 'block';
+            divDateDebut.style.display = 'none';
+            divDateFin.style.display = 'none';
+        } else if (typeAnnonceValue === 'service') {
+            divTypeBien.style.display = 'none';
+            divEtat.style.display = 'none';
+            divDateDebut.style.display = 'block';
+            divDateFin.style.display = 'block';
+        }
+    }
+    </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>

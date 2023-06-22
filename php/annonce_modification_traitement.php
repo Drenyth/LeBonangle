@@ -90,10 +90,12 @@
 
         
         $typeannonce = htmlspecialchars($_POST['typeannonce']);
-        //si la variable bien existe 
-        if(isset($typebien)){
+        //si le variable bien existe 
+        if(isset($typeannonce)){
+            if($typeannonce == 'bien'){
             $typebien = htmlspecialchars($_POST['typebien']);
-            $etat = htmlspecialchars($_POST['etat']);      
+            $etat = htmlspecialchars($_POST['etat']);
+            }      
         }
         // sinon c'est un service
         else{
@@ -140,13 +142,16 @@
                                             $check1 = $bdd->prepare('DELETE FROM bien WHERE id_annonce = ?');
                                             $check1->execute(array($id_annonce));
 
-                                            $insert1 = $bdd->prepare('INSERT INTO bien(id_annonce, type, etat) 
+                                            $insert1 = $bdd->prepare('INSERT INTO bien (id_annonce, type, etat) 
                                             VALUES(:id_annonce, :type, :etat)');
                                             $insert1->execute(array(
                                             'id_annonce' => $id_annonce,
                                             'type' => $typebien,
                                             'etat' => $etat
                                             ));
+                                            // Si passage d'un bien à une service
+                                            $check2 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
+                                            $check2->execute(array($id_annonce));
                                             }
                                             
                                             // sinon c'est un service
@@ -155,13 +160,16 @@
                                             $check1 = $bdd->prepare('DELETE FROM service WHERE id_annonce = ?');
                                             $check1->execute(array($id_annonce));
 
-                                            $insert1 = $bdd->prepare('INSERT INTO service(id_annonce, date, date_fin) 
+                                            $insert1 = $bdd->prepare('INSERT INTO service (id_annonce, date, date_fin) 
                                             VALUES(:id_annonce, :date, :date_fin)');
                                             $insert1->execute(array(
                                             'id_annonce' => $id_annonce,
                                             'date' => $date,
                                             'date_fin' => $date_fin
                                             ));
+                                            // Si passage d'un service à un bien
+                                            $check2 = $bdd->prepare('DELETE FROM bien WHERE id_annonce = ?');
+                                            $check2->execute(array($id_annonce));
                                             }
                                             // erreur modification bien/service
                                                 else{{header('Location:annonce_modification_traitement.php?modif_err=typeannonce&id='.$id_annonce); die();}
