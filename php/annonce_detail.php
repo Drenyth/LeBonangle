@@ -41,7 +41,7 @@
             $type = $bien['type'];
             $etat = $bien['etat'];
 
-            $type = 'Mensualité:';
+            $type = 'Prix:';
             $date=0;
             $date_fin = 0;
     }
@@ -54,7 +54,7 @@
         $date = $service['date'];
         $date_fin = $service['date_fin'];
         $etat=0;
-        $type='Prix:';
+        $type='Mensualité:';
     }
 
     //requête pour savoir si l'utilisateur a deja mis l'annonce dans ses favoris
@@ -158,12 +158,12 @@
             <?php  echo '<img src="'.$photo.'" />';?>
         <div>
         <h2 class="title-custom"><?php echo $titre; ?></h2>
-        <?php if(isset($etat)): ?>
-            <p><?php echo $type . ' ' . $prix . '€' ?></p>e
+        <?php if(isset($etat) && $etat!= 0 ): ?>
+            <p><?php echo $type . ' ' . $prix . '€' ?></p>
             <p><?php echo 'Etat :'. ' ' . $etat ?></p>
             <?php endif; ?>
             
-            <?php if(isset($date)): ?>
+            <?php if(isset($date) && isset($date_fin) && $date!= 0 && $date_fin!= 0): ?>
                 <p><?php echo 'Date de début : ' . $date ?></p>
                 <p><?php echo 'Date de fin : ' . $date_fin ?></p>
                 <p><?php echo $type . ' ' . $prix . '€'?></p>

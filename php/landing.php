@@ -33,7 +33,7 @@
         $page=intval($_GET['page']);
         $lim = 5 * $page;
     }
-    
+
     //variables utilisées pour la pagination
     $i=5*($page-1); 
     $x=$page;
