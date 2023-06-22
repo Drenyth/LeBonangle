@@ -68,6 +68,7 @@
     {
         $userid = false;
     }
+    $errors = [];
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +91,7 @@
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="100">
+        <img class="d-inline-block center" src="../images/logo.png" width="80">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
@@ -98,12 +99,10 @@
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
-                <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
-                <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
-                <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
-                <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
+                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <a href="mes_annonces.php" class="btn btn-danger btn-lg">Mes annonces</a>
+                <a href="modification.php" class="btn btn-danger btn-lg">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
             </li>
         </ul>
     </div>
@@ -176,6 +175,20 @@
                                 </div>
                         <?php
                         break;
+                        case 'upload_error':
+                            ?>
+                                <div class="alert alert-danger">
+                                    <strong>Erreur</strong> Une erreur est survenue lors du l'importation d'image
+                                </div>
+                        <?php
+                        break;
+                        case 'price':
+                            ?>
+                                <div class="alert alert-danger">
+                                    <strong>Erreur</strong> Veuillez saisir un prix en numérique
+                                </div>
+                        <?php
+                        break;
                     }
                 }
             ?> 
@@ -183,7 +196,7 @@
 
 
 <div class="container">
-<form action="annonce_modification_traitement.php?id=<?php echo $id_annonce; ?>" method="post">
+<form action="annonce_modification_traitement.php?id=<?php echo $id_annonce; ?>" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="nom_annonce" class="col-sm-2 col-form-label">Intitulé de l'annonce</label>
         <div class="col-sm-10">
@@ -203,10 +216,14 @@
 
     <div class="mb-3">
     <label for="photo" class="col-sm-2 col-form-label">Choisir une photo</label>
-        <div class="col-sm-10">
+    <div class="col-sm-10">
         <input type="file" name="photo" class="form-control" accept="image/png, image/jpeg" required>
-        </div>
+        <?php if (isset($errors['photo'])): ?>
+            <span class="text-danger"><?php echo $errors['photo']; ?></span>
+        <?php endif; ?>
     </div>
+    </div>
+    
     <div class="mb-3">
         <label for="tags" class="col-sm-2 col-form-label">Tags pour l'annonce :</label>
         <select name="tags" class="selectpicker">
@@ -249,49 +266,46 @@
             <input type="text" name="adresse_postal" class="form-control" placeholder="Adresse" value="<?php echo $adresse_postal; ?>" required>
         </div>
     </div>
-            
-    <?php if ($typeannonce == "bien" || ((isset($_POST['typeannonce']) && $_POST['typeannonce'] == "bien"))): ?>     
-    <div id="divTypeBien" class="mb-3">
-        <label for="typebien" id="bold" class="col-sm-2 col-form-label">Type de Bien</label>
-        <div class="col-sm-10">
-            <select name="typebien" class="selectpicker">
-                    <option selected>Choisissez un filtre</option>
-                    <option value="0" <?php if($typebien == "0") echo "selected"; ?>>Location</option>
-                    <option value="1" <?php if($typebien == "1") echo "selected"; ?>>Vente</option>
-            </select>
-        </div>
+   
+    
+    <?php if ($typeannonce == "bien" ): ?>     
+<div id="divTypeBien" class="mb-3">
+    <label for="typebien" id="bold" class="col-sm-2 col-form-label">Type de Bien</label>
+    <div class="col-sm-10">
+        <select name="typebien" class="selectpicker">
+            <option selected>Choisissez un filtre</option>
+            <option value="0" <?php if($typebien == "0") echo "selected"; ?>>Location</option>
+            <option value="1" <?php if($typebien == "1") echo "selected"; ?>>Vente</option>
+        </select>
     </div>
-    <?php endif;?>               
-
-    <?php if($typeannonce == "bien" || ((isset($_POST['typeannonce']) && $_POST['typeannonce'] == "bien"))): ?>
-    <div id="divEtat" class="mb-3">
-        <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
-        <div class="col-sm-10">
-            <select name="etat" class="selectpicker">
+</div>
+<div id="divEtat" class="mb-3">
+    <label for="etat" id="bold" class="col-sm-2 col-form-label">Etat</label>
+    <div class="col-sm-10">
+        <select name="etat" class="selectpicker">
             <option value="bon" <?php if($etat == "bon") echo "selected"; ?>>Bon</option>
             <option value="moyen" <?php if($etat == "moyen") echo "selected"; ?>>Moyen</option>
             <option value="mauvais" <?php if($etat == "mauvais") echo "selected"; ?>>Mauvais</option>
-            </select>
-        </div>
-    </div> 
-    <?php endif;?>
+        </select>
+    </div>
+</div> 
+<?php endif;?>
 
-    <?php if($typeannonce == "service" ): ?>  
-    <div id="divDateDebut" class="mb-3">
-        <label for="date" id="bold" class="col-sm-2 col-form-label">Date</label>
-        <div class="col-sm-10">
-            <input type="date" name="date" title="" class="form-control" placeholder="date"value="<?php echo $date; ?>">
-        </div>
+<?php if($typeannonce == "service"): ?>  
+<div id="divDateDebut" class="mb-3">
+    <label for="date" id="bold" class="col-sm-2 col-form-label">Date</label>
+    <div class="col-sm-10">
+        <input type="date" name="date" title="" class="form-control" placeholder="date" value="<?php echo $date; ?>">
     </div>
-    <?php endif;?>
-    <?php if($typeannonce == "service" ): ?>      
-    <div id="divDateFin" class="mb-3">
-        <label for="date" id="bold" class="col-sm-2 col-form-label">Date de Fin</label>
-        <div class="col-sm-10">
-            <input type="date" name="date_fin" title="" class="form-control" placeholder="date"value="<?php echo $date_fin; ?>">
-        </div>
+</div>
+<div id="divDateFin" class="mb-3">
+    <label for="date" id="bold" class="col-sm-2 col-form-label">Date de Fin</label>
+    <div class="col-sm-10">
+        <input type="date" name="date_fin" title="" class="form-control" placeholder="date" value="<?php echo $date_fin; ?>">
     </div>
-    <?php endif;?>
+</div>
+<?php endif;?>
+
 
     </div>
         <div class="mb-3" class="col-sm-2 col-form-label"> 
@@ -339,43 +353,7 @@
         padding-left:735px;
     }
 </style>
-    <script>
-    // Récupérer l'élément de sélection pour le type d'annonce
-    var typeAnnonceSelect = document.querySelector('input[name="typeannonce"]:checked');
-
-    // Définir les divs à afficher ou masquer en fonction de la valeur initiale de typeAnnonceSelect
-    toggleDivs(typeAnnonceSelect.value);
-
-    // Écouter les changements de valeur dans le type d'annonce
-    var typeAnnonceInputs = document.querySelectorAll('input[name="typeannonce"]');
-    typeAnnonceInputs.forEach(function(input) {
-        input.addEventListener('change', function() {
-            toggleDivs(this.value);
-        });
-    });
-
-    // Fonction pour afficher ou masquer les divs en fonction de la valeur de type d'annonce
-    function toggleDivs(typeAnnonceValue) {
-        var divTypeBien = document.getElementById('divTypeBien');
-        var divEtat = document.getElementById('divEtat');
-        var divDateDebut = document.getElementById('divDateDebut');
-        var divDateFin = document.getElementById('divDateFin');
-
-        if (typeAnnonceValue === 'bien') {
-            divTypeBien.style.display = 'block';
-            divEtat.style.display = 'block';
-            divDateDebut.style.display = 'none';
-            divDateFin.style.display = 'none';
-        } else if (typeAnnonceValue === 'service') {
-            divTypeBien.style.display = 'none';
-            divEtat.style.display = 'none';
-            divDateDebut.style.display = 'block';
-            divDateFin.style.display = 'block';
-        }
-    }
-    </script>
-    
-    
+ 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
