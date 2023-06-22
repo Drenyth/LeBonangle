@@ -26,7 +26,7 @@
     $date = htmlspecialchars($_POST['date']);
     $date_fin = htmlspecialchars($_POST['date_fin']);
 
-
+    //Verifications pour que les donnees soient en accord avec la base de donnée et valides
     if(strlen($desc) <= 1000){
         if(strlen($annonce) <= 100){
             if(strlen($email) <= 100){

@@ -109,40 +109,40 @@
 </nav>
 <!--Gestion des erreurs lié a l'ajout de l'annonce dans les favoris -->
 <div class="login-form">
-        <?php 
-            if(isset($_GET['reg_err']))
-            {
-                $err = htmlspecialchars($_GET['reg_err']);
+    <?php 
+        if(isset($_GET['reg_err']))
+        {
+            $err = htmlspecialchars($_GET['reg_err']);
 
-                switch($err)
-                {
-                    case 'success':
+            switch($err)
+            {
+                case 'success':
+                ?>
+                    <div class="alert alert-success">
+                        <strong>Succès</strong> Enregistrement dans les favoris réussi !
+                    </div>
+                <?php
+                break;
+
+                case 'already':
                     ?>
-                        <div class="alert alert-success">
-                            <strong>Succès</strong> Enregistrement dans les favoris réussi !
+                        <div class="alert alert-danger">
+                            <strong>Erreur</strong> Cette annonce est deja dans vos favoris
                         </div>
                     <?php
                     break;
 
-                    case 'already':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> Cette annonce est deja dans vos favoris
-                            </div>
-                        <?php
-                        break;
+                case 'password':
+                    ?>
+                        <div class="alert alert-danger">
+                            <strong>Erreur</strong> Veuillez reessayer
+                        </div>
+                    <?php
+                    break;
 
-                    case 'password':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> Veuillez reessayer
-                            </div>
-                        <?php
-                        break;
-
-                }
             }
-        ?>
+        }
+    ?>
 </div>
 
 <div class="container">

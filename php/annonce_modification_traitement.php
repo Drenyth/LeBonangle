@@ -5,20 +5,22 @@
         $id_annonce = $_GET['id'];
     }
 
+    //recuperation des donnees utilisateurs, necessaire pour le traitement de la modification de l'annonce
     if(!empty($_COOKIE['userid']))
     {
-        
         $userid = $_COOKIE['userid'];
         
+        //recuperation des donnees utilisateurs
         $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id = ?');
         $req->execute(array($userid));
         $data = $req->fetch();
 
         if(!empty($id_annonce)){
+            //recuperation des donnes de l'annonce
             $check = $bdd->prepare('SELECT * FROM annonce WHERE id_annonce = ? AND id_utilisateur= ?');
             $check->execute(array($id_annonce,$userid));
             $data_annonce = $check->fetch();
-            if ($data_annonce) {
+            if (!empty($data_annonce)) {
                 // Le fetch a réussi, vous pouvez accéder aux éléments du tableau
                 $id_utilisateur = $data_annonce['id_utilisateur'];
                 $nom_annonce = $data_annonce['nom_annonce'];
@@ -52,12 +54,12 @@
                         $typeannonce ="service";
                     }
                     else {
-                        // Le fetch n'a renvoyé aucun résultat (error debugging tool)
+                        // Le fetch n'a renvoyé aucun résultat 
                         echo "Aucun bien ou service trouvée pour $nom_annonce";
                     }
                 }
             } else {
-                // Le fetch n'a renvoyé aucun résultat (error debugging tool)
+                // Le fetch n'a renvoyé aucun résultat 
                 echo "Aucune annonce trouvée avec l'identifiant $id_annonce et id_utilisateur $userid";
             }
         }
@@ -88,7 +90,7 @@
 
         
         $typeannonce = htmlspecialchars($_POST['typeannonce']);
-        //si le variable bien existe 
+        //si la variable bien existe 
         if(isset($typebien)){
             $typebien = htmlspecialchars($_POST['typebien']);
             $etat = htmlspecialchars($_POST['etat']);      
@@ -99,7 +101,7 @@
             $date_fin = htmlspecialchars($_POST['date_fin']);
             }   
 
-
+            //Verifications que les donnees soient en accord avec la base de donnée et valides
             if(strlen($nom_annonce) <= 100){
                  if(strlen($description) <= 1000){
                      if(strlen($email) <= 100){
@@ -116,8 +118,8 @@
                                         //On supprime l'ancienne table
                                         $check = $bdd->prepare('DELETE FROM annonce WHERE id_annonce = ?');
                                         $check->execute(array($id_annonce));
-                                        //On crée la nouvelle table
 
+                                        //On crée la nouvelle table
                                         $insert = $bdd->prepare('INSERT INTO annonce(id_annonce, id_utilisateur, nom_annonce, photo, description, prix, email, adresse_postal,tags) 
                                         VALUES(:id_annonce, :id_utilisateur, :nom_annonce, :photo, :description, :prix, :email, :adresse_postal, :tags)');
                                         $insert->execute(array(
@@ -131,6 +133,7 @@
                                         'adresse_postal' => $adresse_postal,
                                         'tags' => $tags
                                         ));
+
                                         // si bien ou service on modifie la table correspondant 
                                         if($typeannonce == "bien"){
                                             
@@ -145,6 +148,7 @@
                                             'etat' => $etat
                                             ));
                                             }
+                                            
                                             // sinon c'est un service
                                         elseif($typeannonce == "service"){
 

@@ -1,11 +1,10 @@
 <?php
+    //Execution du fichier se connectant a la base de donnée
     require_once 'config.php';
-
     $id_annonce = $_GET['id'];
-
+    //recuperation des infos de l'annonce et utilisateurs
     if(!empty($_COOKIE['userid']))
     {
-        
         $userid = $_COOKIE['userid'];
         require_once 'config.php';
         
@@ -17,7 +16,7 @@
             $check = $bdd->prepare('SELECT * FROM annonce WHERE id_annonce = ? AND id_utilisateur= ?');
             $check->execute(array($id_annonce,$userid));
             $data_annonce = $check->fetch();
-            if ($data_annonce) {
+            if (isset($data_annonce)) {
                 // Le fetch a réussi, vous pouvez accéder aux éléments du tableau
                 $id_utilisateur = $data_annonce['id_utilisateur'];
                 $nom_annonce = $data_annonce['nom_annonce'];
@@ -51,12 +50,12 @@
                         $typeannonce ="service";
                     }
                     else {
-                        // Le fetch n'a renvoyé aucun résultat (error debugging tool)
+                        // Le fetch n'a renvoyé aucun résultat
                         echo "Aucun bien ou service trouvée pour $nom_annonce";
                     }
                 }
             } else {
-                // Le fetch n'a renvoyé aucun résultat (error debugging tool)
+                // Le fetch n'a renvoyé aucun résultat
                 echo "Aucune annonce trouvée avec l'identifiant $id_annonce et id_utilisateur $userid";
             }
         }
@@ -108,93 +107,96 @@
     </div>
     </div>
 </nav>
+
+<!--Gestion des erreurs liées a la modification d'annonce -->
 <div class="modif-form">
-             <?php 
-                if(isset($_GET['modif_err']))
-                {
-                    $err = htmlspecialchars($_GET['modif_err']);
-                    switch($err)
-                    {
-                        case 'success':
-                            ?>
-                                <div class="alert alert-success">
-                                    <strong>Succès</strong> modifications effectuées !
-                                </div>
-                            <?php
-                            break;
-                            
-                        case 'tags_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> tag trop longue
-                            </div>
-                        <?php
-                        break;
+    <?php 
+    if(isset($_GET['modif_err']))
+    {
+        $err = htmlspecialchars($_GET['modif_err']);
+        switch($err)
+        {
+            case 'success':
+                ?>
+                    <div class="alert alert-success">
+                        <strong>Succès</strong> modifications effectuées !
+                    </div>
+                <?php
+                break;
+                
+            case 'tags_length':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> tag trop longue
+                </div>
+            <?php
+            break;
 
-                        case 'email':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email incorrect
-                            </div>
-                        <?php
-                        break;
+            case 'email':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> email incorrect
+                </div>
+            <?php
+            break;
 
-                        case 'email_length':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email trop longue
-                            </div>
-                        <?php
-                        break;
+            case 'email_length':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> email trop longue
+                </div>
+            <?php
+            break;
 
-                        case 'description_length':
-                            ?>
-                                <div class="alert alert-danger">
-                                    <strong>Erreur</strong> description trop longue
-                                </div>
-                        <?php
-                        break;
-                        case 'annonce_length':
-                            ?>
-                                <div class="alert alert-danger">
-                                    <strong>Erreur</strong> nom annonce trop longue
-                                </div>
-                        <?php
-                        break;
-                        case 'void':
-                            ?>
-                                <div class="alert alert-danger">
-                                    <strong>Erreur</strong> L'annonce n'existe pas
-                                </div>
-                        <?php
-                        break;
-                        case 'typeannonce':
-                            ?>
-                                <div class="alert alert-danger">
-                                    <strong>Erreur</strong> Le type de bien/service n'existe pas
-                                </div>
-                        <?php
-                        break;
-                        case 'upload_error':
-                            ?>
-                                <div class="alert alert-danger">
-                                    <strong>Erreur</strong> Une erreur est survenue lors du l'importation d'image
-                                </div>
-                        <?php
-                        break;
-                        case 'price':
-                            ?>
-                                <div class="alert alert-danger">
-                                    <strong>Erreur</strong> Veuillez saisir un prix en numérique
-                                </div>
-                        <?php
-                        break;
-                    }
-                }
-            ?> 
+            case 'description_length':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> description trop longue
+                    </div>
+            <?php
+            break;
+            case 'annonce_length':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> nom annonce trop longue
+                    </div>
+            <?php
+            break;
+            case 'void':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> L'annonce n'existe pas
+                    </div>
+            <?php
+            break;
+            case 'typeannonce':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> Le type de bien/service n'existe pas
+                    </div>
+            <?php
+            break;
+            case 'upload_error':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> Une erreur est survenue lors du l'importation d'image
+                    </div>
+            <?php
+            break;
+            case 'price':
+                ?>
+                    <div class="alert alert-danger">
+                        <strong>Erreur</strong> Veuillez saisir un prix en numérique
+                    </div>
+            <?php
+            break;
+        }
+    }
+    ?>
+</div> 
 
 
-
+<!-- Formulaire pré rempli avec les informations de l'annonce-->
 <div class="container">
 <form action="annonce_modification_traitement.php?id=<?php echo $id_annonce; ?>" method="post" enctype="multipart/form-data">
     <div class="mb-3">
@@ -354,7 +356,7 @@
     }
 </style>
  
-
+<!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>

@@ -33,41 +33,41 @@
     </div>
 </nav>
 
-
+<!--Gestion des erreurs liées à la connexion -->
 <div class="login-form">
-             <?php 
-                if(isset($_GET['login_err']))
-                {
-                    $err = htmlspecialchars($_GET['login_err']);
+    <?php 
+    if(isset($_GET['login_err']))
+    {
+        $err = htmlspecialchars($_GET['login_err']);
 
-                    switch($err)
-                    {
-                        case 'password':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> mot de passe incorrect
-                            </div>
-                        <?php
-                        break;
+        switch($err)
+        {
+            case 'password':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> mot de passe incorrect
+                </div>
+            <?php
+            break;
 
-                        case 'email':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> email incorrect
-                            </div>
-                        <?php
-                        break;
+            case 'email':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> email incorrect
+                </div>
+            <?php
+            break;
 
-                        case 'already':
-                        ?>
-                            <div class="alert alert-danger">
-                                <strong>Erreur</strong> compte non existant
-                            </div>
-                        <?php
-                        break;
-                    }
-                }
-                ?> 
+            case 'already':
+            ?>
+                <div class="alert alert-danger">
+                    <strong>Erreur</strong> compte non existant
+                </div>
+            <?php
+            break;
+        }
+    }
+    ?> 
 </div>
     <div class="container">
         <form action="connexion_traitement.php" method="post">
@@ -90,7 +90,6 @@
             </div>
         </form>
     </div>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <style>
         body{
             background-color: #333333;
@@ -130,6 +129,7 @@
             padding-left:735px;
         }
     </style>
+    <!--Script bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
