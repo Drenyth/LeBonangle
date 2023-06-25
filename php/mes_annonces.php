@@ -17,7 +17,7 @@
     $check_annonces = $bdd->prepare('SELECT * FROM annonce WHERE id_utilisateur = ? ORDER BY id_annonce DESC'); 
     $check_annonces->execute(array($userid));
     $data_annonces = $check_annonces->fetchAll();
-    $row_data_annonces = $check_annonces->rowCount();?>
+    $row_data_annonces = $check_annonces->rowCount();
 ?>
 
 <!DOCTYPE html>

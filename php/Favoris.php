@@ -25,9 +25,9 @@
     $row_data_annonces = $check_annonces->rowCount();
 
     //requete recuperant les favoris de l'utilisateur
-    $check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ?');
+    $check_favoris = $bdd->prepare('SELECT * FROM favoris WHERE id_utilisateur = ? ORDER BY id_annonce DESC');
     $check_favoris->execute(array($userid));
-    $data_favoris = $check_favoris->fetchAll();?>
+    $data_favoris = $check_favoris->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +74,7 @@
         <?php foreach($data_annonces as $row_annonce): ?>
             <?php if($row_annonce[0] == $row_favoris[1]): ?>
                     <div class="container">
-                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row_annonce[0].'">'?>
+                        <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row_annonce[0].'">';?>
                         <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                             <div class="row">
                                 <div class="col-md-2">

@@ -23,7 +23,7 @@
     $check_annonces = $bdd->prepare('SELECT * FROM annonce ORDER BY id_annonce DESC'); 
     $check_annonces->execute();
     $data_annonces = $check_annonces->fetchAll();
-    $row_data_annonces = $check_annonces->rowCount();?>
+    $row_data_annonces = $check_annonces->rowCount();
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +42,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
     <a href="./landing.php" class="navbar-brand">
@@ -102,7 +103,7 @@
                     <div class="container">
                         <?php 
                         //$row[0] est le champ contenant l'id de l'annonce
-                        echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">'?>
+                        echo '<a id="annonce" href="annonce_detail.php?id='.$row[0].'">';?>
                         <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                             <div class="row">
                                 <div class="col-md-2">
@@ -161,7 +162,6 @@ endif; ?>
     
     .header-padding{
         margin-bottom:50px;
-        /*padding-left:385px;*/
     }
     
     .navbar-padding{
