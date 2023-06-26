@@ -88,22 +88,28 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
-    <a href="./landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
-    </a>
+        <a href="./landing.php" class="navbar-brand">
+            <img class="d-inline-block center" src="../images/logo.png" width="100">
+        </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
         </button>
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <h1><?php echo $data['prenom'] . " " . $data['nom']; ?></h1>
+                <!--Si l'utilisateur est connecté on affiche les boutons suivants -->
+                <?php if ($userid): ?>
+                <h2><?php echo $data['prenom'] . " " . $data['nom']; ?></h2>
                 <a href="#" class="btn btn-dark btn-md">Messages</a>
                 <a href="Pour_vous.php" class="btn btn-dark btn-md">Pour vous</a>
                 <a href="Favoris.php" class="btn btn-dark btn-md">Favoris</a>
-                <a href="mes_annonces.php" class="btn btn-dark btn-lg">Mes annonces</a>
-                <a href="modification.php" class="btn btn-dark btn-lg">Mon compte</a>
-                <a href="deconnexion.php" class="btn btn-dark btn-lg">Déconnexion</a>
+                <a href="mes_annonces.php" class="btn btn-dark btn-md">Mes annonces</a>
+                <a href="modification.php" class="btn btn-dark btn-md">Mon compte</a>
+                <a href="deconnexion.php" class="btn btn-dark btn-md">Déconnexion</a>
+                <?php else: ?>
+                <a href="inscription.php" class="btn btn-dark btn-lg">S'inscrire</a>
+                <a href="connexion.php" class="btn btn-dark btn-lg">Se connecter</a>
+                <?php endif; ?>
             </li>
         </ul>
     </div>
