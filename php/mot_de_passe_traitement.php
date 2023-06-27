@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire de modification de mot de passe-->
 <?php
     require_once 'config.php';
     //récupération user id et données correspondantes

@@ -1,3 +1,4 @@
+<!-- Page affichant les details d'une annonce-->
 <!-- récupération user id et données correspondantes -->
 <?php
 
@@ -211,64 +212,63 @@
 
 
 <style>
-        body{
-            background-color: #333333;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-        }
-        .login-form {
-            width: 70%;
-            height: 100%;
-            margin-left: 15%;
-        }
-        .login-form form {
-            margin-bottom: 15px;
-            background: #333333;
-            padding: 30px;
-        }
-        .form-control, .btn {
-            min-height: 38px;
-            border-radius: 2px;
-        }
-        .btn {        
-            font-size: 15px;
-            font-weight: bold;
-            background: #006B6B;
-        }
+    body{
+        background-color: #333333;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+    }
+    .login-form {
+        width: 70%;
+        height: 100%;
+        margin-left: 15%;
+    }
+    .login-form form {
+        margin-bottom: 15px;
+        background: #333333;
+        padding: 30px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+        background: #006B6B;
+    }
 
-        .navbar-custom{
-            background-color: #006B6B;
-        }
+    .navbar-custom{
+        background-color: #006B6B;
+    }
 
-        .header-padding{
-            margin-bottom:50px;
-        }
+    .header-padding{
+        margin-bottom:50px;
+    }
 
-        * {
-            margin : 0;
-            padding : 0;
-            box-sizing:border-box;
-        }
+    * {
+        margin : 0;
+        padding : 0;
+        box-sizing:border-box;
+    }
 
-        img{
-            max-width:400px;
-            float:left;
-            margin-right:10px;
-        }
+    img{
+        max-width:400px;
+        float:left;
+        margin-right:10px;
+    }
 
-        .wrapper{
-            margin:150px auto;
-            width:70%;
-        }
+    .wrapper{
+        margin:150px auto;
+        width:70%;
+    }
 
-        .title-custom{
-            margin-bottom : 60px;
-        }
+    .title-custom{
+        margin-bottom : 60px;
+    }
 
-        .margin-custom{
-            margin-top :200px;
-        }
-
+    .margin-custom{
+        margin-top :200px;
+    }
 </style>
 <!--Script bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -1,3 +1,4 @@
+<!-- Page affichant le formulaire de depot d'annonce-->
 <?php
     //recuperation des données utilisateur avec les cookies si l'utilisateur est connecté
     if(!empty($_COOKIE['userid']))
@@ -260,6 +261,7 @@
     }
 </style>
 
+<!-- Script pour afficher les boutons liés au type d'annonce (ex: service -> affichage date debut et date fin)-->
 <script>
 // Récupérer l'élément de sélection pour le type d'annonce
 var typeAnnonceSelect = document.querySelector('input[name="typeannonce"]:checked');

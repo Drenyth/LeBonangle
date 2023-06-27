@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire de modification des informations du compte-->
 <?php
     //même fonctionnement que annonce_ajout.php
     require_once 'config.php';

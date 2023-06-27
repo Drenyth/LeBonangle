@@ -1,3 +1,4 @@
+<!-- Page de modification de compte-->
 <?php
 
     //récupération user id et données correspondantes permettant de pré remplir le formulaire
@@ -169,7 +170,7 @@
 
 <!--Formulaire de modification d'annonce-->
 <div class="container">
-<form action="modification_traitement.php" method="post">
+<form action="modification_compte_traitement.php" method="post">
     <div class="mb-3">
         <label for="first_name" class="col-sm-2 col-form-label">Nom</label>
         <div class="col-sm-10">

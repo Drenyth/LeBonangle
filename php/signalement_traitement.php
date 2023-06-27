@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire de signalement-->
 <?php
     require_once 'config.php';
 
@@ -48,7 +49,6 @@
             'id_annonce' => $id_annonce,
             'nombre_signalement' => $nombre_signalement
             ));
-            echo 'oui';
             header('Location:annonce_detail.php?id='.$id_annonce); die();
         }
     }

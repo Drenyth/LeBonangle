@@ -1,3 +1,4 @@
+<!-- Page permettant de se connecter à son compte utilisateur-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +18,8 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
     <div class="container justify-content-center">
-    <a href="landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
+    <a href="./landing.php" class="navbar-brand">
+        <img class="d-inline-block center" src="../images/logo.png" width="100">
     </a>
         <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
             <i class="bx bx-menu bx-md"></i>
@@ -26,7 +27,7 @@
     <div class="collapse navbar-collapse flex-grow-1" id="btn">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-            <a href="inscription.php" class="btn btn-dark btn-lg">S'inscrire</a>
+                <a href="inscription.php" class="btn btn-dark btn-lg">S'inscrire</a>
             </li>
         </ul>
     </div>

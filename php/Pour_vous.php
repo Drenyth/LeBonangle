@@ -1,3 +1,4 @@
+<!-- Page affichant les annonces correspondantes aux centres d'interets de l'uitlisateur-->
 <!-- récupération user id et données correspondantes -->
 <?php
     if(!empty($_COOKIE['userid']))

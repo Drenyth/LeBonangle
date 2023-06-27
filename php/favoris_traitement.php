@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire des annonces mises en favoris-->
 <?php 
     require_once "config.php";
 

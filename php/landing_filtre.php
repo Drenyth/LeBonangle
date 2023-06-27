@@ -1,3 +1,4 @@
+<!-- Page de base du site affichant les annonces avec les filtres voulus-->
 <?php
     require_once 'config.php';
     //récupération user id et données correspondantes
@@ -263,33 +264,35 @@
 ?>
 
 <?php 
-if(isset($nb_page)){
-    //affichage des boutons de pagination seulement s'il y a plus d'une page
-    if($nb_page > 1): ?>
-        <div class="container">
-            <ul class="pagination justify-content-center">
-                <?php 
-                if($x == 1){
-                    echo '<li class="page-item disabled"><a class="page-link" href="landing.php">Previous</a></li>';
-                }
-                else{
-                    echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$previous.'">Previous</a></li>';
-                }
-        
-                for($y;$y<=$nb_page;$y++)
-                {
-                    echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$y.'">'.$y.'</a></li>';
-                }
-                if($x == $nb_page){
-                    echo '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>';
-                }
-                else{
-                    echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$next.'">Next</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-    <?php endif;
+if($selected == "default" and empty($_POST['recherche'])){
+    if(isset($nb_page)){
+        //affichage des boutons de pagination seulement s'il y a plus d'une page
+        if($nb_page > 1): ?>
+            <div class="container">
+                <ul class="pagination justify-content-center">
+                    <?php 
+                    if($x == 1){
+                        echo '<li class="page-item disabled"><a class="page-link" href="landing.php">Previous</a></li>';
+                    }
+                    else{
+                        echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$previous.'">Previous</a></li>';
+                    }
+            
+                    for($y;$y<=$nb_page;$y++)
+                    {
+                        echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$y.'">'.$y.'</a></li>';
+                    }
+                    if($x == $nb_page){
+                        echo '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>';
+                    }
+                    else{
+                        echo '<li class="page-item"><a class="page-link" href="landing.php?page='.$next.'">Next</a></li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+        <?php endif;
+    } 
 } ?>
 
 <style>

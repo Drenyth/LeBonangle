@@ -1,3 +1,4 @@
+<!-- Page de modification du mot de passe du compte-->
 <!-- récupération user id et données correspondantes -->
 <?php
 

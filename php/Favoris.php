@@ -1,3 +1,4 @@
+<!-- Page affichant les annonces misent en favoris de l'utilisateur-->
 <?php
     if(!empty($_COOKIE['userid']))
     {
@@ -70,22 +71,29 @@
 </nav>
 
 <?php if($row_data_annonces != 0): ?>
+    <!-- parcourt de tous les favoris-->
     <?php foreach($data_favoris as $row_favoris): ?>
+        <!-- parcourt de toutes les annonces-->
         <?php foreach($data_annonces as $row_annonce): ?>
+            <!-- Affichage de l'annonce dans la page favoris si l'id de l'annonce est dans les fabvoris-->
             <?php if($row_annonce[0] == $row_favoris[1]): ?>
                     <div class="container">
+                        <!--$row_annonce[0] est le champ contenant l'id de l'annonce -->
                         <?php echo '<a id="annonce" href="annonce_detail.php?id='.$row_annonce[0].'">';?>
                         <div class="card gy-2 gx-3 border texte-white mb-4" style="background-color:#333333;">
                             <div class="row">
                                 <div class="col-md-2">
+                                    <!--$row_annonce[3] est le champ contenant la photo de l'annonce -->
                                     <?php  echo '<img class="img-fluid rounded-start" height="150" src="'.$row_annonce[3].'" />';?>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                        <h3 class="card-title header-padding">                                        
                                         <strong>
+                                            <!--$row_annonce[2] est le champ contenant le titre de l'annonce -->
                                             <?php echo $row_annonce[2];?>
                                         </strong></h3>
+                                        <!--$row_annonce[5] est le champ contenant le prix de l'annonce -->
                                        <p class="card-text"><?php echo $row_annonce[5]."€";?></p>
                                     </div>
                                 </div>

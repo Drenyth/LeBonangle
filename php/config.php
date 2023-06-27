@@ -1,3 +1,4 @@
+<!-- Connexion à la base de donnée -->
 <?php 
         /*
            Attention ! le host => l'adresse de la base de données et non celle du site !!
@@ -13,3 +14,4 @@
     {
         die('Erreur : '.$e->getMessage());
     }
+?>

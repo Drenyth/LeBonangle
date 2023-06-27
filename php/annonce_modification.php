@@ -1,3 +1,4 @@
+<!-- Page affichant la modification d'informations d'une annonce-->
 <?php
     //Execution du fichier se connectant a la base de donnée
     require_once 'config.php';

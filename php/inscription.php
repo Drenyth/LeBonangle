@@ -1,3 +1,4 @@
+<!-- Page de création de compte-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +16,19 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-custom header-padding">
-    <div class="container">
-    <a href="landing.php" class="navbar-brand">
-        <img class="d-inline-block center" src="../images/logo.png" width="80">
+    <div class="container justify-content-center">
+    <a href="./landing.php" class="navbar-brand">
+        <img class="d-inline-block center" src="../images/logo.png" width="100">
     </a>
+        <button class="navbar-toggler me-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#btn">
+            <i class="bx bx-menu bx-md"></i>
+        </button>
+        <div class="collapse navbar-collapse flex-grow-1" id="btn">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+            </li>
+        </ul>
+    </div>
     </div>
 </nav>
 

@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire de création de compte-->
 <?php
     require_once 'config.php';
 

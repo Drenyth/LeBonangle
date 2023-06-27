@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire de création d'une annonce-->
 <?php
     //Execution du fichier se connectant a la base de donnée
     require_once 'config.php';

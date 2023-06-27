@@ -1,3 +1,4 @@
+<!-- Traitement du formulaire de la connexion-->
 <?php
     //Execution du fichier se connectant a la base de donnée
     require_once 'config.php';
@@ -42,3 +43,4 @@
             } else{ header('Location:connexion.php?login_err=email'); die(); }
         } else{ header('Location:connexion.php?login_err=already'); die(); }
     }else{ header('Location:connexion.php'); die();}
+?>

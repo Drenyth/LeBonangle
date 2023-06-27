@@ -1,3 +1,4 @@
+<!-- Page de base du site affichant les annonces-->
 <?php
     require_once "config.php";
     //récupération user id et données correspondantes
